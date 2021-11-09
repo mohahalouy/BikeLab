@@ -42,6 +42,14 @@ export default {
 </script>
 
 <style scoped>
+header{
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 2;
+}
+
 header > div {
   margin: 0 200px;
 }
@@ -56,6 +64,7 @@ header > div {
 
 .logoHeader > img {
   height: 150px;
+  width: 160px;
 }
 
 .imgBanderas > img {

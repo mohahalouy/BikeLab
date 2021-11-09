@@ -1,16 +1,19 @@
 <template>
   <div id="app">
     <HeaderPrincipal></HeaderPrincipal>
+    <CarouselPaginaPrincipal></CarouselPaginaPrincipal>
   </div>
 </template>
 
 <script>
 import HeaderPrincipal from "@/components/HeaderPrincipal";
+import CarouselPaginaPrincipal from "@/components/CarouselPaginaPrincipal";
 
 export default {
   name: 'App',
   components: {
-    HeaderPrincipal
+    HeaderPrincipal,
+    CarouselPaginaPrincipal
   }
 }
 </script>
