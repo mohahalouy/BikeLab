@@ -18,13 +18,16 @@ import 'aos/dist/aos.css';
 
 AOS.init();
 
+AOS.init({
+  once: true
+});
+
 //libreria icon
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faFontAwesome } from '@fortawesome/free-brands-svg-icons'
 import {faInstagram} from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
-library.add(faFontAwesome, faInstagram)
+library.add(faInstagram)
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 

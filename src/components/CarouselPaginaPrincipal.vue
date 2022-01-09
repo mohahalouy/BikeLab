@@ -1,25 +1,25 @@
 <template>
-  <div id="carouselPrincipal" class="carouselPrincipal">
+  <section id="carouselPrincipal" class="carouselPrincipal">
     <b-carousel
         id="carousel-no-animation"
         style="text-shadow: 0px 0px 2px #000"
         fade
         indicators
-        :interval="false"
     >
       <b-carousel-slide
           class="h100vh"
-          img-src="https://picsum.photos/1024/480/?image=10"></b-carousel-slide>
-      <b-carousel-slide
-          class="h100vh"
-          img-src="https://picsum.photos/1024/480/?image=12"
+          :img-src="require('../assets/banderaEspaña.png')"
       ></b-carousel-slide>
       <b-carousel-slide
           class="h100vh"
-          img-src="https://picsum.photos/1024/480/?image=22"
+          :img-src="require('../assets/logo.png')"
+      ></b-carousel-slide>
+      <b-carousel-slide
+          class="h100vh"
+          :img-src="require('../assets/banderaInglaterra.png')"
       ></b-carousel-slide>
     </b-carousel>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -29,19 +29,21 @@ export default {
 </script>
 
 <style>
-.carouselPrincipal .h100vh{
+
+/*ESTILOS PARA EL CAROUSEL*/
+.carouselPrincipal .h100vh {
   height: 100vh;
 }
 
-.carouselPrincipal .h100vh > img{
+.carouselPrincipal .h100vh > img {
   height: 100%;
 }
 
-.carouselPrincipal .carousel-indicators .active{
+.carouselPrincipal .carousel-indicators .active {
   background-color: coral;
 }
 
-.carouselPrincipal .carousel-indicators li{
-opacity: 1;
+.carouselPrincipal .carousel-indicators li {
+  opacity: 1;
 }
 </style>
