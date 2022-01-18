@@ -26,6 +26,7 @@ AOS.init({
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {faInstagram} from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import i18n from './i18n'
 
 library.add(faInstagram)
 
@@ -34,5 +35,6 @@ Vue.component("font-awesome-icon", FontAwesomeIcon);
 Vue.config.productionTip = false
 
 new Vue({
-  render: h => h(App),
+  i18n,
+  render: h => h(App)
 }).$mount('#app')
