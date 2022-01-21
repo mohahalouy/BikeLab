@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 
-import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+import {BootstrapVue, IconsPlugin} from 'bootstrap-vue'
 
 // Import Bootstrap an BootstrapVue CSS files (order is important)
 import 'bootstrap/dist/css/bootstrap.css'
@@ -19,22 +19,23 @@ import 'aos/dist/aos.css';
 AOS.init();
 
 AOS.init({
-  once: true
+    once: true
 });
 
 //libreria icon
-import { library } from '@fortawesome/fontawesome-svg-core'
-import {faInstagram} from "@fortawesome/free-brands-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import {library} from '@fortawesome/fontawesome-svg-core'
+import {faInstagram, faTwitter, faFacebook, faTiktok} from "@fortawesome/free-brands-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
+import {faArrowUp} from '@fortawesome/free-solid-svg-icons'
 import i18n from './i18n'
 
-library.add(faInstagram)
+library.add(faInstagram, faTwitter, faFacebook, faTiktok, faArrowUp,)
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 
 Vue.config.productionTip = false
 
 new Vue({
-  i18n,
-  render: h => h(App)
+    i18n,
+    render: h => h(App)
 }).$mount('#app')

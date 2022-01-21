@@ -3,6 +3,7 @@
     <HeaderPrincipal class="header w-75 mx-auto"></HeaderPrincipal>
     <CarouselPaginaPrincipal class="carousel"></CarouselPaginaPrincipal>
     <HomeNoticiasConfigurador class="noticiasConfigurador"></HomeNoticiasConfigurador>
+    <Footer class="footer"></Footer>
   </div>
 </template>
 
@@ -10,13 +11,15 @@
 import HeaderPrincipal from "@/components/HeaderPrincipal";
 import CarouselPaginaPrincipal from "@/components/CarouselPaginaPrincipal";
 import HomeNoticiasConfigurador from "./components/HomeNoticiasConfigurador";
+import Footer from "./components/Footer";
 
 export default {
   name: 'App',
   components: {
     HeaderPrincipal,
     CarouselPaginaPrincipal,
-    HomeNoticiasConfigurador
+    HomeNoticiasConfigurador,
+    Footer
   }
 }
 </script>
@@ -33,7 +36,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: white;
 }
 
 /*ESTRUCTURA GENERAL DE LA PANTALLA DE INICIO*/
@@ -43,7 +46,8 @@ export default {
   grid-template-areas:
     "header"
     "carousel"
-    "noticiasConfigurador";
+    "noticiasConfigurador"
+    "footer";
   grid-template-columns: 1fr;
   grid-template-rows: auto;
   position: relative;
@@ -64,5 +68,9 @@ export default {
 
 .noticiasConfigurador {
   grid-area: noticiasConfigurador;
+}
+
+.footer {
+  grid-area: footer;
 }
 </style>

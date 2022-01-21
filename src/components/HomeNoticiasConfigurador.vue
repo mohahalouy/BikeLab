@@ -1,5 +1,5 @@
 <template>
-  <section class="containerNoticiasConfigurador mt-5">
+  <section class="containerNoticiasConfigurador mt-5 mb-5">
     <section data-aos="fade-up" class="configurador position-relative">
       <div class="letrasVisor">
         <p class="m-0">Visor 360º</p>
@@ -36,20 +36,23 @@
     </section>
 
     <section class="findUsContainer mx-0 mt-5 row">
-      <div class="border border-danger col-6 row p-0 m-0">
-        <div class="col-6 border border-danger"></div>
-        <div class="col-6 border border-danger"></div>
-        <div class="col-6 border border-danger"></div>
-        <div class="col-6 border border-danger"></div>
+      <div class="  col-6 row p-0 m-0">
+        <a href="" class="col-6 p-0"><div class="imgInsta"></div></a>
+        <a href="" class="col-6 p-0"><div class="imgInsta"></div></a>
+        <a href="" class="col-6 p-0"><div class="imgInsta"></div></a>
+        <a href="" class="col-6 p-0"><div class="imgInsta"></div></a>
       </div>
       <div class="col-6 findUsInstaContainer p-0">
         <div class="p-3">
           <h3 class="m-0">FIND US ON INSTAGRAM</h3>
           <hr>
+          <p>Obten tu dosis de motivación diaria</p>
           <div class="followUsInsta">
             <p class="d-flex align-items-center m-0">
-              <font-awesome-icon :icon="[ 'fab', 'instagram' ]" class="mr-2"/>
-              <span>Follow us</span>
+              <a href="">
+                <font-awesome-icon :icon="[ 'fab', 'instagram' ]" class="mr-2"/>
+                <span>Follow us</span>
+              </a>
             </p>
           </div>
         </div>
@@ -67,6 +70,7 @@
   </section>
 </template>
 
+import foo
 <script>
 export default {
   name: "Noticias"
@@ -197,6 +201,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .findUsInstaContainer > div:first-of-type > h3 {
@@ -211,37 +216,34 @@ export default {
 
 /*Boton followUs y animacion*/
 .followUsInsta {
-  border: 1px solid white;
   width: fit-content;
-  padding: 1.35em 2.778em 1.20em 2.778em;
   cursor: pointer;
-  animation: colorDefectoFollowUs 0.5s forwards;
 }
 
-.followUsInsta:hover {
-  animation: rotacionColorFollowUs 2s forwards;
+.followUsInsta > p > a{
+  color: white;
+  text-decoration: none;
+  padding: 1.35em 2.778em 1.20em 2.778em;
+  border: 1px solid white;
+  transition: border 1s, color 1s;
 }
 
-@keyframes colorDefectoFollowUs {
-  0% {
-    border: 1px solid orange;
-    color: orange;
-  }
-  100% {
-    border: 1px solid white;
-    color: white;
-  }
+.followUsInsta  > p > a:hover {
+  border: 1px solid orange;
+  color: orange;
 }
 
-@keyframes rotacionColorFollowUs {
-  0% {
-    border: 1px solid white;
-    color: white;
-  }
-  100% {
-    border: 1px solid orange;
-    color: orange;
-  }
+.imgInsta{
+  height: 40vh;
+  background-image: url(https://d3pelj80y5v5k4.cloudfront.net/69bf30b1-dffe-4196-8de0-4a9a8fa25a5e?w=400&h=400&q=85&nu=1);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center;
+  transition:   background-size 0.5s;
+}
+
+.imgInsta:hover{
+  background-size: 120% 120%;
 }
 
 /*section newsletter*/
