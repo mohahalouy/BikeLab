@@ -1,10 +1,12 @@
 <template>
   <section class="containerNoticiasConfigurador mt-5 mb-5">
     <section data-aos="fade-up" class="configurador position-relative">
-      <div class="letrasVisor">
-        <p class="m-0">Visor 360º</p>
-        <p class="m-0">Visualiza la moto desde todas las perspectivas</p>
-      </div>
+      <a href="" class="linkNonStyle">
+        <div class="letrasVisor">
+          <p class="m-0">Visor 360º</p>
+          <p class="m-0">Visualiza la moto desde todas las perspectivas</p>
+        </div>
+      </a>
     </section>
 
     <section class="noticia mt-5 d-flex">
@@ -24,14 +26,18 @@
 
     <section class="modelos d-flex mt-5 justify-content-between">
       <article data-aos="fade-up-right" class="w-45">
-        <div class="modelo1 letrasVisor">
-          <p class="m-0">lorem</p>
-        </div>
+        <a class="linkNonStyle" href="">
+          <div class="modelo1 letrasVisor">
+            <p class="m-0">lorem</p>
+          </div>
+        </a>
       </article>
       <article data-aos="fade-up-left" class="w-45">
-        <div class="modelo1 letrasVisor">
-          <p class="m-0">lorem</p>
-        </div>
+        <a class="linkNonStyle" href="">
+          <div class="modelo1 letrasVisor">
+            <p class="m-0">lorem</p>
+          </div>
+        </a>
       </article>
     </section>
 
@@ -61,7 +67,7 @@
 
 
     <section class="newsletter mt-5 d-flex justify-content-center align-items-center">
-      <p class="my-0 mx-2">JOIN THE KTM NEWSLETTER</p>
+      <p class="my-0 mx-2">JOIN THE MH Motorcycle NEWSLETTER</p>
       <a class="buttonNewsletter">
         sign up
       </a>
@@ -102,6 +108,10 @@ export default {
   background-position: center;
 }
 
+.linkNonStyle{
+  text-decoration: none;
+}
+
 .letrasVisor {
   color: white;
   width: 100%;
@@ -117,38 +127,11 @@ export default {
 
 /*ANIMACIONES CUANDO ENTRAS Y SALES DE LAS CAJAS CON TEXTO*/
 .letrasVisor p {
-  animation-name: letraVolver;
-  animation-duration: 1.5s;
-  animation-fill-mode: forwards;
-}
-
-@keyframes letraVolver {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-
-.letrasVisor:hover {
-  cursor: pointer;
+  transition: opacity 1s;
 }
 
 .letrasVisor:hover p {
-  animation-name: letraDesvanecer;
-  animation-duration: 0.7s;
-  animation-fill-mode: forwards;
-}
-
-@keyframes letraDesvanecer {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
+  opacity: 0;
 }
 
 /*ESTILOS DE LAS CAJAS CON NOTICIAS. SIN ANIMACIONES*/
@@ -225,12 +208,13 @@ export default {
   text-decoration: none;
   padding: 1.35em 2.778em 1.20em 2.778em;
   border: 1px solid white;
-  transition: border 1s, color 1s;
+  transition: border 1s, color 1s, background-color 1s;
 }
 
 .followUsInsta  > p > a:hover {
-  border: 1px solid orange;
-  color: orange;
+  border: 1px solid red;
+  color: white;
+  background-color: red;
 }
 
 .imgInsta{
@@ -297,7 +281,7 @@ export default {
   right: 0;
   width: 100%;
   height: 100%;
-  background: orange;
+  background: red;
 
   transform: scaleX(0);
   transition: 0.5s;

@@ -1,28 +1,28 @@
 <template>
   <header class="">
-    <div class="d-flex justify-content-between">
+    <div class="d-flex justify-content-between flex-wrap">
       <nav class="nav align-items-center">
-        <ul class="list-unstyled d-flex m-0">
+        <ul class="list-unstyled d-flex m-0 flex-wrap">
           <li class="mr-5">
-            <a href="">lorem</a>
+            <a href="">{{$t('1')}}</a>
           </li>
           <li class="mr-5">
-            <a href="">lorem</a>
+            <a href="">{{$t('2')}}</a>
           </li>
           <li class="mr-5">
-            <a href="">lorem</a>
+            <a href="">{{$t('3')}}</a>
           </li>
           <li class="mr-5">
-            <a href="">lorem</a>
+            <a href="">{{$t('4')}}</a>
           </li>
         </ul>
       </nav>
       <aside class="d-flex align-items-center">
         <div id="idiomas" class="mr-2 d-flex align-items-center">
-          <span>Idioma</span>
-          <div id="imgIdiomas" class="d-flex imgBanderas">
-            <img href="" src="../assets/banderaEspaña.png">
-            <img href="" src="../assets/banderaInglaterra.png">
+          <span>{{$t('5')}}</span>
+          <div id="imgIdiomas" class="d-flex imgBanderas" @click="changeLanguage">
+            <img href="" src="../assets/banderaEspaña.png" alt="es">
+            <img href="" src="../assets/banderaInglaterra.png" alt="en">
           </div>
         </div>
         <div id="logoHeader" class="logoHeader">
@@ -34,8 +34,18 @@
 </template>
 
 <script>
+
+import i18n from '../i18n'
+
 export default {
-  name: "HeaderPrincipal"
+  name: "HeaderPrincipal",
+  methods: {
+    changeLanguage() {
+      if (event.target.nodeName === 'IMG') {
+        i18n.locale = event.target.alt
+      }
+    }
+  }
 }
 </script>
 

@@ -21,15 +21,15 @@
       </header>
       <section class="footerLinks">
         <ul>
-          <li><a href="">lorem</a></li>
-          <li><a href="">lorem</a></li>
-          <li><a href="">lorem</a></li>
-          <li><a href="">lorem</a></li>
+          <li><a href="">{{$t('1')}}</a></li>
+          <li><a href="">{{$t('2')}}</a></li>
+          <li><a href="">{{$t('3')}}</a></li>
+          <li><a href="">{{$t('4')}}</a></li>
         </ul>
       </section>
       <hr class="lineFooter">
       <section class="copyReturnUp">
-        <p class="m-0">Copyright 2022 KTM Sportmotorcycle GmbH, all rights reserved</p>
+        <p class="m-0">Copyright 2022 MH Motorcycle Sportmotorcycle GmbH, all rights reserved</p>
         <p class="goUp m-0" @click="goUp">Volver Arriba<font-awesome-icon :icon="[ 'fas', 'arrow-up' ]" class="ml-2"/></p>
       </section>
     </div>
@@ -108,7 +108,7 @@ footer .socialIcon li a:hover {
   margin: 0 10px;
   text-decoration: none;
   opacity: 0.75;
-  transition: opacity 0.6s;
+  transition: opacity 0.4s;
 }
 
 .footerLinks ul li a:hover {

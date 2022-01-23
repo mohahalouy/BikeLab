@@ -8,15 +8,15 @@
     >
       <b-carousel-slide
           class="h100vh"
-          :img-src="require('../assets/banderaEspaña.png')"
+          :img-src="require('../assets/multistrada.jpg')"
       ></b-carousel-slide>
       <b-carousel-slide
           class="h100vh"
-          :img-src="require('../assets/logo.png')"
+          :img-src="require('../assets/multistrada2.jpg')"
       ></b-carousel-slide>
       <b-carousel-slide
           class="h100vh"
-          :img-src="require('../assets/banderaInglaterra.png')"
+          :img-src="require('../assets/multistrada3.jpg')"
       ></b-carousel-slide>
     </b-carousel>
   </section>
@@ -40,7 +40,7 @@ export default {
 }
 
 .carouselPrincipal .carousel-indicators .active {
-  background-color: coral;
+  background-color: red;
 }
 
 .carouselPrincipal .carousel-indicators li {
