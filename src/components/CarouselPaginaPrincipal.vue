@@ -1,9 +1,10 @@
 <template>
   <section id="carouselPrincipal" class="carouselPrincipal">
     <b-carousel
-        id="carousel-no-animation"
+        id="carousel-fade"
         style="text-shadow: 0px 0px 2px #000"
         fade
+        :interval="5000"
         indicators
     >
       <b-carousel-slide
