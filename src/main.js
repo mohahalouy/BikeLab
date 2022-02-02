@@ -26,10 +26,10 @@ AOS.init({
 import {library} from '@fortawesome/fontawesome-svg-core'
 import {faInstagram, faTwitter, faFacebook, faTiktok} from "@fortawesome/free-brands-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
-import {faArrowUp} from '@fortawesome/free-solid-svg-icons'
+import {faArrowUp, faAngleDown} from '@fortawesome/free-solid-svg-icons'
 import i18n from './i18n'
 
-library.add(faInstagram, faTwitter, faFacebook, faTiktok, faArrowUp,)
+library.add(faInstagram, faTwitter, faFacebook, faTiktok, faArrowUp, faAngleDown)
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 

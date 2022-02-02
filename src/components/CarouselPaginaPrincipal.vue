@@ -4,7 +4,7 @@
         id="carousel-fade"
         style="text-shadow: 0px 0px 2px #000"
         fade
-        :interval="5000"
+        :interval="0"
         indicators
     >
       <b-carousel-slide
