@@ -82,6 +82,7 @@ export default {
 
     },
     activateMenu() {
+      $('.header').toggle('d-none')
       $('.toggleMenu').toggleClass('active')
       $('.fullDisplayHeader').toggleClass('active')
       $('.fullDisplayHeader').removeClass('desactivate')

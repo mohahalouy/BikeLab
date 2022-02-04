@@ -66,7 +66,7 @@ export default {
 
 .fullDisplayHeader {
   display: none;
-  background-color: black;
+  background-color: rgb(0 0 0 / 80%);
   height: 100vh;
   position: absolute;
   z-index: 20;
@@ -88,7 +88,7 @@ export default {
   }
 }
 
-.fullDisplayHeader.desactivate .header{
+.fullDisplayHeader.desactivate .headerResponsive{
   display: none;
 }
 
@@ -106,7 +106,7 @@ export default {
   }
 }
 
-.fullDisplayHeader.active .header {
+.fullDisplayHeader.active .headerResponsive {
   opacity: 0;
   animation: opacityHeader 1s 1s forwards;
 }

@@ -1,5 +1,5 @@
 <template>
-  <header class="header px-3 mx-auto h-100">
+  <header class="headerResponsive px-3 mx-auto h-100">
     <div class="d-flex justify-content-between flex-wrap align-items-center">
       <div class="toggleMenu" @click="activateMenu">
         <span></span>
@@ -83,6 +83,7 @@ export default {
     }
     ,
     activateMenu() {
+      $('.header').toggle('d-none')
       $('.toggleMenu').toggleClass('active')
       $('.fullDisplayHeader').toggleClass('active')
       $('.fullDisplayHeader').addClass('desactivate')
