@@ -7,14 +7,14 @@
         <span></span>
       </div>
       <aside class="d-flex align-items-center">
-        <div id="idiomas" class="position-relative mr-2 d-flex align-items-center">
+        <div id="idiomas" class="idiomas mr-2">
           <div class="imgBanderas" @click="selectLanguage">
-            <span>España</span>
+            <span class="nombreIdioma">España</span>
             <img src="../assets/banderaEspaña.png" alt="es">
             <font-awesome-icon :icon="[ 'fas', 'angle-down' ]"/>
           </div>
-          <div class="otherlanguage" @click="changeLanguage">
-            <span>UK</span>
+          <div class="otherLanguage" @click="changeLanguage">
+            <span class="nombreIdioma">UK</span>
             <img src="../assets/banderaInglaterra.png" alt="en">
           </div>
           <!--          <div id="imgIdiomas" class="d-flex imgBanderas" @click="changeLanguage">-->
@@ -27,18 +27,18 @@
         </div>
       </aside>
     </div>
-    <nav class="nav h-100">
+    <nav class="nav">
       <ul class="list-unstyled d-flex m-0 flex-wrap flex-column text-left">
-        <li class="my-5">
+        <li class="my-3">
           <a href="">{{ $t('1') }}</a>
         </li>
-        <li class="my-5">
+        <li class="my-3">
           <a href="">{{ $t('2') }}</a>
         </li>
-        <li class="my-5">
+        <li class="my-3">
           <a href="">{{ $t('3') }}</a>
         </li>
-        <li class="my-5">
+        <li class="my-3">
           <a href="">{{ $t('4') }}</a>
         </li>
       </ul>
@@ -55,7 +55,7 @@ export default {
   name: "fullDisplayHeader",
   methods: {
     selectLanguage() {
-      $('.otherlanguage').toggleClass('d-flex')
+      $('.otherLanguage').toggleClass('d-flex')
       if (event.target.nodeName === 'IMG') {
         i18n.locale = event.target.alt
       }
@@ -63,21 +63,21 @@ export default {
     ,
     changeLanguage() {
       //Cambiar al nuevo idioma
-      i18n.locale = $('.otherlanguage')[0].childNodes[1].alt
+      i18n.locale = $('.otherLanguage')[0].childNodes[1].alt
 
-      $('.otherlanguage').removeClass('d-flex')
-      let nombreNuevo = $('.otherlanguage')[0].childNodes[0].outerHTML
-      let banderaNueva = $('.otherlanguage')[0].childNodes[1].outerHTML
+      $('.otherLanguage').removeClass('d-flex')
+      let nombreNuevo = $('.otherLanguage')[0].childNodes[0].outerHTML
+      let banderaNueva = $('.otherLanguage')[0].childNodes[1].outerHTML
       let svg = $('.imgBanderas')[0].childNodes[2].outerHTML
 
       let nombre = $('.imgBanderas')[0].childNodes[0].outerHTML
       let bandera = $('.imgBanderas')[0].childNodes[1].outerHTML
 
       $('.imgBanderas').html('')
-      $('.otherlanguage').html('')
+      $('.otherLanguage').html('')
 
       $('.imgBanderas').append(nombreNuevo, banderaNueva, svg)
-      $('.otherlanguage').append(nombre, bandera)
+      $('.otherLanguage').append(nombre, bandera)
 
 
     }
@@ -85,6 +85,7 @@ export default {
     activateMenu() {
       $('.toggleMenu').toggleClass('active')
       $('.fullDisplayHeader').toggleClass('active')
+      $('.fullDisplayHeader').addClass('desactivate')
       $('body').toggleClass('overflow-hidden')
     }
   }
@@ -93,12 +94,24 @@ export default {
 
 <style scoped>
 
+.nav {
+  height: 300px;
+  overflow-y: auto;
+}
+
 .nav > ul > li > a {
   color: white;
   text-decoration: none;
   font-size: 1.11111em;
   font-weight: 700;
   text-transform: uppercase;
+}
+
+.idiomas{
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 50px;
 }
 
 .toggleMenu {
@@ -170,14 +183,14 @@ export default {
   width: 35px;
 }
 
-.otherlanguage {
+.otherLanguage {
   display: none;
   justify-content: space-around;
   align-items: center;
   width: 100%;
   position: absolute;
   color: black;
-  background-color: white;
+  background-color: rgb(255 255 255 / 50%);
   cursor: pointer;
   animation: animationDown 1s forwards;
 }
@@ -185,14 +198,60 @@ export default {
 @keyframes animationDown {
   from {
     top: 0px;
+    opacity: 0;
   }
   to {
     top: 30px;
+    opacity: 1;
   }
 }
 
-.otherlanguage > img {
+.otherLanguage > img {
   width: 35px;
 }
 
+@media (max-width: 520px) {
+  .header {
+    width: 100%;
+    max-width: 100%;
+    padding: 5px 10px;
+  }
+
+  .idiomas .nombreIdioma{
+    display: none;
+  }
+
+  .logoHeader > img {
+    height: 100px;
+    width: 110px;
+  }
+
+  .toggleMenu {
+    width: 50px;
+    height: 50px;
+  }
+
+  .toggleMenu span {
+    width: 30px;
+    height: 4px;
+  }
+
+  .toggleMenu span:nth-child(1) {
+    width: 20px;
+    left: 10px;
+  }
+
+  .toggleMenu span:nth-child(2) {
+    width: 10px;
+    left: 10px;
+  }
+
+  .toggleMenu.active span:nth-child(1) {
+    width: 30px;
+  }
+
+  .toggleMenu.active span:nth-child(2) {
+    width: 30px;
+  }
+}
 </style>

@@ -23,7 +23,7 @@
         </ul>
       </nav>
       <aside class="d-flex align-items-center">
-        <div id="idiomas" class="position-relative mr-2 d-flex align-items-center">
+        <div id="idiomas" class="idiomas mr-2">
           <div class="imgBanderas" @click="selectLanguage">
             <span>España</span>
             <img src="../assets/banderaEspaña.png" alt="es">
@@ -84,6 +84,7 @@ export default {
     activateMenu() {
       $('.toggleMenu').toggleClass('active')
       $('.fullDisplayHeader').toggleClass('active')
+      $('.fullDisplayHeader').removeClass('desactivate')
       $('body').toggleClass('overflow-hidden')
     }
   }
@@ -106,6 +107,12 @@ export default {
   font-size: 1.11111em;
   font-weight: 700;
   text-transform: uppercase;
+}
+
+.idiomas{
+  display: flex;
+  align-items: center;
+  position: relative;
 }
 
 .toggleMenu {
@@ -189,6 +196,10 @@ export default {
   animation: animationDown 1s forwards;
 }
 
+.otherLanguage > img {
+  width: 35px;
+}
+
 @keyframes animationDown {
   from {
     top: 0px;
@@ -198,19 +209,20 @@ export default {
   }
 }
 
-.otherLanguage > img {
-  width: 35px;
-}
-
-@media (min-width: 320px) {
+@media (max-width: 520px) {
   .header {
     width: 100%;
     max-width: 100%;
     padding: 5px 10px;
   }
+
   .logoHeader > img {
     height: 100px;
     width: 110px;
+  }
+
+  .idiomas{
+    display: none;
   }
 
   .toggleMenu {

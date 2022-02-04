@@ -3,34 +3,42 @@
     <div class="footerContainer">
       <header>
         <nav>
-          <ul class="socialIcon">
-            <li><a href="">
-              <font-awesome-icon :icon="[ 'fab', 'instagram' ]"/>
-            </a></li>
-            <li><a href="">
-              <font-awesome-icon :icon="[ 'fab', 'twitter' ]"/>
-            </a></li>
-            <li><a href="">
-              <font-awesome-icon :icon="[ 'fab', 'facebook' ]"/>
-            </a></li>
-            <li><a href="">
-              <font-awesome-icon :icon="[ 'fab', 'tiktok' ]"/>
-            </a></li>
+          <ul class="socialIcon row-cols-4">
+            <li class="col p-0">
+              <a href="">
+                <font-awesome-icon :icon="[ 'fab', 'instagram' ]"/>
+              </a>
+            </li>
+            <li class="col p-0">
+              <a href="">
+                <font-awesome-icon :icon="[ 'fab', 'twitter' ]"/>
+              </a>
+            </li>
+            <li class="col p-0">
+              <a href="">
+                <font-awesome-icon :icon="[ 'fab', 'facebook' ]"/>
+              </a>
+            </li>
+            <li class="col p-0">
+              <a href="">
+                <font-awesome-icon :icon="[ 'fab', 'tiktok' ]"/>
+              </a>
+            </li>
           </ul>
         </nav>
       </header>
       <section class="footerLinks">
-        <ul>
-          <li><a href="">{{$t('1')}}</a></li>
-          <li><a href="">{{$t('2')}}</a></li>
-          <li><a href="">{{$t('3')}}</a></li>
-          <li><a href="">{{$t('4')}}</a></li>
+        <ul class="row m-0">
+          <li class="col-12 p-0"><a href="">{{$t('1')}}</a></li>
+          <li class="col-12 p-0"><a href="">{{$t('2')}}</a></li>
+          <li class="col-12 p-0"><a href="">{{$t('3')}}</a></li>
+          <li class="col-12 p-0"><a href="">{{$t('4')}}</a></li>
         </ul>
       </section>
       <hr class="lineFooter">
-      <section class="copyReturnUp">
-        <p class="m-0">Copyright 2022 MH Motorcycle Sportmotorcycle GmbH, all rights reserved</p>
-        <p class="goUp m-0" @click="goUp">Volver Arriba<font-awesome-icon :icon="[ 'fas', 'arrow-up' ]" class="ml-2"/></p>
+      <section class="copyReturnUp row justify-content-center">
+        <p class="m-0 col-12 text-uppercase">Copyright 2022 MH Motorcycle Sportmotorcycle GmbH, all rights reserved</p>
+        <p class="goUp m-0 col-12 text-danger" @click="goUp">Volver Arriba<font-awesome-icon :icon="[ 'fas', 'arrow-up' ]" class="ml-2"/></p>
       </section>
     </div>
   </footer>
@@ -56,6 +64,7 @@ export default {
 }
 
 .footerGeneralContainer {
+  width: 100%;
   background-color: black;
   display: flex;
   justify-content: center;
@@ -69,6 +78,10 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+header {
+  width: 100%;
 }
 
 footer .socialIcon {
@@ -92,9 +105,6 @@ footer .socialIcon li a {
 
 footer .socialIcon li a:hover {
   transform: translateY(-10px);
-}
-
-.footerLinks {
 }
 
 .footerLinks ul {
@@ -121,14 +131,12 @@ footer .socialIcon li a:hover {
 }
 
 .copyReturnUp {
-  width: 100%;
   font-family: 'letraVisor';
   font-size: 1.2em;
-  display: flex;
-  justify-content: space-between;
 }
 
 .goUp{
+  color: red;
   cursor: pointer;
 }
 

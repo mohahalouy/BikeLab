@@ -64,7 +64,7 @@ export default {
   grid-area: header;
 }
 
-.fullDisplayHeader{
+.fullDisplayHeader {
   display: none;
   background-color: black;
   height: 100vh;
@@ -72,6 +72,29 @@ export default {
   z-index: 20;
   top: 0;
   left: 0;
+}
+
+.fullDisplayHeader.desactivate {
+  display: block;
+  animation: desactivateResponsiveHeader 1s forwards;
+}
+
+@keyframes desactivateResponsiveHeader {
+  0% {
+    width: 100%;
+  }
+  100% {
+    width: 0%;
+  }
+}
+
+.fullDisplayHeader.desactivate .header{
+  display: none;
+}
+
+.fullDisplayHeader.active {
+  display: block;
+  animation: activateResponsiveHeader 1s forwards;
 }
 
 @keyframes activateResponsiveHeader {
@@ -83,14 +106,9 @@ export default {
   }
 }
 
-.fullDisplayHeader.active{
-  display: block;
-  animation: activateResponsiveHeader 1s forwards ;
-}
-
-.fullDisplayHeader.active .header{
+.fullDisplayHeader.active .header {
   opacity: 0;
-  animation: opacityHeader 1s 1s forwards ;
+  animation: opacityHeader 1s 1s forwards;
 }
 
 @keyframes opacityHeader {
@@ -103,6 +121,7 @@ export default {
 }
 
 .carousel {
+  width: 100%;
   grid-area: carousel;
 }
 
