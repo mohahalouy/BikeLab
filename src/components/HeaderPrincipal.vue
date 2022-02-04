@@ -82,7 +82,7 @@ export default {
 
     },
     activateMenu() {
-      $('.header').toggle('d-none')
+      $('.header').fadeToggle();
       $('.toggleMenu').toggleClass('active')
       $('.fullDisplayHeader').toggleClass('active')
       $('.fullDisplayHeader').removeClass('desactivate')
@@ -114,6 +114,7 @@ export default {
   display: flex;
   align-items: center;
   position: relative;
+  width: 100px;
 }
 
 .toggleMenu {
@@ -178,7 +179,7 @@ export default {
   align-items: center;
   position: relative;
   cursor: pointer;
-  width: 120px;
+  width: 100%;
 }
 
 .imgBanderas > img {
