@@ -132,4 +132,13 @@ export default {
 .footer {
   grid-area: footer;
 }
+
+@media (min-width: 1300px) {
+  .fullDisplayHeader.active{
+    display: none;
+  }
+  .header{
+    display: block !important;
+  }
+}
 </style>

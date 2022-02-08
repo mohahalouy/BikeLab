@@ -14,7 +14,7 @@
       </section>
 
       <section class="noticia mt-3 row">
-        <article class="col-12 py-3" data-aos="fade-right">
+        <article class="col-12 col-md-6 py-3" data-aos="fade-right">
           <a class="linkNonStyle" href="">
             <img class="img-fluid" src="../assets/noticias.png">
             <div class="letrasVisorNoticas text-left">
@@ -24,10 +24,10 @@
             </div>
           </a>
         </article>
-        <article class="col-12 py-3" data-aos="fade-left">
+        <article class="col-12 col-md-6 py-3" data-aos="fade-left">
           <a class="linkNonStyle" href="">
             <img class="img-fluid" src="../assets/noticias.png">
-            <div class="letrasVisorResponsive text-left">
+            <div class="letrasVisorNoticas text-left">
               <p class="">3 feb. 2022</p>
               <h4 class="">CAMPEONATO DE ESPAÑA DE MOTOCROSS DE 2022 TOLEDO</h4>
               <p class="mb-0">¡David Braceras, segundo absoluto en MX2 y co-lider de la clasificación provisional del campeonato!</p>
@@ -37,7 +37,7 @@
       </section>
 
       <section class="modelos row mt-3">
-        <article data-aos="fade-up-right" class="col-12 py-3">
+        <article data-aos="fade-up-right" class="col-12 col-md-6 py-3">
           <a class="linkNonStyle" href="">
             <div class="modelo1 letrasVisor">
               <p class="m-0 textVisor">lorem</p>
@@ -48,7 +48,7 @@
             </div>
           </a>
         </article>
-        <article data-aos="fade-up-left" class="col-12 py-3">
+        <article data-aos="fade-up-left" class="col-12 col-md-6 py-3">
           <a class="linkNonStyle" href="">
             <div class="modelo1 letrasVisor">
               <p class="m-0 textVisor">lorem</p>
@@ -62,7 +62,7 @@
       </section>
 
       <section class="findUsContainer mx-0 mt-3 row">
-        <div class="col-12 row p-0 m-0">
+        <div class="col-12 col-md-6 row p-0 m-0">
           <a href="" class="col-6 p-0">
             <div class="imgInsta"></div>
           </a>
@@ -76,7 +76,7 @@
             <div class="imgInsta"></div>
           </a>
         </div>
-        <div class="col-12 findUsInstaContainer p-0">
+        <div class="col-12 col-md-6 findUsInstaContainer p-0">
           <div class="p-3">
             <h3 class="m-0">FIND US ON INSTAGRAM</h3>
             <hr>
@@ -94,9 +94,9 @@
       </section>
 
 
-      <section class="newsletter mt-3 row justify-content-center">
-        <p class="my-0 mx-2 col-12">JOIN THE MH Motorcycle NEWSLETTER</p>
-        <a class="buttonNewsletter col-6">
+      <section class="newsletter mt-3 row">
+        <p class="my-0 mx-2 mx-md-0 col-12 col-md-4 p-0">JOIN THE MH Motorcycle NEWSLETTER</p>
+        <a class="buttonNewsletter col-6 col-md-3">
           sign up
         </a>
       </section>
@@ -177,7 +177,7 @@
   .modelo1 {
     background-image: url("https://i.pinimg.com/originals/0f/a9/ca/0fa9ca818b23986b167709cec7e25694.jpg");
     width: 100%;
-    height: 440px;
+    height: 380px;
     max-height: 440px;
     background-repeat: no-repeat;
     background-size: 100% 100%;
@@ -253,6 +253,8 @@
     color: #262626;
     font-size: 24px;
     font-family: 'letraVisor';
+    justify-content: center;
+    align-items: center;
   }
 
   .buttonNewsletter {
@@ -262,6 +264,7 @@
     text-decoration: none;
     text-transform: uppercase;
     cursor: pointer;
+    max-width: 200px;
   }
 
   .buttonNewsletter:hover {
@@ -317,10 +320,23 @@
     .configurador{
       height: 150px;
     }
+  }
 
+  @media (max-width: 720px) {
     .textVisor{
       display: none;
     }
+  }
 
+  @media (min-width: 520px) and  (max-width: 720px) {
+    .configurador{
+      height: 200px;
+    }
+  }
+
+  @media (min-width: 720px) and (max-width: 2000px) {
+    .letrasVisorResponsive{
+      display: none;
+    }
   }
   </style>

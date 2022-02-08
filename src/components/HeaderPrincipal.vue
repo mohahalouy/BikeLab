@@ -25,12 +25,12 @@
       <aside class="d-flex align-items-center">
         <div id="idiomas" class="idiomas mr-2">
           <div class="imgBanderas" @click="selectLanguage">
-            <span>España</span>
+            <span class="nombreIdioma">España</span>
             <img src="../assets/banderaEspaña.png" alt="es">
             <font-awesome-icon :icon="[ 'fas', 'angle-down' ]"/>
           </div>
           <div class="otherLanguage" @click="changeLanguage">
-            <span>UK</span>
+            <span class="nombreIdioma">UK</span>
             <img src="../assets/banderaInglaterra.png" alt="en">
           </div>
           <!--          <div id="imgIdiomas" class="d-flex imgBanderas" @click="changeLanguage">-->
@@ -57,21 +57,18 @@ export default {
   methods: {
     selectLanguage() {
       $('.otherLanguage').toggleClass('d-flex')
-      if (event.target.nodeName === 'IMG') {
-        i18n.locale = event.target.alt
-      }
     },
     changeLanguage() {
       //Cambiar al nuevo idioma
       i18n.locale = $('.otherLanguage')[0].childNodes[1].alt
 
       $('.otherLanguage').removeClass('d-flex')
-      let nombreNuevo = $('.otherLanguage')[0].childNodes[0].outerHTML
-      let banderaNueva = $('.otherLanguage')[0].childNodes[1].outerHTML
-      let svg = $('.imgBanderas')[0].childNodes[2].outerHTML
+      let nombreNuevo = $('.otherLanguage').children()[2]
+      let banderaNueva = $('.otherLanguage').children()[3]
 
-      let nombre = $('.imgBanderas')[0].childNodes[0].outerHTML
-      let bandera = $('.imgBanderas')[0].childNodes[1].outerHTML
+      let nombre = $('.imgBanderas').children()[3]
+      let bandera = $('.imgBanderas').children()[4]
+      let svg = $('.imgBanderas').children()[2]
 
       $('.imgBanderas').html('')
       $('.otherLanguage').html('')
@@ -94,12 +91,13 @@ export default {
 
 <style scoped>
 .header {
-  width: 80%;
+  width: 100%;
   z-index: 2;
   position: absolute;
   left: 0;
   top: 0;
   right: 0;
+  padding: 5px 10px;
 }
 
 .nav > ul > li > a {
@@ -212,19 +210,15 @@ export default {
 }
 
 @media (max-width: 520px) {
-  .header {
-    width: 100%;
-    max-width: 100%;
-    padding: 5px 10px;
+  .idiomas{
+    display: none;
   }
+}
 
+@media (max-width: 720px) {
   .logoHeader > img {
     height: 100px;
     width: 110px;
-  }
-
-  .idiomas{
-    display: none;
   }
 
   .toggleMenu {

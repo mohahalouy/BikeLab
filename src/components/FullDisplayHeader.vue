@@ -56,9 +56,6 @@ export default {
   methods: {
     selectLanguage() {
       $('.otherLanguage').toggleClass('d-flex')
-      if (event.target.nodeName === 'IMG') {
-        i18n.locale = event.target.alt
-      }
     }
     ,
     changeLanguage() {
@@ -66,12 +63,12 @@ export default {
       i18n.locale = $('.otherLanguage')[0].childNodes[1].alt
 
       $('.otherLanguage').removeClass('d-flex')
-      let nombreNuevo = $('.otherLanguage')[0].childNodes[0].outerHTML
-      let banderaNueva = $('.otherLanguage')[0].childNodes[1].outerHTML
-      let svg = $('.imgBanderas')[0].childNodes[2].outerHTML
+      let nombreNuevo = $('.otherLanguage').children()[2]
+      let banderaNueva = $('.otherLanguage').children()[3]
 
-      let nombre = $('.imgBanderas')[0].childNodes[0].outerHTML
-      let bandera = $('.imgBanderas')[0].childNodes[1].outerHTML
+      let nombre = $('.imgBanderas').children()[3]
+      let bandera = $('.imgBanderas').children()[4]
+      let svg = $('.imgBanderas').children()[2]
 
       $('.imgBanderas').html('')
       $('.otherLanguage').html('')
@@ -95,9 +92,16 @@ export default {
 
 <style scoped>
 
+.headerResponsive > div{
+  border-bottom: 1px solid white;
+}
+
 .nav {
-  height: 300px;
+  height:100%;
   overflow-y: auto;
+  border-right: 1px solid white;
+  width: fit-content;
+  padding-right: 10px;
 }
 
 .nav > ul > li > a {
@@ -212,14 +216,18 @@ export default {
 }
 
 @media (max-width: 520px) {
-  .header {
-    width: 100%;
-    max-width: 100%;
-    padding: 5px 10px;
-  }
-
   .idiomas .nombreIdioma{
     display: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .nav {
+    border: 0;
+  }
+
+  .headerResponsive > div {
+    border: 0;
   }
 
   .logoHeader > img {

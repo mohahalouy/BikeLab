@@ -2,7 +2,7 @@
   <footer class="footerGeneralContainer">
     <div class="footerContainer">
       <header>
-        <nav>
+        <nav class="d-flex justify-content-center">
           <ul class="socialIcon row-cols-4">
             <li class="col p-0">
               <a href="">
@@ -28,11 +28,11 @@
         </nav>
       </header>
       <section class="footerLinks">
-        <ul class="row m-0">
-          <li class="col-12 p-0"><a href="">{{$t('1')}}</a></li>
-          <li class="col-12 p-0"><a href="">{{$t('2')}}</a></li>
-          <li class="col-12 p-0"><a href="">{{$t('3')}}</a></li>
-          <li class="col-12 p-0"><a href="">{{$t('4')}}</a></li>
+        <ul class="row row-cols-xl-4 m-0 align-items-center">
+          <li class="col-12 col-xl-3 p-0"><a class="m-0" href="">{{$t('1')}}</a></li>
+          <li class="col-12 col-xl-3 p-0"><a class="m-0" href="">{{$t('2')}}</a></li>
+          <li class="col-12 col-xl-3 p-0"><a class="m-0" href="">{{$t('3')}}</a></li>
+          <li class="col-12 col-xl-3 p-0"><a class="m-0" href="">{{$t('4')}}</a></li>
         </ul>
       </section>
       <hr class="lineFooter">
@@ -105,6 +105,11 @@ footer .socialIcon li a {
 
 footer .socialIcon li a:hover {
   transform: translateY(-10px);
+}
+
+.footerLinks{
+  width: 100%;
+  max-width: 500px;
 }
 
 .footerLinks ul {
