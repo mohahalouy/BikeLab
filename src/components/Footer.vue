@@ -38,7 +38,7 @@
       <hr class="lineFooter">
       <section class="copyReturnUp row justify-content-center">
         <p class="m-0 col-12 text-uppercase">Copyright 2022 MH Motorcycle Sportmotorcycle GmbH, all rights reserved</p>
-        <p class="goUp m-0 col-12 text-danger" @click="goUp">Volver Arriba<font-awesome-icon :icon="[ 'fas', 'arrow-up' ]" class="ml-2"/></p>
+        <p class="goUp m-0 col-12 col-xl-3" @click="goUp">Volver Arriba<font-awesome-icon :icon="[ 'fas', 'arrow-up' ]" class="ml-2"/></p>
       </section>
     </div>
   </footer>
@@ -109,7 +109,7 @@ footer .socialIcon li a:hover {
 
 .footerLinks{
   width: 100%;
-  max-width: 500px;
+  max-width: 550px;
 }
 
 .footerLinks ul {

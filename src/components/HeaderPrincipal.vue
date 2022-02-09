@@ -83,7 +83,7 @@ export default {
       $('.toggleMenu').toggleClass('active')
       $('.fullDisplayHeader').toggleClass('active')
       $('.fullDisplayHeader').removeClass('desactivate')
-      $('body').toggleClass('overflow-hidden')
+      $('body').toggleClass('noScrollBody')
     }
   }
 }
@@ -97,7 +97,10 @@ export default {
   left: 0;
   top: 0;
   right: 0;
-  padding: 5px 10px;
+}
+
+.header > div{
+  padding: 5px 30px;
 }
 
 .nav > ul > li > a {

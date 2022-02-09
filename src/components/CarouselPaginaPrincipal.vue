@@ -38,6 +38,8 @@ export default {
 
 .carouselPrincipal .h100vh > img {
   height: 100%;
+  object-fit: cover;
+  object-position: 75% 90%;
 }
 
 .carouselPrincipal .carousel-indicators .active {

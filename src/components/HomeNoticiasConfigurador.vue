@@ -14,25 +14,29 @@
       </section>
 
       <section class="noticia mt-3 row">
-        <article class="col-12 col-md-6 py-3" data-aos="fade-right">
+        <article class="col-12 col-md-6 py-3" data-aos="fade-left">
           <a class="linkNonStyle" href="">
             <img class="img-fluid" src="../assets/noticias.png">
-            <div class="letrasVisorNoticas text-left">
-              <p class="">3 feb. 2022</p>
-              <h4 class="">CAMPEONATO DE ESPAÑA DE MOTOCROSS DE 2022 TOLEDO</h4>
-              <p class="mb-0">¡David Braceras, segundo absoluto en MX2 y co-lider de la clasificación provisional del campeonato!</p>
-            </div>
           </a>
+          <div class="letrasVisorNoticas text-left">
+            <p class="">3 feb. 2022</p>
+            <a class="linkNonStyle" href="">
+              <h4 class="tituloNoticia">CAMPEONATO DE ESPAÑA DE MOTOCROSS DE 2022 TOLEDO</h4>
+            </a>
+            <p class="mb-0">¡David Braceras, segundo absoluto en MX2 y co-lider de la clasificación provisional del campeonato!</p>
+          </div>
         </article>
         <article class="col-12 col-md-6 py-3" data-aos="fade-left">
           <a class="linkNonStyle" href="">
             <img class="img-fluid" src="../assets/noticias.png">
+           </a>
             <div class="letrasVisorNoticas text-left">
               <p class="">3 feb. 2022</p>
-              <h4 class="">CAMPEONATO DE ESPAÑA DE MOTOCROSS DE 2022 TOLEDO</h4>
+              <a class="linkNonStyle" href="">
+              <h4 class="tituloNoticia">CAMPEONATO DE ESPAÑA DE MOTOCROSS DE 2022 TOLEDO</h4>
+              </a>
               <p class="mb-0">¡David Braceras, segundo absoluto en MX2 y co-lider de la clasificación provisional del campeonato!</p>
             </div>
-          </a>
         </article>
       </section>
 
@@ -137,6 +141,7 @@
 
   .linkNonStyle {
     text-decoration: none;
+    color: black;
   }
 
   .letrasVisor {
@@ -171,6 +176,15 @@
   /*ESTILOS DE LAS CAJAS CON NOTICIAS. SIN ANIMACIONES*/
   .noticia {
     justify-content: space-evenly;
+  }
+
+  .tituloNoticia{
+    color: black;
+    transition: color 0.5s;
+  }
+
+  .tituloNoticia:hover{
+    color: red;
   }
 
   /*CAJAS DE LOS MODELOS, RESPECTIVAMENTE*/
@@ -334,9 +348,16 @@
     }
   }
 
-  @media (min-width: 720px) and (max-width: 2000px) {
+  @media (min-width: 720px) {
     .letrasVisorResponsive{
       display: none;
+    }
+  }
+
+  @media (min-width: 1400px) {
+    .modelo1{
+      height: 500px;
+      max-height: 500px;
     }
   }
   </style>

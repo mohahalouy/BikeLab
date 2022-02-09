@@ -84,7 +84,7 @@ export default {
       $('.toggleMenu').toggleClass('active')
       $('.fullDisplayHeader').toggleClass('active')
       $('.fullDisplayHeader').addClass('desactivate')
-      $('body').toggleClass('overflow-hidden')
+      $('body').toggleClass('noScrollBody')
     }
   }
 }

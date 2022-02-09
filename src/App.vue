@@ -36,6 +36,11 @@ export default {
   box-sizing: border-box;
 }
 
+body{
+  display: flex;
+  justify-content: center;
+}
+
 #app {
   font-family: sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -47,7 +52,7 @@ export default {
 /*ESTRUCTURA GENERAL DE LA PANTALLA DE INICIO*/
 .app {
   display: grid;
-  max-width: 100%;
+  max-width: 2000px;
   width: 100%;
   grid-template-areas:
     "header"
@@ -125,6 +130,10 @@ export default {
   grid-area: carousel;
 }
 
+.noScrollBody{
+  overflow: hidden;
+}
+
 .noticiasConfigurador {
   grid-area: noticiasConfigurador;
 }
@@ -139,6 +148,10 @@ export default {
   }
   .header{
     display: block !important;
+  }
+
+  html body{
+    overflow: auto !important;
   }
 }
 </style>
