@@ -9,7 +9,7 @@
       <nav class="nav align-items-center">
         <ul class="list-unstyled d-flex m-0 flex-wrap">
           <li class="mr-5">
-            <a href="">{{ $t('1') }}</a>
+            <router-link to="/about"> {{ $t('1') }}</router-link>
           </li>
           <li class="mr-5">
             <a href="">{{ $t('2') }}</a>
