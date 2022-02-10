@@ -2,9 +2,9 @@
     <section class="containerNoticiasConfigurador mt-5 mb-5">
       <section data-aos="fade-up" class="position-relative">
         <a href="" class="linkNonStyle">
-          <div class="letrasVisor configurador">
+          <div class="centarPalabras configurador">
             <p class="m-0 textVisor">Visor 360º</p>
-            <p class="m-0 textVisor">Visualiza la moto desde todas las perspectivas</p>
+            <h1 class="m-0 textVisor">Visualiza la moto desde todas las perspectivas</h1>
           </div>
           <div class="letrasVisorResponsive">
             <p class="m-0">Visor 360º</p>
@@ -14,7 +14,8 @@
       </section>
 
       <section class="noticia mt-3 row">
-        <article class="col-12 col-md-6 py-3" data-aos="fade-left">
+        <article class="col-12 col-md-4 py-3" data-aos="fade-left"
+                 data-aos-duration="500">
           <a class="linkNonStyle" href="">
             <img class="img-fluid" src="../assets/noticias.png">
           </a>
@@ -26,7 +27,20 @@
             <p class="mb-0">¡David Braceras, segundo absoluto en MX2 y co-lider de la clasificación provisional del campeonato!</p>
           </div>
         </article>
-        <article class="col-12 col-md-6 py-3" data-aos="fade-left">
+        <article class="col-12 col-md-4 py-3" data-aos="zoom-out">
+          <a class="linkNonStyle" href="">
+            <img class="img-fluid" src="../assets/noticias.png">
+          </a>
+          <div class="letrasVisorNoticas text-left">
+            <p class="">3 feb. 2022</p>
+            <a class="linkNonStyle" href="">
+              <h4 class="tituloNoticia">CAMPEONATO DE ESPAÑA DE MOTOCROSS DE 2022 TOLEDO</h4>
+            </a>
+            <p class="mb-0">¡David Braceras, segundo absoluto en MX2 y co-lider de la clasificación provisional del campeonato!</p>
+          </div>
+        </article>
+        <article class="col-12 col-md-4 py-3" data-aos="fade-right"
+                 data-aos-duration="500">
           <a class="linkNonStyle" href="">
             <img class="img-fluid" src="../assets/noticias.png">
            </a>
@@ -41,10 +55,10 @@
       </section>
 
       <section class="modelos row mt-3">
-        <article data-aos="fade-up-right" class="col-12 col-md-6 py-3">
+        <article data-aos="flip-right" class="col-12 col-md-6 py-3">
           <a class="linkNonStyle" href="">
-            <div class="modelo1 letrasVisor">
-              <p class="m-0 textVisor">lorem</p>
+            <div class="modelo1 centarPalabras">
+              <p class="m-0 textVisor letrasVisor">lorem</p>
             </div>
             <div class="letrasVisorResponsive text-center">
               <p class="mb-0">GET A NAKED</p>
@@ -52,10 +66,10 @@
             </div>
           </a>
         </article>
-        <article data-aos="fade-up-left" class="col-12 col-md-6 py-3">
+        <article data-aos="flip-left" class="col-12 col-md-6 py-3">
           <a class="linkNonStyle" href="">
-            <div class="modelo1 letrasVisor">
-              <p class="m-0 textVisor">lorem</p>
+            <div class="modelo1 centarPalabras">
+              <p class="m-0 textVisor letrasVisor">lorem</p>
             </div>
             <div class="letrasVisorResponsive text-center">
               <p class="mb-0">GET A TRAVEL</p>
@@ -123,9 +137,8 @@
 
   /*ESTILO DEL CONTENEDOR GENERAL DEL COMPONENTE*/
   .containerNoticiasConfigurador {
-    width: 80%;
-    max-width: 80%;
-    margin: 0 auto;
+    width: 95%;
+    max-width: 95%;
   }
 
   /*ESTILOS DE LA CAJA DEL CONFIGURADOR DE MOTOS*/
@@ -139,6 +152,20 @@
     background-position: center;
   }
 
+  .configurador h1{
+    font-family: 'letraVisor';
+    color: white;
+    text-transform: uppercase;
+    font-size: 3em;
+  }
+
+  .configurador p{
+    font-family: 'letraVisor';
+    color: white;
+    text-transform: uppercase;
+    font-size: 2em;
+  }
+
   .linkNonStyle {
     text-decoration: none;
     color: black;
@@ -150,17 +177,20 @@
     font-weight: 800;
     text-transform: uppercase;
     font-family: 'letraVisor';
+  }
+
+  .centarPalabras{
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
 
   /*ANIMACIONES CUANDO ENTRAS Y SALES DE LAS CAJAS CON TEXTO*/
-  .letrasVisor p {
+  .centarPalabras p, .centarPalabras h1{
     transition: opacity 1s;
   }
 
-  .letrasVisor:hover p {
+  .centarPalabras:hover p, .centarPalabras:hover h1 {
     opacity: 0;
   }
 
