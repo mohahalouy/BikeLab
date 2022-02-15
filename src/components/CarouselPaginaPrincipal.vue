@@ -103,6 +103,6 @@ export default {
 
 .carousel-caption > a > div:hover{
   background: transparent;
-  color: black;
+  border: 1px solid white;
 }
 </style>

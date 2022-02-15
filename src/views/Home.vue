@@ -1,6 +1,6 @@
 <template>
   <div id="home" class="home">
-    <HeaderPrincipal></HeaderPrincipal>
+    <HeaderPrincipal :stringProp="mensaje"></HeaderPrincipal>
     <div class="fullDisplayHeader">
       <FullDisplayHeader></FullDisplayHeader>
     </div>
@@ -25,6 +25,26 @@ export default {
     CarouselPaginaPrincipal,
     HomeNoticiasConfigurador,
     Footer
+  },
+  data: function () {
+    return {
+      mensaje: ""
+    }
+  },
+  mounted() {
+    this.reconectarUser()
+  },
+  methods: {
+    async reconectarUser() {
+      let response=await fetch('http://localhost:8000/api/user', {
+        headers: {'Content-Type': 'application/json'},
+        credentials: 'include'
+      });
+      let content = await response.json();
+
+      this.mensaje = 'Hola ' + content.name
+
+    }
   }
 }
 </script>

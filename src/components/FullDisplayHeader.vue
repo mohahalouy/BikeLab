@@ -30,7 +30,7 @@
     <nav class="nav">
       <ul class="list-unstyled d-flex m-0 flex-wrap flex-column text-left">
         <li class="my-3">
-          <a href="">{{ $t('1') }}</a>
+          <router-link to="/about"> {{ $t('1') }}</router-link>
         </li>
         <li class="my-3">
           <a href="">{{ $t('2') }}</a>

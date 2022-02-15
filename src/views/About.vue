@@ -1,13 +1,16 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <router-link to="/"> {{ $t('1') }}</router-link>
   </div>
 </template>
 
 <script>
-
+import $ from 'jquery';
 export default {
-  name: 'About'
+  name: 'About',
+  mounted() {
+    $('body').removeClass('noScrollBody')
+  }
 }
 </script>
 

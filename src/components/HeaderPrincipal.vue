@@ -1,5 +1,11 @@
 <template>
   <header class="header mx-auto">
+    <div class="d-flex justify-content-end" >
+      <div class="d-flex justify-content-between" style="width: 13%">
+        <router-link to="/login">Log in</router-link>
+        <router-link to="/register">Sign up</router-link>
+      </div>
+    </div>
     <div class="d-flex justify-content-between flex-wrap align-items-center">
       <div class="toggleMenu" @click="activateMenu">
         <span></span>
@@ -54,6 +60,13 @@ import $ from 'jquery'
 
 export default {
   name: "HeaderPrincipal",
+  props: {
+    mensaje:String
+  },
+  mounted() {
+    this.comprobarIdioma()
+    console.log(this.mensaje)
+  },
   methods: {
     selectLanguage() {
       $('.otherLanguage').toggleClass('d-flex')
@@ -84,6 +97,22 @@ export default {
       $('.fullDisplayHeader').toggleClass('active')
       $('.fullDisplayHeader').removeClass('desactivate')
       $('body').toggleClass('noScrollBody')
+    },
+    comprobarIdioma() {
+      if (i18n.locale === 'en') {
+        let nombreNuevo = $('.otherLanguage').children()[2]
+        let banderaNueva = $('.otherLanguage').children()[3]
+
+        let nombre = $('.imgBanderas').children()[3]
+        let bandera = $('.imgBanderas').children()[4]
+        let svg = $('.imgBanderas').children()[2]
+
+        $('.imgBanderas').html('')
+        $('.otherLanguage').html('')
+
+        $('.imgBanderas').append(nombreNuevo, banderaNueva, svg)
+        $('.otherLanguage').append(nombre, bandera)
+      }
     }
   }
 }
