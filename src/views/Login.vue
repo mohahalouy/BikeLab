@@ -1,8 +1,8 @@
 <template>
   <form class="form-signin" @submit.prevent="loginUser">
-    <input type="email" class="form-control" placeholder="Email address" required autofocus>
+    <input type="email" v-model="data.email" class="form-control" placeholder="Email address" required autofocus>
 
-    <input type="password" class="form-control" placeholder="Password" required>
+    <input type="password" v-model="data.password" class="form-control" placeholder="Password" required>
 
     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
   </form>
@@ -30,7 +30,7 @@ export default {
         body: JSON.stringify(this.data)
       });
 
-      await router.push('/login');
+      await router.push('/');
     }
   }
 }

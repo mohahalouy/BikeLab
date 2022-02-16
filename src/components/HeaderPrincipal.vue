@@ -1,9 +1,11 @@
 <template>
   <header class="header mx-auto">
+    {{nombreUser}}
     <div class="d-flex justify-content-end" >
       <div class="d-flex justify-content-between" style="width: 13%">
-        <router-link to="/login">Log in</router-link>
-        <router-link to="/register">Sign up</router-link>
+        <router-link to="/login" v-if="!authenticated">Login</router-link>
+        <router-link to="/register" v-if="!authenticated">Sign up</router-link>
+        <a href="#" class="nav-link" v-if="authenticated" @click="logout">Logout</a>
       </div>
     </div>
     <div class="d-flex justify-content-between flex-wrap align-items-center">
@@ -57,15 +59,16 @@
 import i18n from '../i18n'
 
 import $ from 'jquery'
+import {mapState} from "vuex";
 
 export default {
   name: "HeaderPrincipal",
-  props: {
-    mensaje:String
-  },
+  computed: mapState([
+    'nombreUser',
+    'authenticated'
+  ]),
   mounted() {
     this.comprobarIdioma()
-    console.log(this.mensaje)
   },
   methods: {
     selectLanguage() {
@@ -113,6 +116,16 @@ export default {
         $('.imgBanderas').append(nombreNuevo, banderaNueva, svg)
         $('.otherLanguage').append(nombre, bandera)
       }
+    },
+    async logout() {
+      await fetch('http://localhost:8000/api/logout', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        credentials:'include'
+      });
+      await this.$store.commit('SET_NOMBRE_USER', '')
+
+      await this.$store.commit('SET_AUTH', false)
     }
   }
 }

@@ -1,6 +1,6 @@
 <template>
   <div id="home" class="home">
-    <HeaderPrincipal :stringProp="mensaje"></HeaderPrincipal>
+    <HeaderPrincipal></HeaderPrincipal>
     <div class="fullDisplayHeader">
       <FullDisplayHeader></FullDisplayHeader>
     </div>
@@ -26,23 +26,30 @@ export default {
     HomeNoticiasConfigurador,
     Footer
   },
-  data: function () {
-    return {
-      mensaje: ""
-    }
-  },
   mounted() {
-    this.reconectarUser()
+    this.reconectUser()
   },
   methods: {
-    async reconectarUser() {
-      let response=await fetch('http://localhost:8000/api/user', {
-        headers: {'Content-Type': 'application/json'},
-        credentials: 'include'
-      });
-      let content = await response.json();
+    async reconectUser() {
+      try {
 
-      this.mensaje = 'Hola ' + content.name
+        let response = await fetch('http://localhost:8000/api/user', {
+          headers: {"Accept": "application/json", 'Content-Type': 'application/json'},
+          credentials: 'include'
+        });
+        if(response.ok){
+          let content = await response.json();
+
+          await this.$store.commit('SET_NOMBRE_USER', content.name)
+
+          await this.$store.commit('SET_AUTH', true)
+        }else{
+          this.$store.commit('SET_AUTH', false)
+        }
+
+      } catch (e) {
+          this.$store.commit('SET_AUTH', false)
+      }
 
     }
   }
