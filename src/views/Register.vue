@@ -27,11 +27,11 @@ export default {
   methods: {
     async registerUser() {
       let that = this;
-      await fetch('http://127.0.0.1:8000/api/register', {
+      await fetch('https://proyectogradoback.herokuapp.com/api/register', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(this.data)
-      }).then(await fetch('http://127.0.0.1:8000/api/login', {
+      }).then(await fetch('https://proyectogradoback.herokuapp.com/api/login', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         credentials: 'include',

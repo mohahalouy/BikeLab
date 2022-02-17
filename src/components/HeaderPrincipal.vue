@@ -118,7 +118,7 @@ export default {
       }
     },
     async logout() {
-      await fetch('http://localhost:8000/api/logout', {
+      await fetch('https://proyectogradoback.herokuapp.com/api/logout', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         credentials:'include'
