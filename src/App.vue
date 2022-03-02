@@ -19,7 +19,7 @@ export default {
 
 body{
   display: flex;
-  justify-content: center;
+  padding: 0 !important;
 }
 
 #app {
@@ -28,5 +28,6 @@ body{
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: white;
+  width: 100%;
 }
 </style>

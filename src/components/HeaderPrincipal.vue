@@ -1,7 +1,8 @@
 <template>
   <header class="header mx-auto">
-    {{nombreUser}}
-    <div class="d-flex justify-content-end" >
+    <button @click="showAlert">Hello world</button>
+    {{ nombreUser }}
+    <div class="d-flex justify-content-end">
       <div class="d-flex justify-content-between" style="width: 13%">
         <router-link to="/login" v-if="!authenticated">Login</router-link>
         <router-link to="/register" v-if="!authenticated">Sign up</router-link>
@@ -51,18 +52,25 @@
         </div>
       </aside>
     </div>
+    <div class="login" style='display: none'>
+      <login></login>
+    </div>
   </header>
 </template>
 
 <script>
 
 import i18n from '../i18n'
+import Login from "../views/Login";
 
 import $ from 'jquery'
 import {mapState} from "vuex";
 
 export default {
   name: "HeaderPrincipal",
+  components: {
+    Login
+  },
   computed: mapState([
     'nombreUser',
     'authenticated'
@@ -118,14 +126,29 @@ export default {
       }
     },
     async logout() {
-      await fetch('https://proyectogradoback.herokuapp.com/api/logout', {
+      await fetch('http://localhost:8000/api/logout', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        credentials:'include'
+        credentials: 'include'
       });
       await this.$store.commit('SET_NOMBRE_USER', '')
 
       await this.$store.commit('SET_AUTH', false)
+    },
+
+    showAlert() {
+      // Use sweetalert2
+      this.$swal({
+        customClass:'swalRegistro',
+        html: $('.login').html(),
+        showCancelButton: false,
+        showConfirmButton: false,
+        didOpen: function () {
+          $( "section.formulario .signin, section.formulario .signup" ).on( "click", function() {
+            $('section.formulario, section.formulario .container').toggleClass('active')
+          });
+        }
+      });
     }
   }
 }
@@ -141,7 +164,7 @@ export default {
   right: 0;
 }
 
-.header > div{
+.header > div {
   padding: 5px 30px;
 }
 
@@ -153,7 +176,7 @@ export default {
   text-transform: uppercase;
 }
 
-.idiomas{
+.idiomas {
   display: flex;
   align-items: center;
   position: relative;
@@ -253,9 +276,26 @@ export default {
     top: 30px;
   }
 }
+.swalRegistro{
+  background: transparent !important;
+  width: 100% !important;
+  height: 100% !important;;
+}
+
+.swalRegistro .swal2-html-container{
+  margin:0;
+}
+
+section.formulario {
+  background: none !important;
+}
+
+section.formulario.active {
+  background: none !important;
+}
 
 @media (max-width: 520px) {
-  .idiomas{
+  .idiomas {
     display: none;
   }
 }
