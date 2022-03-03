@@ -75,7 +75,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 
 * {
   margin: 0;
@@ -91,13 +91,7 @@ section.formulario {
   align-items: center;
   padding: 20px;
   color: black;
-  background: #557085;
-  height: 100vh;
   transition: 0.5s;
-}
-
-section.formulario.active{
-  background: red;
 }
 
 section.formulario .container {
@@ -149,7 +143,7 @@ section.formulario .container .user .formBx {
 }
 
 section.formulario .container .user .formBx form {
-  margin: 20px;
+  margin: 40px;
 }
 
 section.formulario .container .user .formBx h2 {
@@ -249,6 +243,19 @@ section.formulario .container .signinBx .imgBx {
 section.formulario .container.active .signinBx .imgBx {
   top: -100%;
 }
+
+.swalRegistro{
+  background: transparent !important;
+  width: fit-content !important;
+  height: fit-content !important;;
+}
+
+.swalRegistro .swal2-html-container{
+  margin:0;
+  display: flex !important;
+  align-items: center;
+}
+
 
 @media (max-width: 991px) {
   section.formulario .container {

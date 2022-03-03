@@ -160,7 +160,7 @@ export default {
   }
 
   html body {
-    overflow: auto !important;
+    overflow: auto ;
   }
 }
 </style>

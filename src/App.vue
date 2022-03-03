@@ -30,4 +30,8 @@ body{
   color: white;
   width: 100%;
 }
+
+#app.difuminated{
+  filter: blur(10px);
+}
 </style>

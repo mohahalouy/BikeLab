@@ -1,6 +1,6 @@
 <template>
   <header class="header mx-auto">
-    <button @click="showAlert">Hello world</button>
+    <button @click="showAlert">Acceder</button>
     {{ nombreUser }}
     <div class="d-flex justify-content-end">
       <div class="d-flex justify-content-between" style="width: 13%">
@@ -143,10 +143,15 @@ export default {
         html: $('.login').html(),
         showCancelButton: false,
         showConfirmButton: false,
+        allowOutsideClick:true,
         didOpen: function () {
+          $('#app').addClass('difuminated')
           $( "section.formulario .signin, section.formulario .signup" ).on( "click", function() {
             $('section.formulario, section.formulario .container').toggleClass('active')
           });
+        },
+        didClose: function () {
+          $('#app').removeClass('difuminated')
         }
       });
     }
@@ -275,23 +280,6 @@ export default {
   to {
     top: 30px;
   }
-}
-.swalRegistro{
-  background: transparent !important;
-  width: 100% !important;
-  height: 100% !important;;
-}
-
-.swalRegistro .swal2-html-container{
-  margin:0;
-}
-
-section.formulario {
-  background: none !important;
-}
-
-section.formulario.active {
-  background: none !important;
 }
 
 @media (max-width: 520px) {
