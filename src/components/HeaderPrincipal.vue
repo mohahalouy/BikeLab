@@ -1,13 +1,26 @@
 <template>
   <header class="header mx-auto">
-    <button @click="showAlert">Acceder</button>
+    <div class="d-flex justify-content-end headerNotResponsive">
+      <div id="idiomas" class="idiomas">
+        <div class="imgBanderas" @click="selectLanguage">
+          <span class="nombreIdioma">España</span>
+          <img src="../assets/banderaEspaña.png" alt="es">
+          <font-awesome-icon :icon="[ 'fas', 'angle-down' ]"/>
+        </div>
+        <div class="otherLanguage" @click="changeLanguage">
+          <span class="nombreIdioma">UK</span>
+          <img src="../assets/banderaInglaterra.png" alt="en">
+        </div>
+        <!--          <div id="imgIdiomas" class="d-flex imgBanderas" @click="changeLanguage">-->
+        <!--            <img href="" src="../assets/banderaEspaña.png" alt="es">-->
+        <!--            <img href="" src="../assets/banderaInglaterra.png" alt="en">-->
+        <!--          </div>-->
+      </div>
+      <span style="border: 1px solid white" class="mx-2"></span>
+      <button @click="showAlert" class="buttonAccess">Acceder</button>
+    </div>
     {{ nombreUser }}
     <div class="d-flex justify-content-end">
-      <div class="d-flex justify-content-between" style="width: 13%">
-        <router-link to="/login" v-if="!authenticated">Login</router-link>
-        <router-link to="/register" v-if="!authenticated">Sign up</router-link>
-        <a href="#" class="nav-link" v-if="authenticated" @click="logout">Logout</a>
-      </div>
     </div>
     <div class="d-flex justify-content-between flex-wrap align-items-center">
       <div class="toggleMenu" @click="activateMenu">
@@ -32,21 +45,21 @@
         </ul>
       </nav>
       <aside class="d-flex align-items-center">
-        <div id="idiomas" class="idiomas mr-2">
-          <div class="imgBanderas" @click="selectLanguage">
-            <span class="nombreIdioma">España</span>
-            <img src="../assets/banderaEspaña.png" alt="es">
-            <font-awesome-icon :icon="[ 'fas', 'angle-down' ]"/>
-          </div>
-          <div class="otherLanguage" @click="changeLanguage">
-            <span class="nombreIdioma">UK</span>
-            <img src="../assets/banderaInglaterra.png" alt="en">
-          </div>
-          <!--          <div id="imgIdiomas" class="d-flex imgBanderas" @click="changeLanguage">-->
-          <!--            <img href="" src="../assets/banderaEspaña.png" alt="es">-->
-          <!--            <img href="" src="../assets/banderaInglaterra.png" alt="en">-->
-          <!--          </div>-->
-        </div>
+<!--        <div id="idiomas" class="idiomas mr-2">-->
+<!--          <div class="imgBanderas" @click="selectLanguage">-->
+<!--            <span class="nombreIdioma">España</span>-->
+<!--            <img src="../assets/banderaEspaña.png" alt="es">-->
+<!--            <font-awesome-icon :icon="[ 'fas', 'angle-down' ]"/>-->
+<!--          </div>-->
+<!--          <div class="otherLanguage" @click="changeLanguage">-->
+<!--            <span class="nombreIdioma">UK</span>-->
+<!--            <img src="../assets/banderaInglaterra.png" alt="en">-->
+<!--          </div>-->
+<!--          &lt;!&ndash;          <div id="imgIdiomas" class="d-flex imgBanderas" @click="changeLanguage">&ndash;&gt;-->
+<!--          &lt;!&ndash;            <img href="" src="../assets/banderaEspaña.png" alt="es">&ndash;&gt;-->
+<!--          &lt;!&ndash;            <img href="" src="../assets/banderaInglaterra.png" alt="en">&ndash;&gt;-->
+<!--          &lt;!&ndash;          </div>&ndash;&gt;-->
+<!--        </div>-->
         <div id="logoHeader" class="logoHeader">
           <img href="" src="../assets/MH.png">
         </div>
@@ -61,7 +74,7 @@
 <script>
 
 import i18n from '../i18n'
-import Login from "../views/Login";
+import Login from "../components/Login";
 
 import $ from 'jquery'
 import {mapState} from "vuex";
@@ -152,6 +165,7 @@ export default {
         },
         didClose: function () {
           $('#app').removeClass('difuminated')
+          $('section.formulario, section.formulario .container').removeClass('active');
         }
       });
     }
@@ -181,11 +195,19 @@ export default {
   text-transform: uppercase;
 }
 
-.idiomas {
+.idiomas{
   display: flex;
   align-items: center;
   position: relative;
   width: 100px;
+}
+
+.buttonAccess{
+  border: none;
+  padding: 0 5px;
+  border-radius: 10px;
+  background: red;
+  color: white;
 }
 
 .toggleMenu {
@@ -283,8 +305,8 @@ export default {
 }
 
 @media (max-width: 520px) {
-  .idiomas {
-    display: none;
+  .headerNotResponsive {
+    display: none !important;
   }
 }
 

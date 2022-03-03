@@ -8,9 +8,9 @@
         <div class="formBx">
           <form>
             <h2>Sign In</h2>
-            <input type="text" placeholder="Username">
-            <input type="password" placeholder="Password">
-            <input type="submit" value="Login">
+            <input type="text" placeholder="Username" tabindex="-1">
+            <input type="password" placeholder="Password" tabindex="-1">
+            <input type="submit" value="Login" tabindex="-1">
             <p class="signup">don´t have an account? <a href="#" @click="toggleForm()">Sign up.</a></p>
           </form>
         </div>
@@ -22,11 +22,11 @@
         <div class="formBx">
           <form>
             <h2>Create an account</h2>
-            <input type="text" placeholder="Username">
-            <input type="text" placeholder="Email Address">
-            <input type="password" placeholder="Create Password">
-            <input type="password" placeholder="Confirm Password">
-            <input type="submit" value="Login">
+            <input type="text" placeholder="Username" tabindex="-1">
+            <input type="text" placeholder="Email Address" tabindex="-1">
+            <input type="password" placeholder="Create Password" tabindex="-1">
+            <input type="password" placeholder="Confirm Password" tabindex="-1">
+            <input type="submit" value="Login" tabindex="-1">
             <p class="signin">Already have an account <a href="#" @click="toggleForm()">Sign in.</a></p>
           </form>
         </div>

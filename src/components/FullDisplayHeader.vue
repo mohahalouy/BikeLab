@@ -1,5 +1,24 @@
 <template>
   <header class="headerResponsive px-3 mx-auto h-100">
+    <div class="d-flex justify-content-end headerNotResponsive my-2">
+      <div id="idiomas" class="idiomas">
+        <div class="imgBanderas" @click="selectLanguage">
+          <span class="nombreIdioma">España</span>
+          <img src="../assets/banderaEspaña.png" alt="es">
+          <font-awesome-icon :icon="[ 'fas', 'angle-down' ]"/>
+        </div>
+        <div class="otherLanguage" @click="changeLanguage">
+          <span class="nombreIdioma">UK</span>
+          <img src="../assets/banderaInglaterra.png" alt="en">
+        </div>
+        <!--          <div id="imgIdiomas" class="d-flex imgBanderas" @click="changeLanguage">-->
+        <!--            <img href="" src="../assets/banderaEspaña.png" alt="es">-->
+        <!--            <img href="" src="../assets/banderaInglaterra.png" alt="en">-->
+        <!--          </div>-->
+      </div>
+      <span style="border: 1px solid white" class="mx-2"></span>
+      <button @click="showAlert" class="buttonAccess">Acceder</button>
+    </div>
     <div class="d-flex justify-content-between flex-wrap align-items-center">
       <div class="toggleMenu" @click="activateMenu">
         <span></span>
@@ -7,21 +26,6 @@
         <span></span>
       </div>
       <aside class="d-flex align-items-center">
-        <div id="idiomas" class="idiomas mr-2">
-          <div class="imgBanderas" @click="selectLanguage">
-            <span class="nombreIdioma">España</span>
-            <img src="../assets/banderaEspaña.png" alt="es">
-            <font-awesome-icon :icon="[ 'fas', 'angle-down' ]"/>
-          </div>
-          <div class="otherLanguage" @click="changeLanguage">
-            <span class="nombreIdioma">UK</span>
-            <img src="../assets/banderaInglaterra.png" alt="en">
-          </div>
-          <!--          <div id="imgIdiomas" class="d-flex imgBanderas" @click="changeLanguage">-->
-          <!--            <img href="" src="../assets/banderaEspaña.png" alt="es">-->
-          <!--            <img href="" src="../assets/banderaInglaterra.png" alt="en">-->
-          <!--          </div>-->
-        </div>
         <div id="logoHeader" class="logoHeader">
           <img href="" src="../assets/MH.png">
         </div>
@@ -43,6 +47,9 @@
         </li>
       </ul>
     </nav>
+    <div class="login" style='display: none'>
+      <login></login>
+    </div>
   </header>
 </template>
 
@@ -50,14 +57,17 @@
 
 import $ from "jquery";
 import i18n from "@/i18n";
+import Login from "../components/Login";
 
 export default {
   name: "fullDisplayHeader",
+  components: {
+    Login
+  },
   methods: {
     selectLanguage() {
       $('.otherLanguage').toggleClass('d-flex')
-    }
-    ,
+    },
     changeLanguage() {
       //Cambiar al nuevo idioma
       i18n.locale = $('.otherLanguage')[0].childNodes[1].alt
@@ -77,14 +87,33 @@ export default {
       $('.otherLanguage').append(nombre, bandera)
 
 
-    }
-    ,
+    },
     activateMenu() {
       $('.header').fadeToggle();
       $('.toggleMenu').toggleClass('active')
       $('.fullDisplayHeader').toggleClass('active')
       $('.fullDisplayHeader').addClass('desactivate')
       $('body').toggleClass('noScrollBody')
+    },
+    showAlert() {
+      // Use sweetalert2
+      this.$swal({
+        customClass:'swalRegistro',
+        html: $('.login').html(),
+        showCancelButton: false,
+        showConfirmButton: false,
+        allowOutsideClick:true,
+        didOpen: function () {
+          $('#app').addClass('difuminated')
+          $( "section.formulario .signin, section.formulario .signup" ).on( "click", function() {
+            $('section.formulario, section.formulario .container').toggleClass('active')
+          });
+        },
+        didClose: function () {
+          $('#app').removeClass('difuminated')
+          $('section.formulario, section.formulario .container').removeClass('active');
+        }
+      });
     }
   }
 }
@@ -116,7 +145,15 @@ export default {
   display: flex;
   align-items: center;
   position: relative;
-  width: 100px;
+  width: 60px;
+}
+
+.buttonAccess{
+  border: none;
+  padding: 0 5px;
+  border-radius: 10px;
+  background: red;
+  color: white;
 }
 
 .toggleMenu {
