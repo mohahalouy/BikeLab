@@ -8,10 +8,20 @@
         <div class="formBx">
           <form>
             <h2>Sign In</h2>
-            <input type="text" placeholder="Username" tabindex="-1">
-            <input type="password" placeholder="Password" tabindex="-1">
-            <input type="submit" value="Login" tabindex="-1">
-            <p class="signup">don´t have an account? <a href="#" @click="toggleForm()">Sign up.</a></p>
+            <div class="form_control">
+              <input class="email" type="text" placeholder="Email" tabindex="-1">
+              <font-awesome-icon :icon="[ 'fas', 'check-circle' ]"/>
+              <font-awesome-icon :icon="[ 'fas', 'exclamation-circle' ]"/>
+              <small>error message</small>
+            </div>
+            <div class="form_control">
+              <input class="password" type="password" placeholder="Password" tabindex="-1">
+              <font-awesome-icon :icon="[ 'fas', 'check-circle' ]"/>
+              <font-awesome-icon :icon="[ 'fas', 'exclamation-circle' ]"/>
+              <small>error message</small>
+            </div>
+            <input type="submit" class="login" value="Login" tabindex="-1">
+            <p class="signup">don´t have an account? <a @click="toggleForm()">Sign up.</a></p>
           </form>
         </div>
       </div>
@@ -26,8 +36,8 @@
             <input type="text" placeholder="Email Address" tabindex="-1">
             <input type="password" placeholder="Create Password" tabindex="-1">
             <input type="password" placeholder="Confirm Password" tabindex="-1">
-            <input type="submit" value="Login" tabindex="-1">
-            <p class="signin">Already have an account <a href="#" @click="toggleForm()">Sign in.</a></p>
+            <input type="submit" value="Create" tabindex="-1">
+            <p class="signin">Already have an account <a @click="toggleForm()">Sign in.</a></p>
           </form>
         </div>
       </div>
@@ -35,9 +45,9 @@
   </section>
 
   <!--  <form class="form-signin" @submit.prevent="loginUser">-->
-  <!--    <input type="email" v-model="data.email" class="form-control" placeholder="Email address" required autofocus>-->
+  <!--    <input type="email" v-model="data.email" class="form_control" placeholder="Email address" required autofocus>-->
 
-  <!--    <input type="password" v-model="data.password" class="form-control" placeholder="Password" required>-->
+  <!--    <input type="password" v-model="data.password" class="form_control" placeholder="Password" required>-->
 
   <!--    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>-->
   <!--  </form>-->
@@ -89,7 +99,6 @@ section.formulario {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
   color: black;
   transition: 0.5s;
 }
@@ -143,7 +152,7 @@ section.formulario .container .user .formBx {
 }
 
 section.formulario .container .user .formBx form {
-  margin: 40px;
+  width: 80%;
 }
 
 section.formulario .container .user .formBx h2 {
@@ -162,13 +171,56 @@ section.formulario .container .user .formBx input {
   padding: 10px;
   background: #efefef;
   color: #262626;
-  border: none;
+  border: 1px solid #efefef;
   outline: none;
   box-shadow: none;
   font-size: 14px;
   margin: 8px 0;
   letter-spacing: 1px;
   font-weight: 300;
+}
+
+
+section.formulario .container .user .formBx a{
+  cursor: pointer;
+}
+
+.form_control.success input{
+  border-color: green !important;
+}
+
+.form_control.error input{
+  border-color: red !important;
+}
+
+.form_control.success .fa-check-circle{
+  color: green;
+  visibility: visible !important;
+}
+
+.form_control.error .fa-exclamation-circle{
+  color: red;
+  visibility: visible !important;
+}
+
+section.formulario .container .user .formBx .form_control {
+  position: relative;
+}
+
+section.formulario .container .user .formBx .form_control svg {
+  position: absolute;
+  top: 18px;
+  right: 8px;
+  visibility: hidden;
+}
+
+section.formulario .container .user .formBx .form_control small {
+  visibility: hidden;
+}
+
+section.formulario .container .user .formBx .form_control.error small{
+  visibility: visible;
+  color: red;
 }
 
 section.formulario .container .user .formBx input[type="submit"] {

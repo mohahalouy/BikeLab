@@ -84,6 +84,14 @@ export default {
   components: {
     Login
   },
+  data: function () {
+    return {
+      dataLogin: {
+        email: '',
+        password: ''
+      }
+    }
+  },
   computed: mapState([
     'nombreUser',
     'authenticated'
@@ -150,7 +158,7 @@ export default {
     },
 
     showAlert() {
-      // Use sweetalert2
+      let that=this
       this.$swal({
         customClass:'swalRegistro',
         html: $('.login').html(),
@@ -162,13 +170,75 @@ export default {
           $( "section.formulario .signin, section.formulario .signup" ).on( "click", function() {
             $('section.formulario, section.formulario .container').toggleClass('active')
           });
+
+          $(".signinBx form").submit(function () {
+            that.validateLogin(event)
+          });
         },
         didClose: function () {
           $('#app').removeClass('difuminated')
           $('section.formulario, section.formulario .container').removeClass('active');
         }
       });
+    },
+    validateLogin(e){
+      e.preventDefault();
+      let valido=true;
+      let email = $('.swalRegistro .formulario .signinBx .email')
+      let password = $('.swalRegistro .formulario .signinBx .password')
+      let emailValue = email[0].value.trim()
+      let passwordValue = password[0].value.trim()
+      if(emailValue === '') {
+        valido=false;
+        this.setErrorFor(email, 'Email cannot be blank');
+      } else if (!this.isEmail(emailValue)) {
+        valido=false;
+        this.setErrorFor(email, 'Not a valid email');
+      } else {
+        this.setSuccessFor(email);
+      }
+
+      if(passwordValue === '') {
+        valido=false;
+        this.setErrorFor(password, 'Password cannot be blank');
+      } else {
+        this.setSuccessFor(password);
+      }
+      if(valido){
+        console.log("dasd")
+        this.dataLogin.email=emailValue
+        this.dataLogin.password=passwordValue
+        this.loginUser()
+      }
+    },
+    setErrorFor(input, message) {
+      let formControl = input.parent()
+      let small = formControl.find('small')[0]
+
+      small.innerText=message;
+
+      formControl.removeClass('success')
+      formControl.addClass('error')
+    },
+    setSuccessFor(input) {
+      let formControl = input.parent()
+
+      formControl.removeClass('error')
+      formControl.addClass('success')
+    },
+    isEmail(email) {
+      return /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
+    },
+    async loginUser() {
+      await fetch('http://localhost:8000/api/login', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        credentials: 'include',
+        body: JSON.stringify(this.dataLogin)
+      });
+      await $(".signinBx form").submit()
     }
+
   }
 }
 </script>
