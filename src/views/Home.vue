@@ -32,23 +32,22 @@ export default {
   methods: {
     async reconectUser() {
       try {
-
         let response = await fetch('http://localhost:8000/api/user', {
           headers: {"Accept": "application/json", 'Content-Type': 'application/json'},
           credentials: 'include'
         });
-        if(response.ok){
+        if (response.ok) {
           let content = await response.json();
 
           await this.$store.commit('SET_NOMBRE_USER', content.name)
 
           await this.$store.commit('SET_AUTH', true)
-        }else{
-          this.$store.commit('SET_AUTH', false)
+        } else {
+          await this.$store.commit('SET_AUTH', false)
         }
 
       } catch (e) {
-          this.$store.commit('SET_AUTH', false)
+        await this.$store.commit('SET_AUTH', false)
       }
 
     }

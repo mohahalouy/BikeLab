@@ -17,9 +17,11 @@
         <!--          </div>-->
       </div>
       <span style="border: 1px solid white" class="mx-2"></span>
-      <button @click="showAlert" class="buttonAccess">Acceder</button>
+      <button v-if="!authenticated" @click="showAlert" class="buttonAccess">Acceder</button>
+      <button v-if="authenticated" @click="logout" class="buttonAccess">Desconcetarse</button>
     </div>
     {{ nombreUser }}
+    {{ authenticated }}
     <div class="d-flex justify-content-end">
     </div>
     <div class="d-flex justify-content-between flex-wrap align-items-center">
@@ -45,21 +47,21 @@
         </ul>
       </nav>
       <aside class="d-flex align-items-center">
-<!--        <div id="idiomas" class="idiomas mr-2">-->
-<!--          <div class="imgBanderas" @click="selectLanguage">-->
-<!--            <span class="nombreIdioma">España</span>-->
-<!--            <img src="../assets/banderaEspaña.png" alt="es">-->
-<!--            <font-awesome-icon :icon="[ 'fas', 'angle-down' ]"/>-->
-<!--          </div>-->
-<!--          <div class="otherLanguage" @click="changeLanguage">-->
-<!--            <span class="nombreIdioma">UK</span>-->
-<!--            <img src="../assets/banderaInglaterra.png" alt="en">-->
-<!--          </div>-->
-<!--          &lt;!&ndash;          <div id="imgIdiomas" class="d-flex imgBanderas" @click="changeLanguage">&ndash;&gt;-->
-<!--          &lt;!&ndash;            <img href="" src="../assets/banderaEspaña.png" alt="es">&ndash;&gt;-->
-<!--          &lt;!&ndash;            <img href="" src="../assets/banderaInglaterra.png" alt="en">&ndash;&gt;-->
-<!--          &lt;!&ndash;          </div>&ndash;&gt;-->
-<!--        </div>-->
+        <!--        <div id="idiomas" class="idiomas mr-2">-->
+        <!--          <div class="imgBanderas" @click="selectLanguage">-->
+        <!--            <span class="nombreIdioma">España</span>-->
+        <!--            <img src="../assets/banderaEspaña.png" alt="es">-->
+        <!--            <font-awesome-icon :icon="[ 'fas', 'angle-down' ]"/>-->
+        <!--          </div>-->
+        <!--          <div class="otherLanguage" @click="changeLanguage">-->
+        <!--            <span class="nombreIdioma">UK</span>-->
+        <!--            <img src="../assets/banderaInglaterra.png" alt="en">-->
+        <!--          </div>-->
+        <!--          &lt;!&ndash;          <div id="imgIdiomas" class="d-flex imgBanderas" @click="changeLanguage">&ndash;&gt;-->
+        <!--          &lt;!&ndash;            <img href="" src="../assets/banderaEspaña.png" alt="es">&ndash;&gt;-->
+        <!--          &lt;!&ndash;            <img href="" src="../assets/banderaInglaterra.png" alt="en">&ndash;&gt;-->
+        <!--          &lt;!&ndash;          </div>&ndash;&gt;-->
+        <!--        </div>-->
         <div id="logoHeader" class="logoHeader">
           <img href="" src="../assets/MH.png">
         </div>
@@ -87,6 +89,11 @@ export default {
   data: function () {
     return {
       dataLogin: {
+        email: '',
+        password: ''
+      },
+      dataRegister: {
+        name: '',
         email: '',
         password: ''
       }
@@ -146,6 +153,155 @@ export default {
         $('.otherLanguage').append(nombre, bandera)
       }
     },
+    showAlert() {
+      let that = this
+      this.$swal({
+        customClass: 'swalRegistro',
+        html: $('.login').html(),
+        showCancelButton: false,
+        showConfirmButton: false,
+        allowOutsideClick: true,
+        didOpen: function () {
+          $('#app').addClass('difuminated')
+          $("section.formulario .signin, section.formulario .signup").on("click", function () {
+            $('section.formulario, section.formulario .container').toggleClass('active')
+          });
+
+          $(".signinBx form").submit(function () {
+            that.validateLogin(event)
+          });
+          $(".signupBx form").submit(function () {
+            that.validateCreate(event)
+          });
+        },
+        didClose: function () {
+          $('#app').removeClass('difuminated')
+          $('section.formulario, section.formulario .container').removeClass('active');
+        }
+      });
+    },
+    validateLogin(e) {
+      e.preventDefault();
+      let valido = true;
+      let email = $('.swalRegistro .formulario .signinBx .email')
+      let password = $('.swalRegistro .formulario .signinBx .password')
+      let emailValue = email[0].value.trim()
+      let passwordValue = password[0].value.trim()
+      if (emailValue === '') {
+        valido = false;
+        this.setErrorFor(email, 'Email cannot be blank');
+      } else if (!this.isEmail(emailValue)) {
+        valido = false;
+        this.setErrorFor(email, 'Not a valid email');
+      }
+
+      if (passwordValue === '') {
+        valido = false;
+        this.setErrorFor(password, 'Password cannot be blank');
+      }
+
+      if (valido) {
+        this.dataLogin.email = emailValue
+        this.dataLogin.password = passwordValue
+        this.loginUser()
+      }
+    },
+    validateCreate(e) {
+      e.preventDefault();
+      let valido = true;
+      let userName = $('.swalRegistro .formulario .signupBx .userName')
+      let email = $('.swalRegistro .formulario .signupBx .email')
+      let password = $('.swalRegistro .formulario .signupBx .password')
+      let passwordConfirm = $('.swalRegistro .formulario .signupBx .confirmPassword')
+      let userNameValue = userName[0].value.trim()
+      let emailValue = email[0].value.trim()
+      let passwordValue = password[0].value.trim()
+      let passwordConfirmValue = passwordConfirm[0].value.trim()
+
+      if (userNameValue === '') {
+        valido = false;
+        this.setErrorFor(userName, 'UserName cannot be blank');
+      }
+
+
+      if (emailValue === '') {
+        valido = false;
+        this.setErrorFor(email, 'Email cannot be blank');
+      } else if (!this.isEmail(emailValue)) {
+        valido = false;
+        this.setErrorFor(email, 'Not a valid email');
+      }
+
+      if (passwordConfirmValue === '') {
+        valido = false;
+        this.setErrorFor(passwordConfirm, 'Password cannot be blank');
+      }
+
+      if (passwordValue === '') {
+        valido = false;
+        this.setErrorFor(password, 'Password cannot be blank');
+      } else if (passwordValue != passwordConfirmValue) {
+        valido = false;
+        this.setErrorFor(password, 'Password isn´t same');
+        this.setErrorFor(passwordConfirm, 'Password isn´t same');
+      }
+
+
+      if (valido) {
+        this.$swal.close()
+        this.dataRegister.email=emailValue
+        this.dataRegister.name=userNameValue
+        this.dataRegister.password=passwordValue
+        this.registerUser()
+      }
+    },
+    setErrorFor(input, message) {
+      let formControl = input.parent()
+      let small = formControl.find('small')[0]
+
+      small.innerText = message;
+
+      formControl.removeClass('success')
+      formControl.addClass('error')
+    },
+    isEmail(email) {
+      return /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
+    },
+    async loginUser() {
+      try {
+        let response = await fetch('http://localhost:8000/api/login', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          credentials: 'include',
+          body: JSON.stringify(this.dataLogin)
+        });
+
+        if (response.ok) {
+          await this.$store.commit('SET_AUTH', true)
+
+          this.$swal.close()
+        } else {
+          this.setErrorFor($('.swalRegistro .formulario .signinBx .email'), 'Invalid or incorrect');
+          this.setErrorFor($('.swalRegistro .formulario .signinBx .password'), 'Invalid or incorrect');
+          await this.$store.commit('SET_AUTH', false)
+        }
+      } catch (e) {
+        await this.$store.commit('SET_AUTH', false)
+      }
+    },
+    async registerUser() {
+      let that = this;
+      await fetch('http://localhost:8000/api/register', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(that.dataRegister)
+      }).then(function () {
+            that.dataLogin.email = that.dataRegister.email;
+            that.dataLogin.password = that.dataRegister.password;
+            that.loginUser();
+          }
+      );
+    },
     async logout() {
       await fetch('http://localhost:8000/api/logout', {
         method: 'POST',
@@ -156,88 +312,6 @@ export default {
 
       await this.$store.commit('SET_AUTH', false)
     },
-
-    showAlert() {
-      let that=this
-      this.$swal({
-        customClass:'swalRegistro',
-        html: $('.login').html(),
-        showCancelButton: false,
-        showConfirmButton: false,
-        allowOutsideClick:true,
-        didOpen: function () {
-          $('#app').addClass('difuminated')
-          $( "section.formulario .signin, section.formulario .signup" ).on( "click", function() {
-            $('section.formulario, section.formulario .container').toggleClass('active')
-          });
-
-          $(".signinBx form").submit(function () {
-            that.validateLogin(event)
-          });
-        },
-        didClose: function () {
-          $('#app').removeClass('difuminated')
-          $('section.formulario, section.formulario .container').removeClass('active');
-        }
-      });
-    },
-    validateLogin(e){
-      e.preventDefault();
-      let valido=true;
-      let email = $('.swalRegistro .formulario .signinBx .email')
-      let password = $('.swalRegistro .formulario .signinBx .password')
-      let emailValue = email[0].value.trim()
-      let passwordValue = password[0].value.trim()
-      if(emailValue === '') {
-        valido=false;
-        this.setErrorFor(email, 'Email cannot be blank');
-      } else if (!this.isEmail(emailValue)) {
-        valido=false;
-        this.setErrorFor(email, 'Not a valid email');
-      } else {
-        this.setSuccessFor(email);
-      }
-
-      if(passwordValue === '') {
-        valido=false;
-        this.setErrorFor(password, 'Password cannot be blank');
-      } else {
-        this.setSuccessFor(password);
-      }
-      if(valido){
-        console.log("dasd")
-        this.dataLogin.email=emailValue
-        this.dataLogin.password=passwordValue
-        this.loginUser()
-      }
-    },
-    setErrorFor(input, message) {
-      let formControl = input.parent()
-      let small = formControl.find('small')[0]
-
-      small.innerText=message;
-
-      formControl.removeClass('success')
-      formControl.addClass('error')
-    },
-    setSuccessFor(input) {
-      let formControl = input.parent()
-
-      formControl.removeClass('error')
-      formControl.addClass('success')
-    },
-    isEmail(email) {
-      return /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
-    },
-    async loginUser() {
-      await fetch('http://localhost:8000/api/login', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        credentials: 'include',
-        body: JSON.stringify(this.dataLogin)
-      });
-      await $(".signinBx form").submit()
-    }
 
   }
 }
@@ -265,14 +339,14 @@ export default {
   text-transform: uppercase;
 }
 
-.idiomas{
+.idiomas {
   display: flex;
   align-items: center;
   position: relative;
   width: 100px;
 }
 
-.buttonAccess{
+.buttonAccess {
   border: none;
   padding: 0 5px;
   border-radius: 10px;

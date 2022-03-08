@@ -13,8 +13,8 @@
         </a>
       </section>
 
-      <section class="noticia mt-3 row">
-        <article class="col-12 col-md-4 py-3" data-aos="fade-left"
+      <section class="noticia m-0 mt-3 row w-100">
+        <article class="col-12 col-sm-6 col-lg-4 py-3 px-0 px-sm-2" data-aos="fade-left"
                  data-aos-duration="500">
           <a class="linkNonStyle" href="">
             <img class="img-fluid" src="../assets/noticias.png">
@@ -27,7 +27,7 @@
             <p class="mb-0">¡David Braceras, segundo absoluto en MX2 y co-lider de la clasificación provisional del campeonato!</p>
           </div>
         </article>
-        <article class="col-12 col-md-4 py-3" data-aos="zoom-out">
+        <article class="col-12 col-sm-6 col-lg-4 py-3 px-0 px-sm-2" data-aos="zoom-out">
           <a class="linkNonStyle" href="">
             <img class="img-fluid" src="../assets/noticias.png">
           </a>
@@ -39,7 +39,7 @@
             <p class="mb-0">¡David Braceras, segundo absoluto en MX2 y co-lider de la clasificación provisional del campeonato!</p>
           </div>
         </article>
-        <article class="col-12 col-md-4 py-3" data-aos="fade-right"
+        <article class="col-12 col-sm-6 col-lg-4 py-3 px-0 px-sm-2" data-aos="fade-right"
                  data-aos-duration="500">
           <a class="linkNonStyle" href="">
             <img class="img-fluid" src="../assets/noticias.png">
@@ -54,8 +54,8 @@
         </article>
       </section>
 
-      <section class="modelos row mt-3">
-        <article data-aos="flip-right" class="col-12 col-md-6 py-3">
+      <section class="modelos row mt-3 mx-0 w-100">
+        <article data-aos="flip-right" class="col-12 col-md-6 py-3 px-0 px-md-2">
           <a class="linkNonStyle" href="">
             <div class="modelo1 centarPalabras">
               <p class="m-0 textVisor letrasVisor">lorem</p>
@@ -66,7 +66,7 @@
             </div>
           </a>
         </article>
-        <article data-aos="flip-left" class="col-12 col-md-6 py-3">
+        <article data-aos="flip-left" class="col-12 col-md-6 py-3 px-0 px-md-2">
           <a class="linkNonStyle" href="">
             <div class="modelo1 centarPalabras">
               <p class="m-0 textVisor letrasVisor">lorem</p>
@@ -79,7 +79,7 @@
         </article>
       </section>
 
-      <section class="findUsContainer mx-0 mt-3 row">
+      <section class="findUsContainer mx-0 mt-3 row w-100">
         <div class="col-12 col-md-6 row p-0 m-0">
           <a href="" class="col-6 p-0">
             <div class="imgInsta"></div>
@@ -112,7 +112,7 @@
       </section>
 
 
-      <section class="newsletter mt-3 row">
+      <section class="newsletter mt-3 mx-0 row w-100">
         <p class="my-0 mx-2 mx-md-0 col-12 col-md-4 p-0">JOIN THE MH Motorcycle NEWSLETTER</p>
         <a class="buttonNewsletter col-6 col-md-3">
           sign up
@@ -137,8 +137,8 @@
 
   /*ESTILO DEL CONTENEDOR GENERAL DEL COMPONENTE*/
   .containerNoticiasConfigurador {
-    width: 95%;
-    max-width: 95%;
+    width: 100%;
+    padding: 0 10px;
   }
 
   /*ESTILOS DE LA CAJA DEL CONFIGURADOR DE MOTOS*/

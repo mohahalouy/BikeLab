@@ -32,10 +32,30 @@
         <div class="formBx">
           <form>
             <h2>Create an account</h2>
-            <input type="text" placeholder="Username" tabindex="-1">
-            <input type="text" placeholder="Email Address" tabindex="-1">
-            <input type="password" placeholder="Create Password" tabindex="-1">
-            <input type="password" placeholder="Confirm Password" tabindex="-1">
+            <div class="form_control">
+              <input type="text" placeholder="Username" class="userName" tabindex="-1">
+              <font-awesome-icon :icon="[ 'fas', 'check-circle' ]"/>
+              <font-awesome-icon :icon="[ 'fas', 'exclamation-circle' ]"/>
+              <small>error message</small>
+            </div>
+            <div class="form_control">
+              <input type="text" placeholder="Email Address" class="email" tabindex="-1">
+              <font-awesome-icon :icon="[ 'fas', 'check-circle' ]"/>
+              <font-awesome-icon :icon="[ 'fas', 'exclamation-circle' ]"/>
+              <small>error message</small>
+            </div>
+            <div class="form_control">
+              <input type="password" placeholder="Create Password" class="password" tabindex="-1">
+              <font-awesome-icon :icon="[ 'fas', 'check-circle' ]"/>
+              <font-awesome-icon :icon="[ 'fas', 'exclamation-circle' ]"/>
+              <small>error message</small>
+            </div>
+            <div class="form_control">
+              <input type="password" placeholder="Confirm Password" class="confirmPassword" tabindex="-1">
+              <font-awesome-icon :icon="[ 'fas', 'check-circle' ]"/>
+              <font-awesome-icon :icon="[ 'fas', 'exclamation-circle' ]"/>
+              <small>error message</small>
+            </div>
             <input type="submit" value="Create" tabindex="-1">
             <p class="signin">Already have an account <a @click="toggleForm()">Sign in.</a></p>
           </form>

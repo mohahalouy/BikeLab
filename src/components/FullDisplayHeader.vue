@@ -1,6 +1,6 @@
 <template>
   <header class="headerResponsive px-3 mx-auto h-100">
-    <div class="d-flex justify-content-end headerNotResponsive my-2">
+    <div class="d-flex justify-content-end headerNotResponsive py-2">
       <div id="idiomas" class="idiomas">
         <div class="imgBanderas" @click="selectLanguage">
           <span class="nombreIdioma">España</span>
@@ -17,7 +17,8 @@
         <!--          </div>-->
       </div>
       <span style="border: 1px solid white" class="mx-2"></span>
-      <button @click="showAlert" class="buttonAccess">Acceder</button>
+      <button v-if="!authenticated" @click="showAlert" class="buttonAccess">Acceder</button>
+      <button v-if="authenticated" @click="logout" class="buttonAccess">Desconcetarse</button>
     </div>
     <div class="d-flex justify-content-between flex-wrap align-items-center">
       <div class="toggleMenu" @click="activateMenu">
@@ -32,7 +33,7 @@
       </aside>
     </div>
     <nav class="nav">
-      <ul class="list-unstyled d-flex m-0 flex-wrap flex-column text-left">
+      <ul class="list-unstyled d-flex m-0 flex-wrap flex-column text-center">
         <li class="my-3">
           <router-link to="/about"> {{ $t('1') }}</router-link>
         </li>
@@ -58,12 +59,30 @@
 import $ from "jquery";
 import i18n from "@/i18n";
 import Login from "../components/Login";
+import {mapState} from "vuex";
 
 export default {
   name: "fullDisplayHeader",
   components: {
     Login
   },
+  data: function () {
+    return {
+      dataLogin: {
+        email: '',
+        password: ''
+      },
+      dataRegister: {
+        name: '',
+        email: '',
+        password: ''
+      }
+    }
+  },
+  computed: mapState([
+    'nombreUser',
+    'authenticated'
+  ]),
   methods: {
     selectLanguage() {
       $('.otherLanguage').toggleClass('d-flex')
@@ -96,17 +115,24 @@ export default {
       $('body').toggleClass('noScrollBody')
     },
     showAlert() {
-      // Use sweetalert2
+      let that = this
       this.$swal({
-        customClass:'swalRegistro',
+        customClass: 'swalRegistro',
         html: $('.login').html(),
         showCancelButton: false,
         showConfirmButton: false,
-        allowOutsideClick:true,
+        allowOutsideClick: true,
         didOpen: function () {
           $('#app').addClass('difuminated')
-          $( "section.formulario .signin, section.formulario .signup" ).on( "click", function() {
+          $("section.formulario .signin, section.formulario .signup").on("click", function () {
             $('section.formulario, section.formulario .container').toggleClass('active')
+          });
+
+          $(".signinBx form").submit(function () {
+            that.validateLogin(event)
+          });
+          $(".signupBx form").submit(function () {
+            that.validateCreate(event)
           });
         },
         didClose: function () {
@@ -114,23 +140,152 @@ export default {
           $('section.formulario, section.formulario .container').removeClass('active');
         }
       });
-    }
+    },
+    validateLogin(e) {
+      e.preventDefault();
+      let valido = true;
+      let email = $('.swalRegistro .formulario .signinBx .email')
+      let password = $('.swalRegistro .formulario .signinBx .password')
+      let emailValue = email[0].value.trim()
+      let passwordValue = password[0].value.trim()
+      if (emailValue === '') {
+        valido = false;
+        this.setErrorFor(email, 'Email cannot be blank');
+      } else if (!this.isEmail(emailValue)) {
+        valido = false;
+        this.setErrorFor(email, 'Not a valid email');
+      }
+
+      if (passwordValue === '') {
+        valido = false;
+        this.setErrorFor(password, 'Password cannot be blank');
+      }
+
+      if (valido) {
+        this.dataLogin.email = emailValue
+        this.dataLogin.password = passwordValue
+        this.loginUser()
+      }
+    },
+    validateCreate(e) {
+      e.preventDefault();
+      let valido = true;
+      let userName = $('.swalRegistro .formulario .signupBx .userName')
+      let email = $('.swalRegistro .formulario .signupBx .email')
+      let password = $('.swalRegistro .formulario .signupBx .password')
+      let passwordConfirm = $('.swalRegistro .formulario .signupBx .confirmPassword')
+      let userNameValue = userName[0].value.trim()
+      let emailValue = email[0].value.trim()
+      let passwordValue = password[0].value.trim()
+      let passwordConfirmValue = passwordConfirm[0].value.trim()
+
+      if (userNameValue === '') {
+        valido = false;
+        this.setErrorFor(userName, 'UserName cannot be blank');
+      }
+
+
+      if (emailValue === '') {
+        valido = false;
+        this.setErrorFor(email, 'Email cannot be blank');
+      } else if (!this.isEmail(emailValue)) {
+        valido = false;
+        this.setErrorFor(email, 'Not a valid email');
+      }
+
+      if (passwordConfirmValue === '') {
+        valido = false;
+        this.setErrorFor(passwordConfirm, 'Password cannot be blank');
+      }
+
+      if (passwordValue === '') {
+        valido = false;
+        this.setErrorFor(password, 'Password cannot be blank');
+      } else if (passwordValue != passwordConfirmValue) {
+        valido = false;
+        this.setErrorFor(password, 'Password isn´t same');
+        this.setErrorFor(passwordConfirm, 'Password isn´t same');
+      }
+
+
+      if (valido) {
+        this.$swal.close()
+        this.dataRegister.email=emailValue
+        this.dataRegister.name=userNameValue
+        this.dataRegister.password=passwordValue
+        this.registerUser()
+      }
+    },
+    setErrorFor(input, message) {
+      let formControl = input.parent()
+      let small = formControl.find('small')[0]
+
+      small.innerText = message;
+
+      formControl.removeClass('success')
+      formControl.addClass('error')
+    },
+    isEmail(email) {
+      return /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
+    },
+    async loginUser() {
+      try {
+        let response = await fetch('http://localhost:8000/api/login', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          credentials: 'include',
+          body: JSON.stringify(this.dataLogin)
+        });
+
+        if (response.ok) {
+          await this.$store.commit('SET_AUTH', true)
+
+          this.$swal.close()
+        } else {
+          this.setErrorFor($('.swalRegistro .formulario .signinBx .email'), 'Invalid or incorrect');
+          this.setErrorFor($('.swalRegistro .formulario .signinBx .password'), 'Invalid or incorrect');
+          await this.$store.commit('SET_AUTH', false)
+        }
+      } catch (e) {
+        await this.$store.commit('SET_AUTH', false)
+      }
+    },
+    async registerUser() {
+      let that = this;
+      await fetch('http://localhost:8000/api/register', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(that.dataRegister)
+      }).then(function () {
+            that.dataLogin.email = that.dataRegister.email;
+            that.dataLogin.password = that.dataRegister.password;
+            that.loginUser();
+          }
+      );
+    },
+    async logout() {
+      await fetch('http://localhost:8000/api/logout', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        credentials: 'include'
+      });
+      await this.$store.commit('SET_NOMBRE_USER', '')
+
+      await this.$store.commit('SET_AUTH', false)
+    },
   }
 }
 </script>
 
 <style scoped>
 
-.headerResponsive > div{
-  border-bottom: 1px solid white;
-}
-
 .nav {
   height:100%;
   overflow-y: auto;
-  border-right: 1px solid white;
-  width: fit-content;
+  width: 100%;
   padding-right: 10px;
+  display: flex;
+  justify-content: center;
 }
 
 .nav > ul > li > a {
@@ -145,7 +300,7 @@ export default {
   display: flex;
   align-items: center;
   position: relative;
-  width: 60px;
+  width: 100px;
 }
 
 .buttonAccess{
@@ -259,13 +414,6 @@ export default {
 }
 
 @media (max-width: 720px) {
-  .nav {
-    border: 0;
-  }
-
-  .headerResponsive > div {
-    border: 0;
-  }
 
   .logoHeader > img {
     height: 100px;
