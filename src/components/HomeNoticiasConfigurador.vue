@@ -14,7 +14,7 @@
       </section>
 
       <section class="noticia m-0 mt-3 row w-100">
-        <article class="col-12 col-sm-6 col-lg-4 py-3 px-0 px-sm-2" data-aos="fade-left"
+        <article class="col-12 col-sm-6 col-lg-4 py-3 px-0 px-sm-2" data-aos="zoom-in"
                  data-aos-duration="500">
           <a class="linkNonStyle" href="">
             <img class="img-fluid" src="../assets/noticias.png">
@@ -27,7 +27,7 @@
             <p class="mb-0">¡David Braceras, segundo absoluto en MX2 y co-lider de la clasificación provisional del campeonato!</p>
           </div>
         </article>
-        <article class="col-12 col-sm-6 col-lg-4 py-3 px-0 px-sm-2" data-aos="zoom-out">
+        <article class="col-12 col-sm-6 col-lg-4 py-3 px-0 px-sm-2" data-aos="zoom-in">
           <a class="linkNonStyle" href="">
             <img class="img-fluid" src="../assets/noticias.png">
           </a>
@@ -39,7 +39,7 @@
             <p class="mb-0">¡David Braceras, segundo absoluto en MX2 y co-lider de la clasificación provisional del campeonato!</p>
           </div>
         </article>
-        <article class="col-12 col-sm-6 col-lg-4 py-3 px-0 px-sm-2" data-aos="fade-right"
+        <article class="col-12 col-sm-6 col-lg-4 py-3 px-0 px-sm-2" data-aos="zoom-in"
                  data-aos-duration="500">
           <a class="linkNonStyle" href="">
             <img class="img-fluid" src="../assets/noticias.png">

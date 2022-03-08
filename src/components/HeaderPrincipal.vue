@@ -136,6 +136,7 @@ export default {
       $('.fullDisplayHeader').toggleClass('active')
       $('.fullDisplayHeader').removeClass('desactivate')
       $('body').toggleClass('noScrollBody')
+      $('html, body').animate({scrollTop:0}, 500);
     },
     comprobarIdioma() {
       if (i18n.locale === 'en') {
