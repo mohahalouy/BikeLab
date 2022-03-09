@@ -39,7 +39,11 @@ export default {
         if (response.ok) {
           let content = await response.json();
 
+          let permisosAdmin=  await content.rol === "1" ? true : false;
+
           await this.$store.commit('SET_NOMBRE_USER', content.name)
+
+          await this.$store.commit('SET_ADMIN', permisosAdmin)
 
           await this.$store.commit('SET_AUTH', true)
         } else {

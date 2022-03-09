@@ -18,10 +18,13 @@
       </div>
       <span style="border: 1px solid white" class="mx-2"></span>
       <button v-if="!authenticated" @click="showAlert" class="buttonAccess">Acceder</button>
+      <button v-if="adminUser" @click="showAlertAdmin" class="buttonAccess mr-2">Ver Menú Admin</button>
       <button v-if="authenticated" @click="logout" class="buttonAccess">Desconcetarse</button>
     </div>
-    {{ nombreUser }}
-    {{ authenticated }}
+    <p>{{ nombreUser }}</p>
+    <p>{{ authenticated }}</p>
+    <p>{{ adminUser }}</p>
+    <p></p>
     <div class="d-flex justify-content-end">
     </div>
     <div class="d-flex justify-content-between flex-wrap align-items-center">
@@ -101,7 +104,8 @@ export default {
   },
   computed: mapState([
     'nombreUser',
-    'authenticated'
+    'authenticated',
+    'adminUser'
   ]),
   mounted() {
     this.comprobarIdioma()
@@ -268,6 +272,15 @@ export default {
     isEmail(email) {
       return /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
     },
+    showAlertAdmin() {
+      this.$swal({
+        customClass: 'swalAdmin',
+        html: $('.login').html(),
+        showCancelButton: false,
+        showConfirmButton: false,
+        allowOutsideClick: true
+      });
+    },
     async loginUser() {
       try {
         let response = await fetch('http://localhost:8000/api/login', {
@@ -278,6 +291,14 @@ export default {
         });
 
         if (response.ok) {
+          let content = await response.json();
+
+          let permisosAdmin=  await content.rol === "1" ? true : false;
+
+          await this.$store.commit('SET_NOMBRE_USER', content.name)
+
+          await this.$store.commit('SET_ADMIN', permisosAdmin)
+
           await this.$store.commit('SET_AUTH', true)
 
           this.$swal.close()
@@ -312,8 +333,9 @@ export default {
       await this.$store.commit('SET_NOMBRE_USER', '')
 
       await this.$store.commit('SET_AUTH', false)
-    },
 
+      await this.$store.commit('SET_ADMIN', false)
+    },
   }
 }
 </script>

@@ -121,7 +121,6 @@
     </section>
   </template>
 
-  import foo
   <script>
   export default {
     name: "Noticias"

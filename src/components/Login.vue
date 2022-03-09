@@ -74,7 +74,6 @@
 </template>
 
 <script>
-import router from "@/router";
 import $ from 'jquery'
 
 export default {
@@ -88,16 +87,6 @@ export default {
     }
   },
   methods: {
-    async loginUser() {
-      await fetch('http://localhost:8000/api/login', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        credentials: 'include',
-        body: JSON.stringify(this.data)
-      });
-
-      await router.push('/');
-    },
     toggleForm() {
       $('section, .container').toggleClass('active')
     }

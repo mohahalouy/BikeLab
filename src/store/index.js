@@ -6,7 +6,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     nombreUser:'',
-    authenticated:false
+    authenticated:false,
+    adminUser:false
   },
   mutations: {
     SET_NOMBRE_USER(state,nombre){
@@ -14,6 +15,9 @@ export default new Vuex.Store({
     },
     SET_AUTH(state, auth) {
       state.authenticated = auth
+    },
+    SET_ADMIN(state, admin){
+      state.adminUser=admin
     }
   },
   actions: {},
