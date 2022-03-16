@@ -14,44 +14,31 @@
       </section>
 
       <section class="noticia m-0 mt-3 row w-100">
-        <article class="col-12 col-sm-6 col-lg-4 py-3 px-0 px-sm-2" data-aos="zoom-in"
-                 data-aos-duration="500">
-          <a class="linkNonStyle" href="">
-            <img class="img-fluid" src="../assets/noticias.png">
-          </a>
+        <div class="LoadingNoticias">
+          <p>l</p>
+          <p>o</p>
+          <p>a</p>
+          <p>d</p>
+          <p>i</p>
+          <p>n</p>
+          <p>g</p>
+        </div>
+
+        <article class="col-12 col-sm-6 col-lg-4 py-3 px-0 px-sm-2 d-flex flex-column justify-content-between" data-aos="zoom-in"
+                 data-aos-duration="500"
+                 v-for="item in this.dataNoticias" :key="item.id">
+          <router-link :to="{ name: 'Noticias', query: { id: item.id }}" class="linkNonStyle">
+            <img class="img-fluid" :src="'http://127.0.0.1:8000/uploads/noticias/'+item.imagen">
+          </router-link>
           <div class="letrasVisorNoticas text-left">
-            <p class="">3 feb. 2022</p>
-            <a class="linkNonStyle" href="">
-              <h4 class="tituloNoticia">CAMPEONATO DE ESPAÑA DE MOTOCROSS DE 2022 TOLEDO</h4>
-            </a>
-            <p class="mb-0">¡David Braceras, segundo absoluto en MX2 y co-lider de la clasificación provisional del campeonato!</p>
+            <p class="">{{ item.fecha }}</p>
+            <router-link :to="{ name: 'Noticias', query: { id: item.id }}" class="linkNonStyle">
+              <h4 class="tituloNoticia">{{ item.titulo }}</h4>
+            </router-link>
+            <p class="mb-0">{{ item.previewTexto }}</p>
           </div>
         </article>
-        <article class="col-12 col-sm-6 col-lg-4 py-3 px-0 px-sm-2" data-aos="zoom-in">
-          <a class="linkNonStyle" href="">
-            <img class="img-fluid" src="../assets/noticias.png">
-          </a>
-          <div class="letrasVisorNoticas text-left">
-            <p class="">3 feb. 2022</p>
-            <a class="linkNonStyle" href="">
-              <h4 class="tituloNoticia">CAMPEONATO DE ESPAÑA DE MOTOCROSS DE 2022 TOLEDO</h4>
-            </a>
-            <p class="mb-0">¡David Braceras, segundo absoluto en MX2 y co-lider de la clasificación provisional del campeonato!</p>
-          </div>
-        </article>
-        <article class="col-12 col-sm-6 col-lg-4 py-3 px-0 px-sm-2" data-aos="zoom-in"
-                 data-aos-duration="500">
-          <a class="linkNonStyle" href="">
-            <img class="img-fluid" src="../assets/noticias.png">
-           </a>
-            <div class="letrasVisorNoticas text-left">
-              <p class="">3 feb. 2022</p>
-              <a class="linkNonStyle" href="">
-              <h4 class="tituloNoticia">CAMPEONATO DE ESPAÑA DE MOTOCROSS DE 2022 TOLEDO</h4>
-              </a>
-              <p class="mb-0">¡David Braceras, segundo absoluto en MX2 y co-lider de la clasificación provisional del campeonato!</p>
-            </div>
-        </article>
+
       </section>
 
       <section class="modelos row mt-3 mx-0 w-100">
@@ -122,8 +109,38 @@
   </template>
 
   <script>
+  import $ from 'jquery';
+
   export default {
-    name: "Noticias"
+    name: "Noticias",
+    data: function () {
+      return {
+        dataNoticias: []
+      }
+
+    },
+    mounted() {
+      this.noticias();
+    },
+    methods: {
+      async noticias() {
+        $('.LoadingNoticias').show()
+        let response = await fetch('http://localhost:8000/api/noticias', {
+          headers: {"Accept": "application/json", 'Content-Type': 'application/json'}
+        })
+        $('.LoadingNoticias').hide()
+
+        let content = await response.json()
+
+        content = content.length >= 2 ? content.slice(-3) : content;
+
+
+        for (const key in content) {
+          this.dataNoticias.push(content[key]);
+        }
+
+      }
+  }
   }
   </script>
 
@@ -358,6 +375,75 @@
     transform: scaleX(1);
     transition-delay: 1s;
   }
+
+  /*Animacion loader de las noticias*/
+  .LoadingNoticias{
+    display: none;
+  }
+
+  .LoadingNoticias p {
+    display: inline-block;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 4em;
+    font-family: arial;
+    font-weight: 600;
+    transform: scale(.5);
+    color: #121212;
+    -webkit-text-stroke: 2px gray;
+  }
+
+  .LoadingNoticias p:nth-child(1) {
+    animation: hover 1s linear infinite;
+  }
+
+  .LoadingNoticias p:nth-child(2) {
+    animation: hover 1s linear infinite .125s;
+  }
+
+  .LoadingNoticias p:nth-child(3) {
+    animation: hover 1s linear infinite .25s;
+  }
+
+  .LoadingNoticias p:nth-child(4) {
+    animation: hover 1s linear infinite .375s;
+  }
+
+  .LoadingNoticias p:nth-child(5) {
+    animation: hover 1s linear infinite .5s;
+  }
+
+  .LoadingNoticias p:nth-child(6) {
+    animation: hover 1s linear infinite .675s;
+  }
+
+  .LoadingNoticias p:nth-child(7) {
+    animation: hover 1s linear infinite .75s;
+  }
+
+  @keyframes hover {
+    0% {
+      transform: scale(.5);
+      color: #121212;
+      -webkit-text-stroke: 2px gray;
+    }
+
+    20% {
+      transform: scale(1);
+      color: pink;
+      -webkit-text-stroke: 3px red;
+      filter: drop-shadow(0 0 1px black)drop-shadow(0 0 1px black)drop-shadow(0 0 3px red)drop-shadow(0 0 5px red)hue-rotate(10turn);
+    }
+
+    50% {
+      transform: scale(.5);
+      color: #121212;
+      -webkit-text-stroke: 2px gray;
+    }
+
+
+  }
+
 
   @media (max-width: 520px) {
     .configurador{

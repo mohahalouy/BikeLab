@@ -70,8 +70,25 @@
         </div>
       </aside>
     </div>
-    <div class="login" style='display: none'>
+    <div v-if="!authenticated" class="login" style='display: none'>
       <login></login>
+    </div>
+
+    <div v-if="adminUser" class="menuAdmin" style='display: none'>
+      <menu-admin></menu-admin>
+    </div>
+
+    <div class="containerLoading">
+      <div class="wrapper">
+        <span class="circle circle-1 mx-2"></span>
+        <span class="circle circle-2 mx-2"></span>
+        <span class="circle circle-3 mx-2"></span>
+        <span class="circle circle-4 mx-2"></span>
+        <span class="circle circle-5 mx-2"></span>
+        <span class="circle circle-6 mx-2"></span>
+        <span class="circle circle-7 mx-2"></span>
+        <span class="circle circle-8 mx-2"></span>
+      </div>
     </div>
   </header>
 </template>
@@ -80,14 +97,17 @@
 
 import i18n from '../i18n'
 import Login from "../components/Login";
+import menuAdmin from "../components/menuAdmin";
 
 import $ from 'jquery'
 import {mapState} from "vuex";
+import router from "../router";
 
 export default {
   name: "HeaderPrincipal",
   components: {
-    Login
+    Login,
+    menuAdmin
   },
   data: function () {
     return {
@@ -273,15 +293,26 @@ export default {
       return /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
     },
     showAlertAdmin() {
+      let that=this
       this.$swal({
         customClass: 'swalAdmin',
-        html: $('.login').html(),
+        html: $('.menuAdmin').html(),
         showCancelButton: false,
         showConfirmButton: false,
-        allowOutsideClick: true
+        allowOutsideClick: true,
+        didOpen: function () {
+          $(".menuAdmin .buttonAccess").click(function() {
+            that.$swal.close()
+            router.push('/news')
+          });
+        }
       });
     },
     async loginUser() {
+      $('.containerLoading').show()
+      $('body').addClass('noScrollBody')
+      $('#app').removeClass('difuminated')
+      $('#app').css('z-index', 1061);
       try {
         let response = await fetch('http://localhost:8000/api/login', {
           method: 'POST',
@@ -289,7 +320,9 @@ export default {
           credentials: 'include',
           body: JSON.stringify(this.dataLogin)
         });
-
+        $('.containerLoading').hide()
+        $('body').removeClass('noScrollBody')
+        $('#app').css('z-index', 0);
         if (response.ok) {
           let content = await response.json();
 
@@ -306,12 +339,16 @@ export default {
           this.setErrorFor($('.swalRegistro .formulario .signinBx .email'), 'Invalid or incorrect');
           this.setErrorFor($('.swalRegistro .formulario .signinBx .password'), 'Invalid or incorrect');
           await this.$store.commit('SET_AUTH', false)
+          $('#app').addClass('difuminated')
+
         }
       } catch (e) {
         await this.$store.commit('SET_AUTH', false)
       }
     },
     async registerUser() {
+      $('.containerLoading').show()
+      $('body').addClass('noScrollBody')
       let that = this;
       await fetch('http://localhost:8000/api/register', {
         method: 'POST',
@@ -325,6 +362,8 @@ export default {
       );
     },
     async logout() {
+      $('.containerLoading').show()
+      $('body').addClass('noScrollBody')
       await fetch('http://localhost:8000/api/logout', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
@@ -335,6 +374,8 @@ export default {
       await this.$store.commit('SET_AUTH', false)
 
       await this.$store.commit('SET_ADMIN', false)
+      $('.containerLoading').hide()
+      $('body').removeClass('noScrollBody')
     },
   }
 }
