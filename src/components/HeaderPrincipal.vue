@@ -21,9 +21,6 @@
       <button v-if="adminUser" @click="showAlertAdmin" class="buttonAccess mr-2">Ver Menú Admin</button>
       <button v-if="authenticated" @click="logout" class="buttonAccess">Desconcetarse</button>
     </div>
-    <p>{{ nombreUser }}</p>
-    <p>{{ authenticated }}</p>
-    <p>{{ adminUser }}</p>
     <p></p>
     <div class="d-flex justify-content-end">
     </div>
@@ -78,18 +75,15 @@
       <menu-admin></menu-admin>
     </div>
 
-    <div class="containerLoading">
-      <div class="wrapper">
-        <span class="circle circle-1 mx-2"></span>
-        <span class="circle circle-2 mx-2"></span>
-        <span class="circle circle-3 mx-2"></span>
-        <span class="circle circle-4 mx-2"></span>
-        <span class="circle circle-5 mx-2"></span>
-        <span class="circle circle-6 mx-2"></span>
-        <span class="circle circle-7 mx-2"></span>
-        <span class="circle circle-8 mx-2"></span>
+
+    <div class="loading">
+      <div id="loop" class="centerLoop">
+        <div id="bike-wrapper" class="centerLoop">
+          <div id="bike" class="centerBike"></div>
+        </div>
       </div>
     </div>
+
   </header>
 </template>
 
@@ -125,10 +119,12 @@ export default {
   computed: mapState([
     'nombreUser',
     'authenticated',
-    'adminUser'
+    'adminUser',
+    'idioma'
   ]),
   mounted() {
     this.comprobarIdioma()
+    this.reconectUser();
   },
   methods: {
     selectLanguage() {
@@ -151,6 +147,8 @@ export default {
 
       $('.imgBanderas').append(nombreNuevo, banderaNueva, svg)
       $('.otherLanguage').append(nombre, bandera)
+
+      this.$store.commit('SET_IDIOMA', i18n.locale)
 
 
     },
@@ -301,15 +299,49 @@ export default {
         showConfirmButton: false,
         allowOutsideClick: true,
         didOpen: function () {
-          $(".menuAdmin .buttonAccess").click(function() {
+          $(".menuAdmin .buttonAddNews").click(function() {
             that.$swal.close()
-            router.push('/news')
+            router.push('/addNews')
+          });
+          $(".menuAdmin .buttonAddModels").click(function() {
+            that.$swal.close()
+            router.push('/addModels')
           });
         }
       });
     },
+    async reconectUser() {
+      $('.loading').show()
+      $('body').addClass('noScrollBody')
+
+      try {
+        let response = await fetch('http://localhost:8000/api/user', {
+          headers: {"Accept": "application/json", 'Content-Type': 'application/json'},
+          credentials: 'include'
+        });
+        $('.loading').hide()
+        $('body').removeClass('noScrollBody')
+        if (response.ok) {
+          let content = await response.json();
+
+          let permisosAdmin=  await content.rol === "1" ? true : false;
+
+          await this.$store.commit('SET_NOMBRE_USER', content.name)
+
+          await this.$store.commit('SET_ADMIN', permisosAdmin)
+
+          await this.$store.commit('SET_AUTH', true)
+        } else {
+          await this.$store.commit('SET_AUTH', false)
+        }
+
+      } catch (e) {
+        await this.$store.commit('SET_AUTH', false)
+      }
+
+    },
     async loginUser() {
-      $('.containerLoading').show()
+      $('.loading').show()
       $('body').addClass('noScrollBody')
       $('#app').removeClass('difuminated')
       $('#app').css('z-index', 1061);
@@ -320,7 +352,7 @@ export default {
           credentials: 'include',
           body: JSON.stringify(this.dataLogin)
         });
-        $('.containerLoading').hide()
+        $('.loading').hide()
         $('body').removeClass('noScrollBody')
         $('#app').css('z-index', 0);
         if (response.ok) {
@@ -347,7 +379,7 @@ export default {
       }
     },
     async registerUser() {
-      $('.containerLoading').show()
+      $('.loading').show()
       $('body').addClass('noScrollBody')
       let that = this;
       await fetch('http://localhost:8000/api/register', {
@@ -362,7 +394,7 @@ export default {
       );
     },
     async logout() {
-      $('.containerLoading').show()
+      $('.loading').show()
       $('body').addClass('noScrollBody')
       await fetch('http://localhost:8000/api/logout', {
         method: 'POST',
@@ -374,7 +406,7 @@ export default {
       await this.$store.commit('SET_AUTH', false)
 
       await this.$store.commit('SET_ADMIN', false)
-      $('.containerLoading').hide()
+      $('.loading').hide()
       $('body').removeClass('noScrollBody')
     },
   }
@@ -391,6 +423,10 @@ export default {
   right: 0;
 }
 
+.noticias .header{
+  position: relative;
+}
+
 .header > div {
   padding: 5px 30px;
 }
@@ -401,6 +437,10 @@ export default {
   font-size: 1.11111em;
   font-weight: 700;
   text-transform: uppercase;
+}
+
+.noticias .nav > ul > li > a {
+  color: black ;
 }
 
 .idiomas {

@@ -7,7 +7,8 @@ export default new Vuex.Store({
   state: {
     nombreUser:'',
     authenticated:false,
-    adminUser:false
+    adminUser:false,
+    idioma:'es'
   },
   mutations: {
     SET_NOMBRE_USER(state,nombre){
@@ -18,6 +19,9 @@ export default new Vuex.Store({
     },
     SET_ADMIN(state, admin){
       state.adminUser=admin
+    },
+    SET_IDIOMA(state, idioma){
+      state.idioma=idioma
     }
   },
   actions: {},

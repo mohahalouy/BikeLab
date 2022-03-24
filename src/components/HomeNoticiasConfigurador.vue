@@ -30,12 +30,19 @@
           <router-link :to="{ name: 'Noticias', query: { id: item.id }}" class="linkNonStyle">
             <img class="img-fluid" :src="'http://127.0.0.1:8000/uploads/noticias/'+item.imagen">
           </router-link>
-          <div class="letrasVisorNoticas text-left">
+          <div v-if="idioma==='es'" class="letrasVisorNoticas text-left">
             <p class="">{{ item.fecha }}</p>
             <router-link :to="{ name: 'Noticias', query: { id: item.id }}" class="linkNonStyle">
-              <h4 class="tituloNoticia">{{ item.titulo }}</h4>
+              <h4 class="tituloNoticia">{{ item.tituloEs }}</h4>
             </router-link>
-            <p class="mb-0">{{ item.previewTexto }}</p>
+            <p class="mb-0">{{ item.previewTextoEs }}</p>
+          </div>
+          <div v-else class="letrasVisorNoticas text-left">
+            <p class="">{{ item.fecha }}</p>
+            <router-link :to="{ name: 'Noticias', query: { id: item.id }}" class="linkNonStyle">
+              <h4 class="tituloNoticia">{{ item.tituloEn }}</h4>
+            </router-link>
+            <p class="mb-0">{{ item.previewTextoEn }}</p>
           </div>
         </article>
 
@@ -110,9 +117,13 @@
 
   <script>
   import $ from 'jquery';
+  import {mapState} from "vuex";
 
   export default {
     name: "Noticias",
+    computed: mapState([
+      'idioma'
+    ]),
     data: function () {
       return {
         dataNoticias: []

@@ -1,7 +1,8 @@
 <template>
   <div class="menuAdmin text-dark container d-flex flex-column">
     <h2>Menú Admin</h2>
-    <button class="buttonAccess py-1"> Añadir Noticias</button>
+    <button class="buttonAccess buttonAddNews py-1 mb-3"> Añadir Noticias</button>
+    <button class="buttonAccess buttonAddModels py-1"> Añadir Modelos</button>
   </div>
 </template>
 

@@ -7,19 +7,6 @@
     <CarouselPaginaPrincipal class="carousel"></CarouselPaginaPrincipal>
     <HomeNoticiasConfigurador class="noticiasConfigurador"></HomeNoticiasConfigurador>
     <Footer class="footer"></Footer>
-
-    <div v-if="!authenticated" class="containerLoading">
-      <div class="wrapper">
-        <span class="circle circle-1 mx-2"></span>
-        <span class="circle circle-2 mx-2"></span>
-        <span class="circle circle-3 mx-2"></span>
-        <span class="circle circle-4 mx-2"></span>
-        <span class="circle circle-5 mx-2"></span>
-        <span class="circle circle-6 mx-2"></span>
-        <span class="circle circle-7 mx-2"></span>
-        <span class="circle circle-8 mx-2"></span>
-      </div>
-    </div>
   </div>
 </template>
 
@@ -29,8 +16,8 @@ import FullDisplayHeader from "@/components/FullDisplayHeader";
 import CarouselPaginaPrincipal from "@/components/CarouselPaginaPrincipal";
 import HomeNoticiasConfigurador from "@/components/HomeNoticiasConfigurador";
 import Footer from "@/components/Footer";
-import $ from "jquery";
 import {mapState} from "vuex";
+import $ from "jquery";
 
 export default {
   name: 'Home',
@@ -41,42 +28,15 @@ export default {
     HomeNoticiasConfigurador,
     Footer
   },
+  mounted() {
+    this.goUp();
+  },
   computed: mapState([
     'authenticated'
   ]),
-  mounted() {
-    this.reconectUser()
-  },
   methods: {
-    async reconectUser() {
-      $('.containerLoading').show()
-      $('body').addClass('noScrollBody')
-
-      try {
-        let response = await fetch('http://localhost:8000/api/user', {
-          headers: {"Accept": "application/json", 'Content-Type': 'application/json'},
-          credentials: 'include'
-        });
-        $('.containerLoading').hide()
-        $('body').removeClass('noScrollBody')
-        if (response.ok) {
-          let content = await response.json();
-
-          let permisosAdmin=  await content.rol === "1" ? true : false;
-
-          await this.$store.commit('SET_NOMBRE_USER', content.name)
-
-          await this.$store.commit('SET_ADMIN', permisosAdmin)
-
-          await this.$store.commit('SET_AUTH', true)
-        } else {
-          await this.$store.commit('SET_AUTH', false)
-        }
-
-      } catch (e) {
-        await this.$store.commit('SET_AUTH', false)
-      }
-
+    goUp() {
+      $('html, body').animate({scrollTop: 0}, 500);
     }
   }
 }

@@ -20,6 +20,7 @@ export default {
 body{
   display: flex;
   padding: 0 !important;
+  justify-content: center;
 }
 
 #app {
@@ -29,6 +30,7 @@ body{
   text-align: center;
   color: white;
   width: 100%;
+  max-width: 2000px;
 }
 
 #app.difuminated{
@@ -36,71 +38,83 @@ body{
 }
 
 
-.containerLoading{
+.loading{
   display: none;
   position: absolute;
   height: 100vh;
-  top: 0;
-  border: 1px solid;
   width: 100%;
+  top: 0;
+  left: 0;
+  padding: 0;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 9;
-  border: 0;
 }
 
-.wrapper{
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%, -50%);
-  display: flex;
+.centerBike {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: 30px;
+  margin-left: -14px;
 }
-.circle{
-  display: inline-block;
-  width: 15px;
-  height: 15px;
-  background-color: #fcdc29;
-  border-radius: 50%;
-  animation: loading 1.5s cubic-bezier(.8, .5, .2, 1.4) infinite;
-  transform-origin: bottom center;
+
+.centerLoop {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -50px;
+}
+
+#loop {
+  height: 120px;
+  width: 120px;
+  border: #bb5f27 solid 4px;
+  border-radius: 200px;
+}
+
+#loop:before {
+  background: linear-gradient(to left, rgba(187, 95, 39, 0) 0%, rgba(187, 95, 39, 1) 30%, rgba(187, 95, 39, 1) 70%, rgba(187, 95, 39, 0) 100%);
+  content: "";
+  display: block;
+  height: 4px;
+  left: -100px;
   position: relative;
+  top: 113px;
+  width: 300px;
 }
-@keyframes loading{
-  0%{
-    transform: translateY(0px);
-    background-color: #fcdc29;
+
+#bike-wrapper {
+  height: 108px;
+  width: 108px;
+  animation: drive 1.5s linear infinite;
+}
+
+#bike {
+  height: 24px;
+  width: 25px;
+  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/133687/motorbike.png");
+}
+
+@keyframes drive {
+  0% {
+    margin-left: -364px;
+    opacity: 0;
   }
-  50%{
-    transform: translateY(50px);
-    background-color: #ef584a;
+  33.33% {
+    transform: rotate(0deg);
+    margin-left: -50px;
+    opacity: 1;
   }
-  100%{
-    transform: translateY(0px);
-    background-color: #fcdc29;
+  66.66% {
+    transform: rotate(-360deg);
+    margin-left: -50px;
+    opacity: 1;
   }
-}
-.circle-1{
-  animation-delay: 0.1s;
-}
-.circle-2{
-  animation-delay: 0.2s;
-}
-.circle-3{
-  animation-delay: 0.3s;
-}
-.circle-4{
-  animation-delay: 0.4s;
-}
-.circle-5{
-  animation-delay: 0.5s;
-}
-.circle-6{
-  animation-delay: 0.6s;
-}
-.circle-7{
-  animation-delay: 0.7s;
-}
-.circle-8{
-  animation-delay: 0.8s;
+  100% {
+    margin-left: 120px;
+    transform: rotate(-360deg);
+    opacity: 0;
+  }
 }
 </style>

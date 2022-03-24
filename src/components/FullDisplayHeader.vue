@@ -105,6 +105,8 @@ export default {
       $('.imgBanderas').append(nombreNuevo, banderaNueva, svg)
       $('.otherLanguage').append(nombre, bandera)
 
+      this.$store.commit('SET_IDIOMA', i18n.locale)
+
 
     },
     activateMenu() {
