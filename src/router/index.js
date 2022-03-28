@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home'
-import About from '../views/About'
+import Modelos from '../views/Modelos'
 import addNews from '../views/addNews'
 import addModels from '../views/addModels'
 import Noticias from '../views/Noticias'
@@ -15,9 +15,9 @@ const routes = [
     component: Home
   },
   {
-    path: '/about',
-    name: 'About',
-    component: About
+    path: '/modelos',
+    name: 'modelos',
+    component: Modelos
   },
   {
     path: '/addNews',

@@ -33,7 +33,7 @@
       <nav class="nav align-items-center">
         <ul class="list-unstyled d-flex m-0 flex-wrap">
           <li class="mr-5">
-            <router-link to="/about"> {{ $t('1') }}</router-link>
+            <router-link to="/modelos"> {{ $t('1') }}</router-link>
           </li>
           <li class="mr-5">
             <a href="">{{ $t('2') }}</a>

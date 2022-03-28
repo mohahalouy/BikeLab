@@ -46,7 +46,6 @@ export default {
     return {
       dataNoticia: []
     }
-
   },
   methods:{
     async getNoticia() {
