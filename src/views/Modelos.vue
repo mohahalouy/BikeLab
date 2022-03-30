@@ -4,15 +4,15 @@
     <div class="fullDisplayHeader">
       <FullDisplayHeader></FullDisplayHeader>
     </div>
-    <section class="modelo  w-100 d-flex justify-content-center">
-      <div class="w-75 d-flex my-3 flex-wrap">
-        <div class="" v-for="item in this.dataModelos" :key="item.id">
-            <picture class="imgNoticia">
-              <img class="img-fluid" :src="'http://127.0.0.1:8000/uploads/modelos/imagenes/'+item.imagen">
-            </picture>
-            <h2>{{ item.nombreEs }}</h2>
-            <p>{{ item.destacadoEs }}</p>
-        </div>
+    <section v-if="idioma==='es'"  class="modelo">
+      <div class="" v-for="item in this.dataModelos" :key="item.id">
+        <router-link :to="{ name: 'modelos', query: { id: item.id }}" class="linkNonStyle">
+          <picture class="imgNoticia">
+            <img class="img-fluid" :src="'http://127.0.0.1:8000/uploads/modelos/imagenes/'+item.imagen">
+          </picture>
+          <h2>{{ item.nombreEs }}</h2>
+          <p>{{ item.destacadoEs }}</p>
+        </router-link>
       </div>
     </section>
     <Footer class="footer"></Footer>
@@ -24,6 +24,7 @@ import HeaderPrincipal from "@/components/HeaderPrincipal";
 import FullDisplayHeader from "@/components/FullDisplayHeader";
 import Footer from "../components/Footer";
 import $ from 'jquery';
+import {mapState} from "vuex";
 export default {
   name: 'Modelos',
   components: {
@@ -31,6 +32,9 @@ export default {
     FullDisplayHeader,
     Footer
   },
+  computed: mapState([
+    'idioma'
+  ]),
   data: function () {
     return {
       dataModelos: []
@@ -82,28 +86,42 @@ export default {
 .modelo{
   grid-area: modelo;
   background-color: #e6e6e6;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  padding: 10px 20px;
 }
 
-.modelo > div > div{
+.modelo > div{
   background-color: white;
-  min-height: 200px;
+  min-height: 250px;
+  max-height: 450px;
   cursor: pointer;
   padding: 10px 20px;
-  max-width: 220px;
-  margin-top: 10px;
-  margin-left: 10px;
+  max-width: 300px;
+  margin: 10px 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.modelo > div > div img {
+.modelo > div img {
   padding: 20px;
   transition: transform 0.5s;
 }
 
-.modelo > div > div:hover img {
+.modelo > div:hover img {
   transform: scale(1.1);
 }
 
+.linkNonStyle {
+  text-decoration: none;
+  color: black;
+}
+
+
+.linkNonStyle:hover {
+  text-underline: none;
+}
 </style>

@@ -33,7 +33,12 @@ const routes = [
     path: '/addModels',
     name: 'addModels',
     component: addModels
-  }
+  },
+  // {
+  //   path: '/modelos',
+  //   name: 'Noticias',
+  //   component: Noticias
+  // },
 ]
 
 const router = new VueRouter({
