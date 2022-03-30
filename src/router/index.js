@@ -5,6 +5,7 @@ import Modelos from '../views/Modelos'
 import addNews from '../views/addNews'
 import addModels from '../views/addModels'
 import Noticias from '../views/Noticias'
+import Modelo from '../views/Modelo'
 
 Vue.use(VueRouter)
 
@@ -34,11 +35,11 @@ const routes = [
     name: 'addModels',
     component: addModels
   },
-  // {
-  //   path: '/modelos',
-  //   name: 'Noticias',
-  //   component: Noticias
-  // },
+  {
+    path: '/modelo',
+    name: 'Modelo',
+    component: Modelo
+  },
 ]
 
 const router = new VueRouter({

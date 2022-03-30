@@ -438,6 +438,9 @@ export default {
   font-weight: 700;
   text-transform: uppercase;
 }
+.modelos .nav > ul > li > a {
+  color: black;
+}
 
 .noticias .nav > ul > li > a {
   color: black ;

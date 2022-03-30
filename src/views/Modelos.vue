@@ -6,7 +6,7 @@
     </div>
     <section v-if="idioma==='es'"  class="modelo">
       <div class="" v-for="item in this.dataModelos" :key="item.id">
-        <router-link :to="{ name: 'modelos', query: { id: item.id }}" class="linkNonStyle">
+        <router-link :to="{ name: 'Modelo', query: { id: item.id }}" class="linkNonStyle">
           <picture class="imgNoticia">
             <img class="img-fluid" :src="'http://127.0.0.1:8000/uploads/modelos/imagenes/'+item.imagen">
           </picture>
@@ -15,6 +15,19 @@
         </router-link>
       </div>
     </section>
+    <section v-else  class="modelo">
+      <div class="" v-for="item in this.dataModelos" :key="item.id">
+        <router-link :to="{ name: 'Modelo', query: { id: item.id }}" class="linkNonStyle">
+          <picture class="imgNoticia">
+            <img class="img-fluid" :src="'http://127.0.0.1:8000/uploads/modelos/imagenes/'+item.imagen">
+          </picture>
+          <h2>{{ item.nombreEn }}</h2>
+          <p>{{ item.destacadoEn }}</p>
+        </router-link>
+      </div>
+    </section>
+
+
     <Footer class="footer"></Footer>
   </div>
 </template>
@@ -99,7 +112,7 @@ export default {
   max-height: 450px;
   cursor: pointer;
   padding: 10px 20px;
-  max-width: 300px;
+  max-width: 250px;
   margin: 10px 10px;
   display: flex;
   flex-direction: column;

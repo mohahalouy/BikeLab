@@ -96,6 +96,16 @@
             <input type="text" name="tipoMotorEn" v-model="dataModels.tipoMotorEn" class="form-control">
           </div>
         </div>
+        <div class="mb-3 d-flex flex-column">
+          <label>Modelo</label>
+          <select v-on:change="onModelChange">
+            <option></option>
+            <option>Naked</option>
+            <option>Adventure</option>
+            <option>Tour</option>
+            <option>Sport</option>
+          </select>
+        </div>
         <div class="mb-3">
           <label>Precio</label>
           <input type="number" name="nombre" v-model="dataModels.precio" class="form-control" min="0">
@@ -163,6 +173,7 @@ export default {
         enlace: '',
         tipoMotorEs: '',
         tipoMotorEn: '',
+        modelo:'',
         precio: 0,
         cv: 0,
         cc: 0,
@@ -223,6 +234,9 @@ export default {
 
       this.dataModels.imagen = files[0]
     },
+    onModelChange(e) {
+      this.dataModels.modelo=e.target.value;
+    },
     validateFileTypeImg() {
       var fileName = document.getElementById("fileName").value;
       var idxDot = fileName.lastIndexOf(".") + 1;
@@ -258,6 +272,7 @@ export default {
       data.append('enlace', this.dataModels.enlace)
       data.append('tipoMotorEs', this.dataModels.tipoMotorEs)
       data.append('tipoMotorEn', this.dataModels.tipoMotorEn)
+      data.append('modelo', this.dataModels.modelo)
       data.append('precio', this.dataModels.precio)
       data.append('cv', this.dataModels.cv)
       data.append('cc', this.dataModels.cc)
