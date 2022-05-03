@@ -108,19 +108,19 @@
         </div>
         <div class="mb-3">
           <label>Precio</label>
-          <input type="number" name="nombre" v-model="dataModels.precio" class="form-control" min="0">
+          <input type="number" name="nombre" v-model="dataModels.precio" class="form-control" min="0" step="any">
         </div>
         <div class="mb-3">
           <label>Cv</label>
-          <input type="number" name="cv" v-model="dataModels.cv" class="form-control" min="0">
+          <input type="number" name="cv" v-model="dataModels.cv" class="form-control" min="0" step="any">
         </div>
         <div class="mb-3">
           <label>Cc de cilindrada</label>
-          <input type="number" name="cc" v-model="dataModels.cc" class="form-control" min="0">
+          <input type="number" name="cc" v-model="dataModels.cc" class="form-control" min="0" step="any">
         </div>
         <div class="mb-3">
           <label>Nm de par máx.</label>
-          <input type="number" name="cc" v-model="dataModels.nm" class="form-control" min="0">
+          <input type="number" name="cc" v-model="dataModels.nm" class="form-control" min="0" step="any">
         </div>
         <div class="mb-3">
           <label>Mm de altura del asiento</label>
@@ -283,12 +283,14 @@ export default {
 
       window.scrollTo(0, 0);
       $('.loading').show()
+      $('body').addClass('noScrollBody')
       try {
         let response = await fetch('http://localhost:8000/api/addModel', {
           method: 'POST',
           body: data
         });
         $('.loading').hide()
+        $('body').removeClass('noScrollBody')
 
         if (response.ok) {
           setTimeout(function () {
