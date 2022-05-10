@@ -153,6 +153,7 @@ export default {
 .modelo > div > div > div{
   display: flex;
   gap: 20px;
+  flex-wrap: wrap;
 }
 
 .modelo > div > div > div > div{
@@ -189,6 +190,18 @@ export default {
 .linkNonStyle {
   text-decoration: none;
   color: black;
+}
+
+@media (max-width: 1100px){
+  .todosModelos h1{
+    font-size: 40px;
+    line-height: normal;
+  }
+
+  .todosModelos h2{
+    font-size: 20px;
+    line-height: normal;
+  }
 }
 
 </style>

@@ -8,7 +8,9 @@ export default new Vuex.Store({
     nombreUser:'',
     authenticated:false,
     adminUser:false,
-    idioma:'es'
+    idioma:'es',
+    countItemsCart:0,
+    arrayIdsCompra:[],
   },
   mutations: {
     SET_NOMBRE_USER(state,nombre){
@@ -22,6 +24,18 @@ export default new Vuex.Store({
     },
     SET_IDIOMA(state, idioma){
       state.idioma=idioma
+    },
+    ADD_ITEMS_CART(state) {
+      state.countItemsCart = state.countItemsCart + 1;
+    },
+    ADD_ITEMS_CART_ID(state, id) {
+      state.arrayIdsCompra.push(id);
+    },
+    SET_ITEMS_CART_ID(state, arrayIds) {
+      state.arrayIdsCompra = arrayIds;
+    },
+    SET_ITEMS_CART_COUNT(state, count) {
+      state.countItemsCart = count;
     }
   },
   actions: {},

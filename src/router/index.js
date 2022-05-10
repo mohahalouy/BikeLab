@@ -6,6 +6,7 @@ import addNews from '../views/addNews'
 import addModels from '../views/addModels'
 import Noticias from '../views/Noticias'
 import Modelo from '../views/Modelo'
+import Cesta from '../views/Cesta'
 
 Vue.use(VueRouter)
 
@@ -39,6 +40,11 @@ const routes = [
     path: '/modelo',
     name: 'Modelo',
     component: Modelo
+  },
+  {
+    path: '/cesta',
+    name: 'Cesta',
+    component: Cesta
   },
 ]
 
