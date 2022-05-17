@@ -25,9 +25,6 @@ export default new Vuex.Store({
     SET_IDIOMA(state, idioma){
       state.idioma=idioma
     },
-    ADD_ITEMS_CART(state) {
-      state.countItemsCart = state.countItemsCart + 1;
-    },
     ADD_ITEMS_CART_ID(state, id) {
       state.arrayIdsCompra.push(id);
     },

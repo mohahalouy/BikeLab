@@ -4,6 +4,13 @@
     <div class="fullDisplayHeader">
       <FullDisplayHeader></FullDisplayHeader>
     </div>
+    <div class="itemsCesta">
+      <div v-for="(item,index) in this.dataModels" :key="index">
+        <picture class="imgNoticia">
+          <img class="img-fluid" :src="'http://127.0.0.1:8000/uploads/modelos/imagenes/'+item.imagen">
+        </picture>
+      </div>
+    </div>
     <Footer class="footer"></Footer>
   </div>
 </template>
@@ -13,7 +20,7 @@ import HeaderPrincipal from "@/components/HeaderPrincipal";
 import FullDisplayHeader from "@/components/FullDisplayHeader";
 import Footer from "../components/Footer";
 import {mapState} from "vuex";
-import $ from 'jquery';
+// import $ from 'jquery';
 
 export default {
   name: "Cesta",
@@ -22,42 +29,31 @@ export default {
     FullDisplayHeader,
     Footer
   },
+  data: function () {
+    return {
+      dataModels:[]
+    }
+  },
   computed: mapState([
     'arrayIdsCompra'
   ]),
   mounted() {
     this.getModelo()
-    // this.$store.state.arrayIdsCompra.forEach(id => this.getModelo(id));
   },
-  methods:{
+  methods: {
     async getModelo() {
-      var data ={
-        id:['3','1','2']
-      }
-      // let response = await fetch('http://localhost:8000/api/modelos?id=' + id, {
-      //   headers: {"Accept": "application/json", 'Content-Type': 'application/json'}
-      // })
+      let response = await fetch('http://localhost:8000/api/modelos', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        dataType: 'json',
+        body: JSON.stringify(this.$store.state.arrayIdsCompra),
+        contentType: 'application/json; charset=utf-8'
+      })
 
-      // let response = await fetch('http://localhost:8000/api/modelos1', {
-      //   method: 'POST',
-      //   dataType:'json',
-      //   contentType: 'json',
-      //   body: JSON.stringify(data)
-      // })
+      this.dataModels = await response.json()
 
-
-      $.ajax({
-        url:'http://localhost:8000/api/modelos1',
-        type: 'POST',
-        dataType:'json',
-        data: JSON.stringify(data),
-        contentType: 'application/json; charset=utf-8',
-      });
-
-      // let content=await response.json()
-      // console.log(content)
-
-      // this.dataNoticia=content[0]
     }
   }
 }
@@ -71,12 +67,21 @@ export default {
   height: 100vh;
   grid-template-areas:
     "header"
+    "itemsCesta"
   "footer";
   grid-template-columns: 100%;
   grid-template-rows: auto;
   position: relative;
   justify-items: center;
   color: black;
+}
+
+.cesta .header{
+  position: relative;
+}
+
+.itemsCesta{
+  grid-area: itemsCesta;
 }
 
 .cesta .nav > ul > li > a{

@@ -211,7 +211,7 @@ export default {
     this.getModel();
     this.goUp();
     for (const item in this.$store.state.arrayIdsCompra) {
-      console.log(item)
+      console.log(this.$store.state.arrayIdsCompra[item])
     }
   },
   methods: {
@@ -244,10 +244,9 @@ export default {
       });
     },
     addToCart() {
-      this.$store.commit('ADD_ITEMS_CART')
       let existe=false;
       for (const item in this.$store.state.arrayIdsCompra) {
-        if (this.$route.query.id === this.$store.state.arrayIdsCompra[item].id) {
+        if (parseInt(this.$route.query.id) === parseInt(this.$store.state.arrayIdsCompra[item].id)) {
           existe = true;
           this.$store.state.arrayIdsCompra[item].cantidad = parseInt(this.$store.state.arrayIdsCompra[item].cantidad) + 1
         }
@@ -255,8 +254,10 @@ export default {
       if (!existe) {
         this.$store.commit('ADD_ITEMS_CART_ID', {id: this.$route.query.id, cantidad: 1})
       }
+      this.$store.commit('SET_ITEMS_CART_COUNT',(this.$store.state.arrayIdsCompra).length)
       console.log(this.$store.state.arrayIdsCompra)
-      // localStorage.setItem("arrayIds", this.$store.state.arrayIdsCompra);
+      localStorage.setItem("arrayIds", JSON.stringify(this.$store.state.arrayIdsCompra));
+      console.log(JSON.parse(localStorage.getItem('arrayIds')))
     }
 
   },

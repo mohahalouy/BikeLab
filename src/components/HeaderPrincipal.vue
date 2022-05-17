@@ -428,8 +428,10 @@ export default {
       $('body').removeClass('noScrollBody')
     },
     getIdsLocalStore() {
-      // this.$store.commit('SET_ITEMS_CART_ID', localStorage.getItem("arrayIds").split(','))
-      // this.$store.commit('SET_ITEMS_CART_COUNT', localStorage.getItem("arrayIds").split(',').length)
+      if(JSON.parse(localStorage.getItem('arrayIds'))!=null){
+        this.$store.commit('SET_ITEMS_CART_ID', JSON.parse(localStorage.getItem('arrayIds')))
+        this.$store.commit('SET_ITEMS_CART_COUNT', JSON.parse(localStorage.getItem('arrayIds')).length)
+      }
     }
   }
 }
