@@ -51,8 +51,8 @@
 </template>
 
 <script>
-import HeaderPrincipal from "@/components/HeaderPrincipal";
-import FullDisplayHeader from "@/components/FullDisplayHeader";
+import HeaderPrincipal from "../components/HeaderPrincipal";
+import FullDisplayHeader from "../components/FullDisplayHeader";
 import Footer from "../components/Footer";
 import $ from 'jquery';
 import {mapState} from "vuex";

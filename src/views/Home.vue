@@ -11,11 +11,11 @@
 </template>
 
 <script>
-import HeaderPrincipal from "@/components/HeaderPrincipal";
-import FullDisplayHeader from "@/components/FullDisplayHeader";
-import CarouselPaginaPrincipal from "@/components/CarouselPaginaPrincipal";
-import HomeNoticiasConfigurador from "@/components/HomeNoticiasConfigurador";
-import Footer from "@/components/Footer";
+import HeaderPrincipal from "../components/HeaderPrincipal";
+import FullDisplayHeader from "../components/FullDisplayHeader";
+import CarouselPaginaPrincipal from "../components/CarouselPaginaPrincipal";
+import HomeNoticiasConfigurador from "../components/HomeNoticiasConfigurador";
+import Footer from "../components/Footer";
 import {mapState} from "vuex";
 import $ from "jquery";
 

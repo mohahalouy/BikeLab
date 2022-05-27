@@ -50,7 +50,7 @@
             <router-link to="/modelos"> {{ $t('1') }}</router-link>
           </li>
           <li class="mr-5">
-            <a href="">{{ $t('2') }}</a>
+            <a href="" @click="verTypesEquipamiento">{{ $t('2') }}</a>
           </li>
           <li class="mr-5">
             <a href="">{{ $t('3') }}</a>
@@ -91,6 +91,10 @@
       <menu-admin></menu-admin>
     </div>
 
+    <div class="menuTypesClothing" style='display: none'>
+      <type-clothing></type-clothing>
+    </div>
+
 
     <div class="loading">
       <div id="loop" class="centerLoop">
@@ -108,6 +112,7 @@
 import i18n from '../i18n'
 import Login from "../components/Login";
 import menuAdmin from "../components/menuAdmin";
+import typeClothing from "../components/swalTypesClothing";
 
 import $ from 'jquery'
 import {mapState} from "vuex";
@@ -117,7 +122,8 @@ export default {
   name: "HeaderPrincipal",
   components: {
     Login,
-    menuAdmin
+    menuAdmin,
+    typeClothing
   },
   data: function () {
     return {
@@ -325,6 +331,11 @@ export default {
             that.$swal.close()
             router.push('/addModels')
           });
+
+          $(".menuAdmin .buttonAddClothing").click(function () {
+            that.$swal.close()
+            router.push('/addClothing')
+          });
         }
       });
     },
@@ -432,6 +443,35 @@ export default {
         this.$store.commit('SET_ITEMS_CART_ID', JSON.parse(localStorage.getItem('arrayIds')))
         this.$store.commit('SET_ITEMS_CART_COUNT', JSON.parse(localStorage.getItem('arrayIds')).length)
       }
+    },
+    verTypesEquipamiento(){
+      event.preventDefault();
+      let that = this
+      this.$swal({
+        customClass: 'swalATypeClothing',
+        html: $('.menuTypesClothing').html(),
+        showCancelButton: false,
+        showConfirmButton: false,
+        allowOutsideClick: true,
+        didOpen: function () {
+          $(".menuTypeClothing .buttonRopaHombre").click(function () {
+            that.$swal.close()
+            router.push({ path: 'equipamientos', query: { tipoArticulo: 'ropaHombre' }}).catch(()=>{});
+          });
+          $(".menuTypeClothing .buttonRopaMujer").click(function () {
+            that.$swal.close()
+            router.push({ path: 'equipamientos', query: { tipoArticulo: 'ropaMujer' }}).catch(()=>{});
+          });
+          $(".menuTypeClothing .buttonRopaNinio").click(function () {
+            that.$swal.close()
+            router.push({ path: 'equipamientos', query: { tipoArticulo: 'ropaNinio' }}).catch(()=>{});
+          });
+          $(".menuTypeClothing .buttonAccesorios").click(function () {
+            that.$swal.close()
+            router.push({ path: 'equipamientos', query: { tipoArticulo: 'accesorios' }}).catch(()=>{});
+          });
+        }
+      });
     }
   }
 }
@@ -468,6 +508,14 @@ export default {
 }
 
 .noticias .nav > ul > li > a {
+  color: black;
+}
+
+.containerEquipamiento .nav > ul > li > a {
+  color: black;
+}
+
+.equipamientoContainer .nav > ul > li > a {
   color: black;
 }
 

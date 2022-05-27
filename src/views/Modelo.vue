@@ -22,7 +22,7 @@
               this.dataModel.precio.toLocaleString('de-DE', {
                 style: 'currency',
                 currency: 'EUR',
-                minimumFractionDigits: 0
+                minimumFractionDigits: 2
               })
             }}
           </h5>
@@ -184,7 +184,8 @@
     </div>
     <Footer class="footer"></Footer>
     <audio style="display: none" id="sonidoMotor"
-           :src="'http://127.0.0.1:8000/uploads/modelos/sonidoMotor/'+this.dataModel.sonidoMotor" controls></audio>
+           :src="'http://127.0.0.1:8000/uploads/modelos/sonidoMotor/'+this.dataModel.sonidoMotor" controls>
+    </audio>
   </div>
 </template>
 

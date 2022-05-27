@@ -80,7 +80,7 @@
         </div>
         <div class="mb-3">
           <label >Subir Image</label>
-          <input v-on:change="onFileChange" type="file" name="image" id="fileName" class="course form-control imagen">
+          <input v-on:change="onFileChange" type="file" name="image" id="fileName" class="course form-control imagen" >
         </div>
         <div class="d-flex mb-3" style="justify-content: space-evenly">
           <router-link class="btn btn-secondary" to="/">Volver Home</router-link>
@@ -95,8 +95,8 @@
 <script>
 
 import $ from "jquery";
-import HeaderPrincipal from "@/components/HeaderPrincipal";
-import FullDisplayHeader from "@/components/FullDisplayHeader";
+import HeaderPrincipal from "../components/HeaderPrincipal";
+import FullDisplayHeader from "../components/FullDisplayHeader";
 import Footer from "../components/Footer";
 import {mapState} from "vuex";
 

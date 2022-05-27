@@ -27,13 +27,13 @@
 </template>
 
 <script>
-import HeaderPrincipal from "@/components/HeaderPrincipal";
-import FullDisplayHeader from "@/components/FullDisplayHeader";
+import HeaderPrincipal from "../components/HeaderPrincipal";
+import FullDisplayHeader from "../components/FullDisplayHeader";
 import Footer from "../components/Footer";
 import {mapState} from "vuex";
 import $ from "jquery";
 export default {
-  name: "Noticias",
+  name: "Noticia",
   computed: mapState([
     'idioma'
   ]),
