@@ -12,21 +12,42 @@
         <p class="align-self-start font-weight-bold">Carrito</p>
         <div v-for="(item,index) in this.dataCesta" :key="index" class="item">
           <span class="removeItem" :data-id="item.id" @click="removeItem">&#10005;</span>
-          <picture class="imgNoticia">
-            <img class="img-fluid" :src="'http://127.0.0.1:8000/uploads/modelos/imagenes/'+item.imagen">
+          <picture  v-if="item.tipoCesta==='modelos'" class="imgNoticia" >
+            <router-link :to="{ name: 'Modelo', query: { id: item.id }}" class="linkNonStyle">
+              <img class="img-fluid" :src="'http://127.0.0.1:8000/uploads/'+item.tipoCesta+'/imagenes/'+item.imagen">
+            </router-link>
           </picture>
-          <div>
-            <p>{{item.nombreEs}}</p>
+          <picture  v-else class="imgNoticia" >
+            <router-link :to="{ name: 'Equipamiento', params: { id:item.id, nombreProducto: item.nombreEs }}"  class="linkNonStyle">
+            <img class="img-fluid" :src="'http://127.0.0.1:8000/uploads/'+item.tipoCesta+'/imagenes/'+item.imagen">
+            </router-link>
+          </picture>
+          <div class="text-left d-flex flex-column" style="width: 25%">
+            <span v-if="item.tipoCesta==='modelos'" class="font-weight-bold">
+                  <router-link :to="{ name: 'Modelo', query: { id: item.id }}" class="linkNonStyle">
+                    {{ item.nombreEs }}
+                  </router-link>
+            </span>
+            <span v-else class="font-weight-bold">
+                  <router-link :to="{ name: 'Equipamiento', params: { id:item.id, nombreProducto: item.nombreEs }}"
+                               class="linkNonStyle">
+                    {{ item.nombreEs }}
+                  </router-link>
+            </span>
+            <span v-if="item.tallaSeleccionada!= undefined">Talla: {{ item.tallaSeleccionada }}</span>
           </div>
           <div class="input-group">
-            <input type="button" value="-" class="button-minus" data-field="quantity" :data-id="item.id" @click="decrementValue">
-            <input type="number" step="1" max="" :value="item.cantidad" name="quantity" class="quantity-field" style="pointer-events: none">
-            <input type="button" value="+" class="button-plus" data-field="quantity" :data-id="item.id" @click="incrementValue">
+            <input type="button" value="-" class="button-minus" data-field="quantity" :data-id="item.id"
+                   @click="decrementValue">
+            <input type="number" step="1" max="" :value="item.cantidad" name="quantity" class="quantity-field"
+                   style="pointer-events: none">
+            <input type="button" value="+" class="button-plus" data-field="quantity" :data-id="item.id"
+                   @click="incrementValue">
           </div>
           <div class="precioModelo">
             <p>
               {{
-                (item.precio*item.cantidad).toLocaleString('de-DE', {
+                (item.precio * item.cantidad).toLocaleString('de-DE', {
                   style: 'currency',
                   currency: 'EUR',
                   minimumFractionDigits: 2
@@ -82,9 +103,18 @@
           </div>
           <div>
             <span>Envío</span>
-            <span >
+            <span v-if="this.totalCesta>0">
               {{
                 (this.totalEnvio).toLocaleString('de-DE', {
+                  style: 'currency',
+                  currency: 'EUR',
+                  minimumFractionDigits: 2
+                })
+              }}
+            </span>
+            <span v-else>
+              {{
+                (0).toLocaleString('de-DE', {
                   style: 'currency',
                   currency: 'EUR',
                   minimumFractionDigits: 2
@@ -104,7 +134,7 @@
               }}
             </span>
           </div>
-          <button>Continuar</button>
+          <button class="btnContinuar">Continuar</button>
         </div>
       </div>
     </section>
@@ -138,7 +168,7 @@ export default {
     'arrayIdsCompra'
   ]),
   mounted() {
-    this.getModelo()
+    this.getArticulo()
   },
   methods: {
     removeItem(){
@@ -229,8 +259,8 @@ export default {
       }
 
     },
-    async getModelo() {
-      let response = await fetch('http://localhost:8000/api/modelos', {
+    async getArticulo() {
+      let response = await fetch('http://localhost:8000/api/articulos', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -242,6 +272,7 @@ export default {
 
       this.dataCesta = await response.json()
 
+      console.log(this.dataCesta)
       this.calcularTotal()
     },
     calcularTotal(){
@@ -251,7 +282,7 @@ export default {
         let total = this.dataCesta[key].precio * this.dataCesta[key].cantidad
         this.totalCesta += total
       }
-      if (this.totalCesta < 100 && this.entregaDomicilio) {
+      if (this.totalCesta < 100 && this.totalCesta > 0 && this.entregaDomicilio) {
         this.totalEnvio=7.5;
         this.totalCesta +=  this.totalEnvio;
       }else if(this.totalCesta >= 100){
@@ -326,6 +357,7 @@ export default {
   position: relative;
   background-color: #ffffff;
   width: 100%;
+  color: black;
 }
 
 .removeItem{
@@ -402,6 +434,7 @@ input[type="number"] {
 
 .precioModelo{
   font-weight: bold;
+  width: 20%;
 }
 
 .containerDireccionTotal{
@@ -426,5 +459,28 @@ input[type="number"] {
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
+}
+.linkNonStyle{
+  color: black;
+  text-decoration: none;
+}
+
+.linkNonStyle:hover {
+  color: black;
+}
+
+.btnContinuar {
+  background: transparent;
+  border: 1px solid black;
+  color: black;
+  padding: 10px 0px;
+  transition: all 1s ease;
+}
+
+.btnContinuar:hover {
+  background-color: red;
+  color: white;
+  border: solid 1px transparent;
+  transition: all 1s ease;
 }
 </style>

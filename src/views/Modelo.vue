@@ -211,9 +211,6 @@ export default {
   mounted() {
     this.getModel();
     this.goUp();
-    for (const item in this.$store.state.arrayIdsCompra) {
-      console.log(this.$store.state.arrayIdsCompra[item])
-    }
   },
   methods: {
     async getModel() {
@@ -247,15 +244,15 @@ export default {
     addToCart() {
       let existe=false;
       for (const item in this.$store.state.arrayIdsCompra) {
-        if (parseInt(this.$route.query.id) === parseInt(this.$store.state.arrayIdsCompra[item].id)) {
+        if (parseInt(this.$route.query.id) === parseInt(this.$store.state.arrayIdsCompra[item].id) && this.$store.state.arrayIdsCompra[item].tipoArticulo === 'modelo') {
           existe = true;
           this.$store.state.arrayIdsCompra[item].cantidad = parseInt(this.$store.state.arrayIdsCompra[item].cantidad) + 1
         }
       }
       if (!existe) {
-        this.$store.commit('ADD_ITEMS_CART_ID', {id: this.$route.query.id, cantidad: 1})
+        this.$store.commit('ADD_ITEMS_CART_ID', {id: parseInt(this.$route.query.id) , cantidad: 1, tipoArticulo: 'modelos'})
       }
-      this.$store.commit('SET_ITEMS_CART_COUNT',(this.$store.state.arrayIdsCompra).length)
+      this.$store.commit('SET_ITEMS_CART_COUNT', (this.$store.state.arrayIdsCompra).length)
       console.log(this.$store.state.arrayIdsCompra)
       localStorage.setItem("arrayIds", JSON.stringify(this.$store.state.arrayIdsCompra));
       console.log(JSON.parse(localStorage.getItem('arrayIds')))

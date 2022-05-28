@@ -19,7 +19,7 @@
             <div>
               <picture class="imgItem">
                 <img class="img-fluid h-100"
-                     :src="'http://127.0.0.1:8000/uploads/equipamiento/imagenes/'+item.imgPortada">
+                     :src="'http://127.0.0.1:8000/uploads/equipamiento/imagenes/'+item.imagen">
               </picture>
             </div>
             <p>{{ item.nombreEs }}</p>

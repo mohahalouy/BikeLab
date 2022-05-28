@@ -186,6 +186,7 @@ export default {
       cargado:false,
       dataEquipamiento: {},
       slideIndex:1,
+      talla:''
     }
   },
 
@@ -209,9 +210,23 @@ export default {
     selectTalla() {
       $('.tallas').removeClass( "active" )
       event.target.classList.add('active')
+      this.talla = event.target.innerText
     },
-    addToCart(){
-
+    addToCart() {
+      let existe = false;
+        for (const item in this.$store.state.arrayIdsCompra) {
+          if (parseInt(this.$route.params.id) === parseInt(this.$store.state.arrayIdsCompra[item].id) && this.$store.state.arrayIdsCompra[item].tipoArticulo === 'equipamiento') {
+            existe = true;
+            this.$store.state.arrayIdsCompra[item].cantidad = parseInt(this.$store.state.arrayIdsCompra[item].cantidad) + 1
+          }
+        }
+        if (!existe) {
+          this.$store.commit('ADD_ITEMS_CART_ID', {id:  parseInt(this.$route.params.id), cantidad: 1, tipoArticulo: 'equipamiento', talla:this.talla})
+        }
+        this.$store.commit('SET_ITEMS_CART_COUNT', (this.$store.state.arrayIdsCompra).length)
+        console.log(this.$store.state.arrayIdsCompra)
+        localStorage.setItem("arrayIds", JSON.stringify(this.$store.state.arrayIdsCompra));
+        console.log(JSON.parse(localStorage.getItem('arrayIds')))
     },
     plusSlides(n) {
       this.showSlides(this.slideIndex += n);
