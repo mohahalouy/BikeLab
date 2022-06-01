@@ -146,7 +146,7 @@ export default {
   }
 
   html body {
-    overflow: auto ;
+    overflow: auto !important;
   }
 }
 </style>

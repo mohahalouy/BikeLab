@@ -14,7 +14,7 @@
             <li>
               <div class="option español">
                 <div class="icon">
-                  <img src="../assets/banderaEspaña.png" alt="es">
+                  <img src="http://127.0.0.1:8000/uploads/imgStatic/banderaEspaña.png" alt="es">
                 </div>
                 <p>Español</p>
               </div>
@@ -24,7 +24,7 @@
             <li>
               <div class="option español">
                 <div class="icon">
-                  <img src="../assets/banderaEspaña.png" alt="en">
+                  <img src="http://127.0.0.1:8000/uploads/imgStatic/banderaEspaña.png" alt="en">
                 </div>
                 <p>Español</p>
               </div>
@@ -32,7 +32,7 @@
             <li>
               <div class="option ingles">
                 <div class="icon">
-                  <img src="../assets/banderaInglaterra.png" alt="en">
+                  <img src="http://127.0.0.1:8000/uploads/imgStatic/banderaInglaterra.png" alt="en">
                 </div>
                 <p>Ingles</p>
               </div>
@@ -348,7 +348,7 @@ export default {
   grid-template-rows: auto;
   position: relative;
   justify-items: center;
-  background: url('../assets/multistrada.jpg');
+  background: url('http://127.0.0.1:8000/uploads/imgStatic/multistrada.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   color: white;

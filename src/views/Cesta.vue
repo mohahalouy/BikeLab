@@ -11,7 +11,7 @@
       <div v-else>
         <p class="align-self-start font-weight-bold">Carrito</p>
         <div v-for="(item,index) in this.dataCesta" :key="index" class="item">
-          <span class="removeItem" :data-id="item.id" @click="removeItem">&#10005;</span>
+          <span class="removeItem" :data-id="item.id" :data-tipo="item.tipoCesta" @click="removeItem">&#10005;</span>
           <picture  v-if="item.tipoCesta==='modelos'" class="imgNoticia" >
             <router-link :to="{ name: 'Modelo', query: { id: item.id }}" class="linkNonStyle">
               <img class="img-fluid" :src="'http://127.0.0.1:8000/uploads/'+item.tipoCesta+'/imagenes/'+item.imagen">
@@ -173,19 +173,21 @@ export default {
   methods: {
     removeItem(){
       let id = parseInt(event.target.dataset.id);
+      let tipo = event.target.dataset.tipo;
       for (const key in this.dataCesta) {
-        if (id === this.dataCesta[key].id) {
+        console.log(this.dataCesta[key].tipoCesta)
+        if (id === this.dataCesta[key].id && tipo === this.dataCesta[key].tipoCesta) {
           this.dataCesta.splice(parseInt(key), 1);
         }
       }
 
       for (const item in this.$store.state.arrayIdsCompra) {
-        if (id === parseInt(this.$store.state.arrayIdsCompra[item].id)) {
+        if (id === parseInt(this.$store.state.arrayIdsCompra[item].id) && tipo === this.$store.state.arrayIdsCompra[item].tipoArticulo) {
           this.$store.state.arrayIdsCompra.splice(parseInt(item), 1);
         }
       }
 
-      this.$store.commit('SET_ITEMS_CART_COUNT',(this.$store.state.arrayIdsCompra).length)
+      this.$store.commit('SET_ITEMS_CART_COUNT', (this.$store.state.arrayIdsCompra).length)
       localStorage.setItem("arrayIds", JSON.stringify(this.$store.state.arrayIdsCompra));
 
 

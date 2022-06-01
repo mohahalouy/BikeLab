@@ -3,11 +3,11 @@
     <div class="container">
       <div class="user signinBx">
         <div class="imgBx">
-          <img src="../assets/multistrada.jpg">
+          <img src="http://127.0.0.1:8000/uploads/imgStatic/multistrada.jpg">
         </div>
         <div class="formBx">
           <form>
-            <h2>Sign In</h2>
+            <h2>{{$t('11')}}</h2>
             <div class="form_control">
               <input class="email" type="text" placeholder="Email" tabindex="-1">
               <font-awesome-icon :icon="[ 'fas', 'check-circle' ]"/>
@@ -15,62 +15,54 @@
               <small>error message</small>
             </div>
             <div class="form_control">
-              <input class="password" type="password" placeholder="Password" tabindex="-1">
+              <input class="password" type="password"  :placeholder="[[ $t('12') ]]" tabindex="-1">
               <font-awesome-icon :icon="[ 'fas', 'check-circle' ]"/>
               <font-awesome-icon :icon="[ 'fas', 'exclamation-circle' ]"/>
               <small>error message</small>
             </div>
-            <input type="submit" class="login" value="Login" tabindex="-1">
-            <p class="signup">don´t have an account? <a @click="toggleForm()">Sign up.</a></p>
+            <input type="submit" class="login" :value="[[ $t('11') ]]" tabindex="-1">
+            <p class="signup"> {{$t('13')}} <font-awesome-icon :icon="[ 'fa', 'arrow-right' ]"/><a @click="toggleForm()"> {{$t('14')}}.</a></p>
           </form>
         </div>
       </div>
       <div class="user signupBx">
         <div class="imgBx">
-          <img src="../assets/multistrada2.jpg">
+          <img src="http://127.0.0.1:8000/uploads/imgStatic/multistrada2.jpg">
         </div>
         <div class="formBx">
           <form>
-            <h2>Create an account</h2>
+            <h2>{{$t('15')}}</h2>
             <div class="form_control">
-              <input type="text" placeholder="Username" class="userName" tabindex="-1">
+              <input type="text" :placeholder="[[ $t('16') ]]" class="userName" tabindex="-1">
               <font-awesome-icon :icon="[ 'fas', 'check-circle' ]"/>
               <font-awesome-icon :icon="[ 'fas', 'exclamation-circle' ]"/>
               <small>error message</small>
             </div>
             <div class="form_control">
-              <input type="text" placeholder="Email Address" class="email" tabindex="-1">
+              <input type="text" placeholder="Email" class="email" tabindex="-1">
               <font-awesome-icon :icon="[ 'fas', 'check-circle' ]"/>
               <font-awesome-icon :icon="[ 'fas', 'exclamation-circle' ]"/>
               <small>error message</small>
             </div>
             <div class="form_control">
-              <input type="password" placeholder="Create Password" class="password" tabindex="-1">
+              <input type="password" :placeholder="[[ $t('12') ]]" class="password" tabindex="-1">
               <font-awesome-icon :icon="[ 'fas', 'check-circle' ]"/>
               <font-awesome-icon :icon="[ 'fas', 'exclamation-circle' ]"/>
               <small>error message</small>
             </div>
             <div class="form_control">
-              <input type="password" placeholder="Confirm Password" class="confirmPassword" tabindex="-1">
+              <input type="password" :placeholder="[[ $t('17') ]]" class="confirmPassword" tabindex="-1">
               <font-awesome-icon :icon="[ 'fas', 'check-circle' ]"/>
               <font-awesome-icon :icon="[ 'fas', 'exclamation-circle' ]"/>
               <small>error message</small>
             </div>
-            <input type="submit" value="Create" tabindex="-1">
-            <p class="signin">Already have an account <a @click="toggleForm()">Sign in.</a></p>
+            <input type="submit" :placeholder="[[ $t('19') ]]" tabindex="-1">
+            <p class="signin">{{$t('18')}} <font-awesome-icon :icon="[ 'fa', 'arrow-right' ]"/><a @click="toggleForm()"> {{$t('11')}}.</a></p>
           </form>
         </div>
       </div>
     </div>
   </section>
-
-  <!--  <form class="form-signin" @submit.prevent="loginUser">-->
-  <!--    <input type="email" v-model="data.email" class="form_control" placeholder="Email address" required autofocus>-->
-
-  <!--    <input type="password" v-model="data.password" class="form_control" placeholder="Password" required>-->
-
-  <!--    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>-->
-  <!--  </form>-->
 </template>
 
 <script>
@@ -233,7 +225,7 @@ section.formulario .container .user .formBx .form_control.error small{
 }
 
 section.formulario .container .user .formBx input[type="submit"] {
-  max-width: 100px;
+  width: 100%;
   background: aquamarine;
   color: white;
   cursor: pointer;

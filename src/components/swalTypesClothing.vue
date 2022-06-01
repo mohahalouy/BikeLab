@@ -1,9 +1,9 @@
 <template>
   <div class="menuTypeClothing text-dark container d-flex flex-column">
-    <button class="buttonAccess buttonRopaHombre py-1"> Ropa Hombre</button>
-    <button class="buttonAccess buttonRopaMujer py-1"> Ropa Mujer</button>
-    <button class="buttonAccess buttonRopaNinio py-1"> Ropa Niño</button>
-    <button class="buttonAccess buttonAccesorios py-1"> Accesorios</button>
+    <button class="buttonAccess buttonRopaHombre py-1"> {{$t('24')}}</button>
+    <button class="buttonAccess buttonRopaMujer py-1"> {{$t('25')}}</button>
+    <button class="buttonAccess buttonRopaNinio py-1"> {{$t('26')}}</button>
+    <button class="buttonAccess buttonAccesorios py-1"> {{$t('27')}}</button>
   </div>
 </template>
 

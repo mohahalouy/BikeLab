@@ -3,13 +3,13 @@
     <div class="d-flex justify-content-end headerNotResponsive">
       <div id="idiomas" class="idiomas">
         <div class="imgBanderas" @click="selectLanguage">
-          <span class="nombreIdioma">España</span>
-          <img src="../assets/banderaEspaña.png" alt="es">
+          <span class="nombreIdioma">Español</span>
+          <img src="http://127.0.0.1:8000/uploads/imgStatic/banderaEspaña.png" alt="es">
           <font-awesome-icon :icon="[ 'fas', 'angle-down' ]"/>
         </div>
         <div class="otherLanguage" @click="changeLanguage">
-          <span class="nombreIdioma">UK</span>
-          <img src="../assets/banderaInglaterra.png" alt="en">
+          <span class="nombreIdioma">English</span>
+          <img src="http://127.0.0.1:8000/uploads/imgStatic/banderaInglaterra.png" alt="en">
         </div>
         <!--          <div id="imgIdiomas" class="d-flex imgBanderas" @click="changeLanguage">-->
         <!--            <img href="" src="../assets/banderaEspaña.png" alt="es">-->
@@ -17,9 +17,9 @@
         <!--          </div>-->
       </div>
       <span style="border: 1px solid white" class="mx-2"></span>
-      <button v-if="!authenticated" @click="showAlert" class="buttonAccess">Acceder</button>
-      <button v-if="adminUser" @click="showAlertAdmin" class="buttonAccess mr-2">Ver Menú Admin</button>
-      <button v-if="authenticated" @click="logout" class="buttonAccess">Desconcetarse</button>
+      <button v-if="!authenticated" @click="showAlert" class="buttonAccess">{{$t('8')}}</button>
+      <button v-if="adminUser" @click="showAlertAdmin" class="buttonAccess mr-2">{{$t('9')}}</button>
+      <button v-if="authenticated" @click="logout" class="buttonAccess">{{$t('10')}}</button>
       <div class="carritoCompra">
         <router-link to="/cesta">
           <svg xmlns="http://www.w3.org/2000/svg" version="1.0"
@@ -61,24 +61,9 @@
         </ul>
       </nav>
       <aside class="d-flex align-items-center">
-        <!--        <div id="idiomas" class="idiomas mr-2">-->
-        <!--          <div class="imgBanderas" @click="selectLanguage">-->
-        <!--            <span class="nombreIdioma">España</span>-->
-        <!--            <img src="../assets/banderaEspaña.png" alt="es">-->
-        <!--            <font-awesome-icon :icon="[ 'fas', 'angle-down' ]"/>-->
-        <!--          </div>-->
-        <!--          <div class="otherLanguage" @click="changeLanguage">-->
-        <!--            <span class="nombreIdioma">UK</span>-->
-        <!--            <img src="../assets/banderaInglaterra.png" alt="en">-->
-        <!--          </div>-->
-        <!--          &lt;!&ndash;          <div id="imgIdiomas" class="d-flex imgBanderas" @click="changeLanguage">&ndash;&gt;-->
-        <!--          &lt;!&ndash;            <img href="" src="../assets/banderaEspaña.png" alt="es">&ndash;&gt;-->
-        <!--          &lt;!&ndash;            <img href="" src="../assets/banderaInglaterra.png" alt="en">&ndash;&gt;-->
-        <!--          &lt;!&ndash;          </div>&ndash;&gt;-->
-        <!--        </div>-->
         <div id="logoHeader" class="logoHeader">
           <router-link to="/">
-            <img href="" src="../assets/MH.png">
+            <img href="" src="http://127.0.0.1:8000/uploads/imgStatic/MH.png">
           </router-link>
         </div>
       </aside>
@@ -236,15 +221,25 @@ export default {
       let passwordValue = password[0].value.trim()
       if (emailValue === '') {
         valido = false;
-        this.setErrorFor(email, 'Email cannot be blank');
+        if (i18n.locale === 'es')
+          this.setErrorFor(email, 'El email no puede estar en blanco');
+        else
+          this.setErrorFor(email, 'Email cannot be blank');
+
       } else if (!this.isEmail(emailValue)) {
         valido = false;
-        this.setErrorFor(email, 'Not a valid email');
+        if (i18n.locale === 'es')
+          this.setErrorFor(email, 'El email no es valido');
+        else
+          this.setErrorFor(email, 'Not a valid email');
       }
 
       if (passwordValue === '') {
         valido = false;
-        this.setErrorFor(password, 'Password cannot be blank');
+        if (i18n.locale === 'es')
+          this.setErrorFor(password, 'La contraseña no puede estar en blanco');
+        else
+          this.setErrorFor(password, 'Password cannot be blank');
       }
 
       if (valido) {
@@ -267,30 +262,50 @@ export default {
 
       if (userNameValue === '') {
         valido = false;
-        this.setErrorFor(userName, 'UserName cannot be blank');
+        if (i18n.locale === 'es')
+          this.setErrorFor(userName, 'El nombre del usuario no puede estar en blanco');
+        else
+          this.setErrorFor(userName, 'UserName cannot be blank');
       }
 
 
       if (emailValue === '') {
         valido = false;
-        this.setErrorFor(email, 'Email cannot be blank');
+        if (i18n.locale === 'es')
+          this.setErrorFor(email, 'El email no puede estar en blanco');
+        else
+          this.setErrorFor(email, 'Email cannot be blank');
       } else if (!this.isEmail(emailValue)) {
         valido = false;
-        this.setErrorFor(email, 'Not a valid email');
+        if (i18n.locale === 'es')
+          this.setErrorFor(email, 'El email no es valido');
+        else
+          this.setErrorFor(email, 'Not a valid email');
       }
 
       if (passwordConfirmValue === '') {
         valido = false;
-        this.setErrorFor(passwordConfirm, 'Password cannot be blank');
+        if (i18n.locale === 'es')
+          this.setErrorFor(passwordConfirm, 'La contraseña no puede estar en blanco');
+        else
+          this.setErrorFor(passwordConfirm, 'Password cannot be blank');
       }
 
       if (passwordValue === '') {
         valido = false;
-        this.setErrorFor(password, 'Password cannot be blank');
+        if (i18n.locale === 'es')
+          this.setErrorFor(password, 'La contraseña no puede estar en blanco');
+        else
+          this.setErrorFor(password, 'Password cannot be blank');
       } else if (passwordValue != passwordConfirmValue) {
         valido = false;
-        this.setErrorFor(password, 'Password isn´t same');
-        this.setErrorFor(passwordConfirm, 'Password isn´t same');
+        if (i18n.locale === 'es') {
+          this.setErrorFor(password, 'La contraseña no coincide');
+          this.setErrorFor(passwordConfirm, 'La contraseña no coincide');
+        } else {
+          this.setErrorFor(password, 'Password isn´t same');
+          this.setErrorFor(passwordConfirm, 'Password isn´t same');
+        }
       }
 
 

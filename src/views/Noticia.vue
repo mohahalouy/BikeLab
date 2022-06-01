@@ -69,11 +69,6 @@ export default {
 </script>
 
 <style scoped>
-@font-face {
-  font-family: letraVisor;
-  src: url("../assets/BlenderPro-Bold/BlenderPro-Bold.ttf");
-}
-
 .noticias{
   display: grid;
   max-width: 2000px;

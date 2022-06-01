@@ -1,9 +1,9 @@
 <template>
   <div class="menuAdmin text-dark container d-flex flex-column">
-    <h2>Menú Admin</h2>
-    <button class="buttonAccess buttonAddNews py-1"> Añadir Noticias</button>
-    <button class="buttonAccess buttonAddModels py-1"> Añadir Modelos</button>
-    <button class="buttonAccess buttonAddClothing py-1"> Añadir Ropa</button>
+    <h2>{{$t('20')}}</h2>
+    <button class="buttonAccess buttonAddNews py-1"> {{$t('21')}}</button>
+    <button class="buttonAccess buttonAddModels py-1"> {{$t('22')}}</button>
+    <button class="buttonAccess buttonAddClothing py-1"> {{$t('23')}}</button>
   </div>
 </template>
 

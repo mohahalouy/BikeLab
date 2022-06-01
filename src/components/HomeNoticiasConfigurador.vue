@@ -13,17 +13,7 @@
         </a>
       </section>
 
-      <section class="noticia m-0 mt-3 row w-100">
-        <div class="LoadingNoticias">
-          <p>l</p>
-          <p>o</p>
-          <p>a</p>
-          <p>d</p>
-          <p>i</p>
-          <p>n</p>
-          <p>g</p>
-        </div>
-
+      <section v-if="cargadoNoticias" class="noticia m-0 mt-3 row w-100">
         <article class="col-12 col-sm-6 col-lg-4 py-3 px-0 px-sm-2 d-flex flex-column justify-content-between" data-aos="zoom-in"
                  data-aos-duration="500"
                  v-for="item in this.dataNoticias" :key="item.id">
@@ -48,26 +38,38 @@
 
       </section>
 
+      <div v-else class="LoadingHome">
+        <p>l</p>
+        <p>o</p>
+        <p>a</p>
+        <p>d</p>
+        <p>i</p>
+        <p>n</p>
+        <p>g</p>
+      </div>
+
       <section class="modelos row mt-3 mx-0 w-100">
         <article data-aos="flip-right" class="col-12 col-md-6 py-3 px-0 px-md-2">
           <a class="linkNonStyle" href="">
-            <div class="modelo1 centarPalabras">
-              <p class="m-0 textVisor letrasVisor">lorem</p>
+            <div class="modelo centarPalabras" style="background-image: url('http://127.0.0.1:8000/uploads/imgStatic/s1000rrHomeModelos.jpg')">
+              <p class="m-0 textVisor letrasVisor" style="font-size: 1.5em;">#GETHYPERSPORT</p>
+              <p class="m-0 textVisor letrasVisor">S100rr</p>
             </div>
             <div class="letrasVisorResponsive text-center">
-              <p class="mb-0">GET A NAKED</p>
-              <h3 class="">MH Motors Naked</h3>
+              <p class="mb-0">GET A HYPERSPORT</p>
+              <h3 class="">Bike Lab Sport</h3>
             </div>
           </a>
         </article>
         <article data-aos="flip-left" class="col-12 col-md-6 py-3 px-0 px-md-2">
           <a class="linkNonStyle" href="">
-            <div class="modelo1 centarPalabras">
-              <p class="m-0 textVisor letrasVisor">lorem</p>
+            <div class="modelo centarPalabras" style="background-image: url('http://127.0.0.1:8000/uploads/imgStatic/mt-09HomeModelos.jpg')">
+              <p class="m-0 textVisor letrasVisor" style="font-size: 1.5em;">#GETHYPERNAKED</p>
+              <p class="m-0 textVisor letrasVisor">MT-09 SP</p>
             </div>
             <div class="letrasVisorResponsive text-center">
-              <p class="mb-0">GET A TRAVEL</p>
-              <h3 class="">MH Motors Travel</h3>
+              <p class="mb-0">GET A HYPERNAKED</p>
+              <h3 class="">Bike Lab NAKED</h3>
             </div>
           </a>
         </article>
@@ -75,29 +77,29 @@
 
       <section class="findUsContainer mx-0 mt-3 row w-100">
         <div class="col-12 col-md-6 row p-0 m-0">
-          <a href="" class="col-6 p-0">
-            <div class="imgInsta"></div>
+          <a href="https://www.instagram.com/p/CeO_52mqIrN/" class="col-6 p-0" target="_blank">
+            <div class="imgInsta" style="background-image: url('http://127.0.0.1:8000/uploads/imgStatic/mt-09HomeModelos.jpg')"></div>
           </a>
-          <a href="" class="col-6 p-0">
-            <div class="imgInsta"></div>
+          <a href="https://www.instagram.com/p/CePQgskqX7V/" class="col-6 p-0" target="_blank">
+            <div class="imgInsta" style="background-image: url('http://127.0.0.1:8000/uploads/imgStatic/s1000rrHome.jpg')"></div>
           </a>
-          <a href="" class="col-6 p-0">
-            <div class="imgInsta"></div>
+          <a href="https://www.instagram.com/p/CeO_nG8qDiG/" class="col-6 p-0" target="_blank">
+            <div class="imgInsta" style="background-image: url('http://127.0.0.1:8000/uploads/imgStatic/R1MHome.jpg')"></div>
           </a>
-          <a href="" class="col-6 p-0">
-            <div class="imgInsta"></div>
+          <a href="https://www.instagram.com/p/CePQUUBqptL/" class="col-6 p-0" target="_blank">
+            <div class="imgInsta" style="background-image: url('http://127.0.0.1:8000/uploads/imgStatic/multistrada2.jpg')"></div>
           </a>
         </div>
         <div class="col-12 col-md-6 findUsInstaContainer p-0">
           <div class="p-3">
-            <h3 class="m-0">FIND US ON INSTAGRAM</h3>
+            <h3 class="m-0">{{$t('35')}}</h3>
             <hr>
-            <p>Obten tu dosis de motivación diaria</p>
+            <p>{{$t('36')}}</p>
             <div class="followUsInsta">
               <p class="d-flex align-items-center m-0">
-                <a href="">
+                <a href="https://www.instagram.com/bikelaboficial/" target="_blank">
                   <font-awesome-icon :icon="[ 'fab', 'instagram' ]" class="mr-2"/>
-                  <span>Follow us</span>
+                  <span>{{$t('37')}}</span>
                 </a>
               </p>
             </div>
@@ -107,16 +109,15 @@
 
 
       <section class="newsletter mt-3 mx-0 row w-100">
-        <p class="my-0 mx-2 mx-md-0 col-12 col-md-4 p-0">JOIN THE MH Motorcycle NEWSLETTER</p>
+        <p class="my-0 mx-2 mx-md-0 col-12 col-md-4 p-0">{{$t('38')}}</p>
         <a class="buttonNewsletter col-6 col-md-3">
-          sign up
+          {{$t('14')}}
         </a>
       </section>
     </section>
   </template>
 
   <script>
-  import $ from 'jquery';
   import {mapState} from "vuex";
 
   export default {
@@ -126,7 +127,9 @@
     ]),
     data: function () {
       return {
-        dataNoticias: []
+        dataNoticias: [],
+        dataModelos: [],
+        cargadoNoticias:false,
       }
 
     },
@@ -135,32 +138,23 @@
     },
     methods: {
       async noticias() {
-        $('.LoadingNoticias').show()
         let response = await fetch('http://localhost:8000/api/noticias', {
           headers: {"Accept": "application/json", 'Content-Type': 'application/json'}
         })
-        $('.LoadingNoticias').hide()
 
         let content = await response.json()
 
         content = content.length >= 2 ? content.slice(-3) : content;
 
+        this.dataNoticias=content;
 
-        for (const key in content) {
-          this.dataNoticias.push(content[key]);
-        }
-
+        this.cargadoNoticias=true;
       }
   }
   }
   </script>
 
   <style scoped>
-
-  @font-face {
-    font-family: letraVisor;
-    src: url("../assets/BlenderPro-Bold/BlenderPro-Bold.ttf");
-  }
 
   /*ESTILO DEL CONTENEDOR GENERAL DEL COMPONENTE*/
   .containerNoticiasConfigurador {
@@ -200,7 +194,7 @@
 
   .letrasVisor {
     color: white;
-    font-size: 3em;
+    font-size: 4em;
     font-weight: 800;
     text-transform: uppercase;
     font-family: 'letraVisor';
@@ -245,13 +239,12 @@
   }
 
   /*CAJAS DE LOS MODELOS, RESPECTIVAMENTE*/
-  .modelo1 {
-    background-image: url("https://i.pinimg.com/originals/0f/a9/ca/0fa9ca818b23986b167709cec7e25694.jpg");
+  .modelo {
     width: 100%;
     height: 380px;
     max-height: 440px;
     background-repeat: no-repeat;
-    background-size: 100% 100%;
+    background-size: cover;
     background-position: center;
   }
 
@@ -308,15 +301,14 @@
 
   .imgInsta {
     height: 40vh;
-    background-image: url(https://d3pelj80y5v5k4.cloudfront.net/69bf30b1-dffe-4196-8de0-4a9a8fa25a5e?w=400&h=400&q=85&nu=1);
     background-repeat: no-repeat;
-    background-size: 100% 100%;
+    background-size: cover;
     background-position: center;
-    transition: background-size 0.5s;
+    transition: transform 0.5s;
   }
 
   .imgInsta:hover {
-    background-size: 120% 120%;
+    transform: scale(0.9);
   }
 
   /*section newsletter*/
@@ -388,11 +380,8 @@
   }
 
   /*Animacion loader de las noticias*/
-  .LoadingNoticias{
-    display: none;
-  }
 
-  .LoadingNoticias p {
+  .LoadingHome p {
     display: inline-block;
     text-transform: uppercase;
     text-align: center;
@@ -404,31 +393,31 @@
     -webkit-text-stroke: 2px gray;
   }
 
-  .LoadingNoticias p:nth-child(1) {
+  .LoadingHome p:nth-child(1) {
     animation: hover 1s linear infinite;
   }
 
-  .LoadingNoticias p:nth-child(2) {
+  .LoadingHome p:nth-child(2) {
     animation: hover 1s linear infinite .125s;
   }
 
-  .LoadingNoticias p:nth-child(3) {
+  .LoadingHome p:nth-child(3) {
     animation: hover 1s linear infinite .25s;
   }
 
-  .LoadingNoticias p:nth-child(4) {
+  .LoadingHome p:nth-child(4) {
     animation: hover 1s linear infinite .375s;
   }
 
-  .LoadingNoticias p:nth-child(5) {
+  .LoadingHome p:nth-child(5) {
     animation: hover 1s linear infinite .5s;
   }
 
-  .LoadingNoticias p:nth-child(6) {
+  .LoadingHome p:nth-child(6) {
     animation: hover 1s linear infinite .675s;
   }
 
-  .LoadingNoticias p:nth-child(7) {
+  .LoadingHome p:nth-child(7) {
     animation: hover 1s linear infinite .75s;
   }
 
@@ -481,7 +470,7 @@
   }
 
   @media (min-width: 1400px) {
-    .modelo1{
+    .modelo{
       height: 500px;
       max-height: 500px;
     }

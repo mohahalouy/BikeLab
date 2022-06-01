@@ -11,6 +11,11 @@ export default {
 </script>
 
 <style>
+@font-face {
+  font-family: 'letraVisor';
+  src: url("assets/BlenderPro-Bold/BlenderPro-Bold.ttf");
+  /*src:url("http://127.0.0.1:8000/uploads/Letras/BlenderPro-Bold/BlenderPro-Bold.ttf") format('truetype');*/
+}
 * {
   margin: 0;
   padding: 0;
