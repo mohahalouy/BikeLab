@@ -5,40 +5,47 @@
       <FullDisplayHeader></FullDisplayHeader>
     </div>
     <div v-if="cargado" class="modelo">
-      <div>
+      <a @click="$router.go(-1)" class="returnButton">
+        <font-awesome-icon :icon="[ 'fas', 'arrow-left' ]" class="ml-2"/>
+        {{$t('85')}}
+      </a>
+      <div class="containerImgPrice">
         <video v-if="this.dataModel.nombreEs==='BMW S 1000 RR'" id="video1" loop autoplay muted="muted">
           <source
               :src="'http://127.0.0.1:8000/uploads/modelos/'+this.dataModel.nombreEs+'/'+this.dataModel.nombreEs+'Portada.mp4'"
               type="video/mp4">
         </video>
-        <picture v-else class="imgNoticia">
+        <picture v-else>
           <img class="img-fluid"
                :src="'http://127.0.0.1:8000/uploads/modelos/'+this.dataModel.nombreEs+'/'+this.dataModel.nombreEs+'Portada.jpg'">
         </picture>
         <div class="precioModelo">
-          <h5 class="font-weight-bold">{{ this.dataModel.nombreEs }}</h5>
-          <h5>PVP RECOMENDADO DESDE:
+          <h5 v-if="this.idioma==='es'" class="font-weight-bold">{{ this.dataModel.nombreEs }}</h5>
+          <h5 v-else class="font-weight-bold">{{ this.dataModel.nombreEn }}</h5>
+          <h5>{{ $t('86') }}
             {{
-              this.dataModel.precio.toLocaleString('de-DE', {
+              this.dataModel.precio.toLocaleString('es-Es', {
                 style: 'currency',
                 currency: 'EUR',
                 minimumFractionDigits: 2
               })
             }}
           </h5>
-          <button class="btnAniadir" @click="addToCart">Añadir a la cesta</button>
+          <button class="btnAniadir" @click="addToCart">{{$t('76')}}</button>
         </div>
-        <p>*Las ilustraciones pueden incluir equipamiento y accesorios opcionales incrementando el precio del
-          vehículo.
+        <p class="textCondition">*{{$t('87')}}
         </p>
       </div>
 
       <div class="text-dark text-left w-80 textPreview">
-        <h1 class="font-weight-bold">{{ this.dataModel.nombreEs }}</h1>
+        <h1 v-if="this.idioma==='es'" class="font-weight-bold">{{ this.dataModel.nombreEs }}</h1>
+        <h1 v-else class="font-weight-bold">{{ this.dataModel.nombreEn }}</h1>
         <div>
-          <h4 class="font-weight-bold">{{ this.dataModel.previewEs }}</h4>
+          <h4 v-if="this.idioma==='es'" class="font-weight-bold">{{ this.dataModel.previewEs }}</h4>
+          <h4 v-else class="font-weight-bold">{{ this.dataModel.previewEn }}</h4>
           <div class="textVideo">
-            <div>{{ this.dataModel.destacadoEs }}</div>
+            <div v-if="this.idioma==='es'">{{ this.dataModel.destacadoEs }}</div>
+            <div v-else>{{ this.dataModel.destacadoEn }}</div>
             <iframe style="width: 40%;" height="315" :src="this.dataModel.enlace" title="YouTube video player"
                     frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -57,7 +64,7 @@
                         {{ this.dataModel.cv }}
                       </div>
                       <div>
-                        cv de potencia
+                        {{$t('88')}}
                       </div>
                     </div>
                     <div>
@@ -65,7 +72,7 @@
                         {{ this.dataModel.nm }}
                       </div>
                       <div>
-                        Nm de par máx.
+                        {{$t('89')}}
                       </div>
                     </div>
                   </div>
@@ -97,7 +104,7 @@
                     </svg>
                     <div>
                       <img class="img-fluid"
-                           :src="'http://127.0.0.1:8000/uploads/modelos/'+this.dataModel.nombreEs+'/'+this.dataModel.nombreEs+'Motor.webp'">
+                           :src="'http://127.0.0.1:8000/uploads/modelos/'+this.dataModel.nombreEs+'/'+this.dataModel.nombreEs+'Motor.jpg'">
                     </div>
                     <svg version="1.1" class="animatedfacts__circleRight" xmlns="http://www.w3.org/2000/svg" x="0px"
                          y="0px"
@@ -131,7 +138,7 @@
                         {{ this.dataModel.cc }}
                       </div>
                       <div>
-                        cc de cilindrada
+                        {{$t('90')}}
                       </div>
                     </div>
                     <div>
@@ -139,12 +146,13 @@
                         {{ this.dataModel.alturaAsiento }}
                       </div>
                       <div>
-                        mm de altura de asiento
+                        {{$t('91')}}
                       </div>
                     </div>
                   </div>
                 </div>
-                <p class="text-center">{{ this.dataModel.tipoMotorEs }}</p>
+                <p v-if="this.idioma==='es'" class="text-center">{{ this.dataModel.tipoMotorEs }}</p>
+                <p v-else class="text-center">{{ this.dataModel.tipoMotorEn }}</p>
               </div>
             </div>
           </div>
@@ -171,12 +179,12 @@
           </svg>
             <div class="lineaMotor"></div>
           </div>
-          <h2 class="text-center">SONIDO POTENTE</h2>
+          <h2 class="text-center">{{$t('92')}}</h2>
           <div class="position-relative d-flex justify-content-end">
             <img style="width: 100%;"
-                 :src="'http://127.0.0.1:8000/uploads/modelos/'+this.dataModel.nombreEs+'/'+this.dataModel.nombreEs+'-1.jpg'">
+                 :src="'http://127.0.0.1:8000/uploads/modelos/'+this.dataModel.nombreEs+'/'+this.dataModel.nombreEs+'-2.jpg'">
             <div class="botonArrancar" @click="arrancarMotor">
-              <span>Arrancar motor</span>
+              <span>{{$t('93')}}</span>
             </div>
           </div>
         </div>
@@ -194,9 +202,13 @@ import HeaderPrincipal from "../components/HeaderPrincipal";
 import FullDisplayHeader from "../components/FullDisplayHeader";
 import Footer from "../components/Footer";
 import $ from "jquery";
+import {mapState} from "vuex";
 
 export default {
   name: "Modelo",
+  computed: mapState([
+    'idioma'
+  ]),
   components: {
     HeaderPrincipal,
     FullDisplayHeader,
@@ -228,11 +240,17 @@ export default {
     },
     arrancarMotor() {
       $('.botonArrancar').toggleClass('scaleButton')
-      if ($('.botonArrancar').find('span').text() === 'Arrancar motor') {
+      if ($('.botonArrancar').find('span').text() === 'Arrancar motor' && this.idioma==='es') {
         $('.botonArrancar').find('span').text("Apagar motor")
         $('#sonidoMotor')[0].play()
-      } else if ($('.botonArrancar').find('span').text() === 'Apagar motor') {
+      }else if($('.botonArrancar').find('span').text() === 'Start engine' && this.idioma==='en'){
+        $('.botonArrancar').find('span').text("Stop engine")
+        $('#sonidoMotor')[0].play()
+      }else if ($('.botonArrancar').find('span').text() === 'Apagar motor' && this.idioma==='es') {
         $('.botonArrancar').find('span').text("Arrancar motor")
+        $('#sonidoMotor')[0].pause()
+      }else if ($('.botonArrancar').find('span').text() === 'Stop engine' && this.idioma==='en') {
+        $('.botonArrancar').find('span').text("Start engine")
         $('#sonidoMotor')[0].pause()
       }
 
@@ -280,6 +298,7 @@ export default {
 
 .header {
   position: relative;
+  color: black;
 }
 
 .modelo {
@@ -294,16 +313,16 @@ export default {
   width: 100%;
 }
 
-.modelo > div:first-child {
+.modelo .containerImgPrice {
   position: relative;
   display: flex;
 }
 
-.modelo > div:nth-child(2) {
+.w-80{
   width: 80%;
 }
 
-.modelo > div > p {
+.modelo .textCondition {
   color: white;
   position: absolute;
   left: 0;
@@ -424,6 +443,7 @@ export default {
 }
 
 .botonArrancar {
+  cursor: pointer;
   position: absolute;
   left: 75%;
   top: 60%;
@@ -466,6 +486,13 @@ export default {
   position: relative;
   display: flex;
   justify-content: center;
+}
+
+.returnButton{
+  text-decoration: none;
+  font-size: 1.4em;
+  cursor: pointer;
+  color: darkred;
 }
 
 @media (max-width: 600px) {
@@ -525,11 +552,11 @@ export default {
     font-size: 40px;
   }
 
-  .modelo > div > p {
+  .modelo .textCondition {
     display: none;
   }
 
-  .modelo > div:first-child {
+  .modelo .containerImgPrice {
     flex-direction: column;
   }
 

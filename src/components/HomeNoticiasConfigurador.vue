@@ -14,31 +14,31 @@
       </section>
 
       <section v-if="cargadoNoticias" class="noticia m-0 mt-3 row w-100">
-        <article class="col-12 col-sm-6 col-lg-4 py-3 px-0 px-sm-2 d-flex flex-column justify-content-between" data-aos="zoom-in"
+        <article class="col-12 col-sm-6 col-lg-4 py-3 px-0 px-sm-2 d-flex flex-column" data-aos="zoom-in"
                  data-aos-duration="500"
                  v-for="item in this.dataNoticias" :key="item.id">
-          <router-link :to="{ name: 'Noticias', query: { id: item.id }}" class="linkNonStyle">
+          <router-link :to="{ name: 'Noticia', query: { id: item.id }}" class="linkNonStyle">
             <img class="img-fluid" :src="'http://127.0.0.1:8000/uploads/noticias/'+item.imagen">
           </router-link>
           <div v-if="idioma==='es'" class="letrasVisorNoticas text-left">
             <p class="">{{ item.fecha }}</p>
-            <router-link :to="{ name: 'Noticias', query: { id: item.id }}" class="linkNonStyle">
+            <router-link :to="{ name: 'Noticia', query: { id: item.id }}" class="linkNonStyle">
               <h4 class="tituloNoticia">{{ item.tituloEs }}</h4>
             </router-link>
-            <p class="mb-0">{{ item.previewTextoEs }}</p>
+            <p class="mb-0 previexTextNoticia">{{ item.previewTextoEs }}</p>
           </div>
           <div v-else class="letrasVisorNoticas text-left">
             <p class="">{{ item.fecha }}</p>
-            <router-link :to="{ name: 'Noticias', query: { id: item.id }}" class="linkNonStyle">
+            <router-link :to="{ name: 'Noticia', query: { id: item.id }}" class="linkNonStyle">
               <h4 class="tituloNoticia">{{ item.tituloEn }}</h4>
             </router-link>
-            <p class="mb-0">{{ item.previewTextoEn }}</p>
+            <p class="mb-0 previexTextNoticia">{{ item.previewTextoEn }}</p>
           </div>
         </article>
 
       </section>
 
-      <div v-else class="LoadingHome">
+      <div v-else class="LoadingHomeNoticias">
         <p>l</p>
         <p>o</p>
         <p>a</p>
@@ -174,14 +174,12 @@
   }
 
   .configurador h1{
-    font-family: 'letraVisor';
     color: white;
     text-transform: uppercase;
     font-size: 3em;
   }
 
   .configurador p{
-    font-family: 'letraVisor';
     color: white;
     text-transform: uppercase;
     font-size: 2em;
@@ -197,7 +195,6 @@
     font-size: 4em;
     font-weight: 800;
     text-transform: uppercase;
-    font-family: 'letraVisor';
   }
 
   .centarPalabras{
@@ -218,7 +215,6 @@
   .letrasVisorResponsive, .letrasVisorNoticas{
     color: black;
     text-transform: uppercase;
-    font-family: 'letraVisor';
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -227,6 +223,13 @@
   /*ESTILOS DE LAS CAJAS CON NOTICIAS. SIN ANIMACIONES*/
   .noticia {
     justify-content: space-evenly;
+  }
+
+  .previexTextNoticia{
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
   .tituloNoticia{
@@ -258,7 +261,6 @@
     display: flex;
     justify-content: center;
     background: black;
-    font-family: 'letraVisor';
     color: white;
   }
 
@@ -315,7 +317,6 @@
   .newsletter {
     color: #262626;
     font-size: 24px;
-    font-family: 'letraVisor';
     justify-content: center;
     align-items: center;
   }
@@ -377,71 +378,6 @@
   .buttonNewsletter:hover:after {
     transform: scaleX(1);
     transition-delay: 1s;
-  }
-
-  /*Animacion loader de las noticias*/
-
-  .LoadingHome p {
-    display: inline-block;
-    text-transform: uppercase;
-    text-align: center;
-    font-size: 4em;
-    font-family: arial;
-    font-weight: 600;
-    transform: scale(.5);
-    color: #121212;
-    -webkit-text-stroke: 2px gray;
-  }
-
-  .LoadingHome p:nth-child(1) {
-    animation: hover 1s linear infinite;
-  }
-
-  .LoadingHome p:nth-child(2) {
-    animation: hover 1s linear infinite .125s;
-  }
-
-  .LoadingHome p:nth-child(3) {
-    animation: hover 1s linear infinite .25s;
-  }
-
-  .LoadingHome p:nth-child(4) {
-    animation: hover 1s linear infinite .375s;
-  }
-
-  .LoadingHome p:nth-child(5) {
-    animation: hover 1s linear infinite .5s;
-  }
-
-  .LoadingHome p:nth-child(6) {
-    animation: hover 1s linear infinite .675s;
-  }
-
-  .LoadingHome p:nth-child(7) {
-    animation: hover 1s linear infinite .75s;
-  }
-
-  @keyframes hover {
-    0% {
-      transform: scale(.5);
-      color: #121212;
-      -webkit-text-stroke: 2px gray;
-    }
-
-    20% {
-      transform: scale(1);
-      color: pink;
-      -webkit-text-stroke: 3px red;
-      filter: drop-shadow(0 0 1px black)drop-shadow(0 0 1px black)drop-shadow(0 0 3px red)drop-shadow(0 0 5px red)hue-rotate(10turn);
-    }
-
-    50% {
-      transform: scale(.5);
-      color: #121212;
-      -webkit-text-stroke: 2px gray;
-    }
-
-
   }
 
 

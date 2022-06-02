@@ -4,46 +4,37 @@
     <div class="fullDisplayHeader">
       <FullDisplayHeader></FullDisplayHeader>
     </div>
-    <section v-if="cargado" class="todosModelos" data-aos="zoom-in-up"
+    <section v-if="cargado" class="todosModelos px-2 py-5" data-aos="zoom-in-up"
              data-aos-easing="ease-in-back"
              data-aos-offset="0"
              data-aos-duration="500">
       <h1>
-        Todos los modelos
+        {{$t('94')}}
       </h1>
       <h2>
-        Encuentra tu modelo favorito
+        {{$t('95')}}
       </h2>
-    </section>
-    <section v-if="cargado & idioma==='es'" class="modelo">
-      <div v-for="(item,index) in this.dataModelos" :key="index">
-        <div v-if="item.length>0" >
-          <p class="text-left tipoEntrada">{{index}}</p>
-          <div>
-            <div v-for="(items,index) in item" :key="index">
-              <router-link :to="{ name: 'Modelo', query: { id: items.id }}" class="linkNonStyle">
-                <picture class="imgNoticia">
-                  <img class="img-fluid" :src="'http://127.0.0.1:8000/uploads/modelos/imagenes/'+items.imagen">
-                </picture>
-                <h5>{{ items.nombreEs }}</h5>
-                <p>{{ items.previewEs }}</p>
-              </router-link>
+      <div class="modelo">
+        <div v-for="(item,index) in this.dataModelos" :key="index">
+          <div v-if="item.length>0" >
+            <p class="text-left tipoEntrada">{{index}}</p>
+            <div>
+              <div v-for="(items,index) in item" :key="index">
+                <router-link :to="{ name: 'Modelo', query: { id: items.id }}" class="linkNonStyle">
+                  <picture class="imgNoticia">
+                    <img class="img-fluid" :src="'http://127.0.0.1:8000/uploads/modelos/imagenes/'+items.imagen">
+                  </picture>
+                  <h5 v-if="idioma==='es'">{{ items.nombreEs }}</h5>
+                  <h5 v-else>{{ items.nombreEn }}</h5>
+                  <p v-if="idioma==='es'">{{ items.previewEs }}</p>
+                  <p v-else>{{ items.previewEn }}</p>
+                </router-link>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
-    <!--    <section v-else  class="modelo">
-          <div class="" v-for="item in this.dataModelos" :key="item.id">
-            <router-link :to="{ name: 'Modelo', query: { id: item.id }}" class="linkNonStyle">
-              <picture class="imgNoticia">
-                <img class="img-fluid" :src="'http://127.0.0.1:8000/uploads/modelos/imagenes/'+item.imagen">
-              </picture>
-              <h5>{{ item.nombreEn }}</h5>
-              <p>{{ item.destacadoEn }}</p>
-            </router-link>
-          </div>
-        </section>-->
 
 
     <Footer class="footer"></Footer>
@@ -113,7 +104,6 @@ export default {
   grid-template-areas:
     "header"
     "todosModelos"
-  "modelo"
   "footer";
   grid-template-columns: 100%;
   grid-template-rows: auto;
@@ -127,7 +117,6 @@ export default {
 }
 
 .modelo{
-  grid-area: modelo;
   background-color: #e6e6e6;
   width: 100%;
   padding: 10px 20px;
@@ -136,6 +125,7 @@ export default {
 .todosModelos{
   grid-area: todosModelos;
   text-align: left;
+  width: 100%;
 }
 
 .todosModelos h1{

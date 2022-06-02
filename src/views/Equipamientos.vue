@@ -7,13 +7,13 @@
     <section class="equipamiento">
       <div class="portada"
            :style="{ 'background-image': 'url(http://127.0.0.1:8000/uploads/Portadasequipamiento/'+this.$route.query.tipoArticulo+'.jpg)' }">
-        <h1 v-if="this.$route.query.tipoArticulo==='ropaHombre'">Ropa Hombre</h1>
-        <h1 v-else-if="this.$route.query.tipoArticulo==='ropaMujer'">Ropa Mujer</h1>
-        <h1 v-else-if="this.$route.query.tipoArticulo==='ropaNinio'">Ropa Niño</h1>
-        <h1 v-else-if="this.$route.query.tipoArticulo==='accesorios'">Accesorios</h1>
+        <h1 v-if="this.$route.query.tipoArticulo==='ropaHombre'">{{$t('24')}}</h1>
+        <h1 v-else-if="this.$route.query.tipoArticulo==='ropaMujer'">{{$t('25')}}</h1>
+        <h1 v-else-if="this.$route.query.tipoArticulo==='ropaNinio'">{{$t('26')}}</h1>
+        <h1 v-else-if="this.$route.query.tipoArticulo==='accesorios'">{{$t('27')}}</h1>
       </div>
-      <div class="containerItems mt-5" v-if="this.dataEquipamiento.length>0">
-        <p class="w-100 text-left text-white">{{ this.dataEquipamiento.length }} artículos disponibles</p>
+      <div v-if="cargado" class="containerItems mt-5" >
+        <p class="w-100 text-left text-dark">{{ this.dataEquipamiento.length }} {{$t('84')}}</p>
         <div v-for="(item,index) in this.dataEquipamiento" :key="index" class="items">
           <router-link :to="{ name: 'Equipamiento', params: { id:item.id, nombreProducto: item.nombreEs }}" class="linkNonStyle">
             <div>
@@ -22,7 +22,8 @@
                      :src="'http://127.0.0.1:8000/uploads/equipamiento/imagenes/'+item.imagen">
               </picture>
             </div>
-            <p>{{ item.nombreEs }}</p>
+            <p v-if="idioma==='es'" >{{ item.nombreEs }}</p>
+            <p v-else >{{ item.nombreEn }}</p>
             <p>
               {{
                 item.precio.toLocaleString('de-DE', {
@@ -35,7 +36,7 @@
           </router-link>
         </div>
       </div>
-      <div class="containerItems mt-5" v-else>
+      <div v-else class="containerItems mt-5" >
         <div class="lds-ring">
           <div></div>
           <div></div>
@@ -53,9 +54,13 @@
 import HeaderPrincipal from "../components/HeaderPrincipal";
 import FullDisplayHeader from "../components/FullDisplayHeader";
 import Footer from "../components/Footer";
+import {mapState} from "vuex";
 
 export default {
   name: "Equipamientos",
+  computed: mapState([
+    'idioma'
+  ]),
   data: function () {
     return {
       dataEquipamiento: [],
@@ -77,6 +82,7 @@ export default {
   },
   methods: {
     async getEquipamiento() {
+      this.cargado=false;
       let response = await fetch('http://localhost:8000/api/equipamientos?tipoArticulo=' + this.$route.query.tipoArticulo, {
         headers: {"Accept": "application/json", 'Content-Type': 'application/json'}
       })
@@ -85,6 +91,7 @@ export default {
 
       this.dataEquipamiento = content
 
+      this.cargado=true;
     }
   }
 }

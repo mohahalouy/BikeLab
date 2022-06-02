@@ -53,7 +53,7 @@
             <a href="" @click="verTypesEquipamiento">{{ $t('2') }}</a>
           </li>
           <li class="mr-5">
-            <a href="">{{ $t('3') }}</a>
+            <router-link to="/noticias"> {{ $t('3') }}</router-link>
           </li>
           <li class="mr-5">
             <a href="">{{ $t('4') }}</a>
@@ -158,8 +158,6 @@ export default {
       $('.otherLanguage').append(nombre, bandera)
 
       this.$store.commit('SET_IDIOMA', i18n.locale)
-
-
     },
     activateMenu() {
       $('.header').fadeToggle();
@@ -471,19 +469,19 @@ export default {
         didOpen: function () {
           $(".menuTypeClothing .buttonRopaHombre").click(function () {
             that.$swal.close()
-            router.push({ path: 'equipamientos', query: { tipoArticulo: 'ropaHombre' }}).catch(()=>{});
+            router.push({ path: '/equipamientos', query: { tipoArticulo: 'ropaHombre' }}).catch(()=>{});
           });
           $(".menuTypeClothing .buttonRopaMujer").click(function () {
             that.$swal.close()
-            router.push({ path: 'equipamientos', query: { tipoArticulo: 'ropaMujer' }}).catch(()=>{});
+            router.push({ path: '/equipamientos', query: { tipoArticulo: 'ropaMujer' }}).catch(()=>{});
           });
           $(".menuTypeClothing .buttonRopaNinio").click(function () {
             that.$swal.close()
-            router.push({ path: 'equipamientos', query: { tipoArticulo: 'ropaNinio' }}).catch(()=>{});
+            router.push({ path: '/equipamientos', query: { tipoArticulo: 'ropaNinio' }}).catch(()=>{});
           });
           $(".menuTypeClothing .buttonAccesorios").click(function () {
             that.$swal.close()
-            router.push({ path: 'equipamientos', query: { tipoArticulo: 'accesorios' }}).catch(()=>{});
+            router.push({ path: '/equipamientos', query: { tipoArticulo: 'accesorios' }}).catch(()=>{});
           });
         }
       });
@@ -500,6 +498,7 @@ export default {
   left: 0;
   top: 0;
   right: 0;
+  font-size: 1.11em;
 }
 
 .noticias .header {
@@ -513,7 +512,7 @@ export default {
 .nav > ul > li > a {
   color: white;
   text-decoration: none;
-  font-size: 1.11111em;
+  font-size: 1.11em;
   font-weight: 700;
   text-transform: uppercase;
 }
@@ -534,6 +533,9 @@ export default {
   color: black;
 }
 
+.noticiasContainer .nav > ul > li > a {
+  color: black;
+}
 .idiomas {
   display: flex;
   align-items: center;

@@ -6,10 +6,10 @@
     </div>
     <section class="itemsCesta">
       <div v-if="this.dataCesta.length<=0">
-        <p>La cesta está vacia</p>
+        <p>{{$t('65')}}</p>
       </div>
       <div v-else>
-        <p class="align-self-start font-weight-bold">Carrito</p>
+        <p class="align-self-start font-weight-bold">{{$t('66')}}</p>
         <div v-for="(item,index) in this.dataCesta" :key="index" class="item">
           <span class="removeItem" :data-id="item.id" :data-tipo="item.tipoCesta" @click="removeItem">&#10005;</span>
           <picture  v-if="item.tipoCesta==='modelos'" class="imgNoticia" >
@@ -22,75 +22,76 @@
             <img class="img-fluid" :src="'http://127.0.0.1:8000/uploads/'+item.tipoCesta+'/imagenes/'+item.imagen">
             </router-link>
           </picture>
-          <div class="text-left d-flex flex-column" style="width: 25%">
+          <div class="text-left d-flex flex-column">
             <span v-if="item.tipoCesta==='modelos'" class="font-weight-bold">
                   <router-link :to="{ name: 'Modelo', query: { id: item.id }}" class="linkNonStyle">
-                    {{ item.nombreEs }}
+                    <span v-if="idioma==='es'">{{ item.nombreEs }}</span>
+                    <span v-else>{{ item.nombreEn }}</span>
                   </router-link>
             </span>
             <span v-else class="font-weight-bold">
                   <router-link :to="{ name: 'Equipamiento', params: { id:item.id, nombreProducto: item.nombreEs }}"
                                class="linkNonStyle">
-                    {{ item.nombreEs }}
+                    <span v-if="idioma==='es'">{{ item.nombreEs }}</span>
+                    <span v-else>{{ item.nombreEn }}</span>
                   </router-link>
             </span>
-            <span v-if="item.tallaSeleccionada!= undefined">Talla: {{ item.tallaSeleccionada }}</span>
+            <span v-if="item.tallaSeleccionada!= undefined">{{$t('83')}}: {{ item.tallaSeleccionada }}</span>
           </div>
-          <div class="input-group">
-            <input type="button" value="-" class="button-minus" data-field="quantity" :data-id="item.id"
-                   @click="decrementValue">
-            <input type="number" step="1" max="" :value="item.cantidad" name="quantity" class="quantity-field"
-                   style="pointer-events: none">
-            <input type="button" value="+" class="button-plus" data-field="quantity" :data-id="item.id"
-                   @click="incrementValue">
-          </div>
-          <div class="precioModelo">
-            <p>
-              {{
-                (item.precio * item.cantidad).toLocaleString('de-DE', {
-                  style: 'currency',
-                  currency: 'EUR',
-                  minimumFractionDigits: 2
-                })
-              }}
-            </p>
+          <div class="containerCantPrice">
+            <div class="input-group">
+              <input type="button" value="-" class="button-minus" data-field="quantity" :data-id="item.id"
+                     @click="decrementValue">
+              <input type="number" step="1" max="" :value="item.cantidad" name="quantity" class="quantity-field"
+                     style="pointer-events: none">
+              <input type="button" value="+" class="button-plus" data-field="quantity" :data-id="item.id"
+                     @click="incrementValue">
+            </div>
+            <div class="precioModelo">
+              <p class="m-0">
+                {{
+                  (item.precio * item.cantidad).toLocaleString('de-DE', {
+                    style: 'currency',
+                    currency: 'EUR',
+                    minimumFractionDigits: 2
+                  })
+                }}
+              </p>
+            </div>
           </div>
         </div>
       </div>
     </section>
     <section class="containerDireccionTotal">
-      <p>Dónde entregar el pedido</p>
+      <p>{{$t('67')}}</p>
       <div class="containerTotal">
-        <div class="d-flex flex-column" style="width: 70%">
+        <div class="d-flex flex-column" style="width: 50%">
           <label class="d-flex text-left" style="cursor:pointer;" @change="revisarEnvio">
             <input type="radio" name="tipoenvio" class="mt-1" checked value="domicilio">
             <div class="ml-2">
               <p>
-                Entrega a domicilio
+                {{$t('68')}}
               </p>
-              <p>La entrega a tu domicilio o a una dirección alternativa es gratuita para pedidos superiores a 100 €.
-                Para pedidos inferiores a 100 € se cargarán 7,50 € por gastos de entrega.
-                La entrega tendrá lugar en un plazo de 4 a 6 días laborables.
-                Entrega por SEUR</p>
+              <p>
+                {{$t('69')}}
+              </p>
             </div>
           </label>
           <label class="d-flex text-left" style="cursor:pointer;" @change="revisarEnvio">
             <input type="radio" name="tipoenvio" class="mt-1" value="concesionario">
             <div class="ml-2">
               <p>
-                Recoge el pedido en tu concesionario sin coste alguno
+                {{$t('70')}}
               </p>
               <p>
-                Puedes recoger el pedido en tu concesionario Yamaha sin cargo alguno
-                Recibirás un correo electrónico en un plazo de 4 a 6 días laborables cuando tu pedido esté preparado.
-                Recibirás un email cuando el pedido esté listo para recoger.
+                {{$t('71')}}
               </p>
             </div>
           </label>
         </div>
         <div class="totalCesta ml-2">
           <div>
-            <span>Subtotal</span>
+            <span>{{$t('72')}}</span>
             <span>
               {{
                 (this.totalCesta - this.totalEnvio).toLocaleString('de-DE', {
@@ -102,7 +103,7 @@
             </span>
           </div>
           <div>
-            <span>Envío</span>
+            <span>{{$t('73')}}</span>
             <span v-if="this.totalCesta>0">
               {{
                 (this.totalEnvio).toLocaleString('de-DE', {
@@ -123,7 +124,7 @@
             </span>
           </div>
           <div class="mb-4">
-            <span>Total IVA incl.</span>
+            <span>{{$t('74')}}</span>
             <span>
               {{
                 (this.totalCesta).toLocaleString('de-DE', {
@@ -134,7 +135,7 @@
               }}
             </span>
           </div>
-          <button class="btnContinuar">Continuar</button>
+          <button class="btnContinuar">{{$t('75')}}</button>
         </div>
       </div>
     </section>
@@ -165,7 +166,8 @@ export default {
     }
   },
   computed: mapState([
-    'arrayIdsCompra'
+    'arrayIdsCompra',
+    'idioma'
   ]),
   mounted() {
     this.getArticulo()
@@ -175,7 +177,6 @@ export default {
       let id = parseInt(event.target.dataset.id);
       let tipo = event.target.dataset.tipo;
       for (const key in this.dataCesta) {
-        console.log(this.dataCesta[key].tipoCesta)
         if (id === this.dataCesta[key].id && tipo === this.dataCesta[key].tipoCesta) {
           this.dataCesta.splice(parseInt(key), 1);
         }
@@ -340,12 +341,12 @@ export default {
   font-size: 22px;
   padding: 20px;
   align-items: center;
-  width: 75%;
+  width: 100%;
   justify-content: center;
 }
 
 .imgNoticia{
-  max-width: 300px;
+  max-width: 25%;
 }
 
 .cesta .nav > ul > li > a{
@@ -360,6 +361,7 @@ export default {
   background-color: #ffffff;
   width: 100%;
   color: black;
+  flex-wrap: wrap;
 }
 
 .removeItem{
@@ -395,6 +397,7 @@ input::-webkit-inner-spin-button {
   margin: 15px 0;
   position: relative;
   width: fit-content;
+  min-width: fit-content;
 }
 
 .input-group input[type='button'] {
@@ -436,7 +439,6 @@ input[type="number"] {
 
 .precioModelo{
   font-weight: bold;
-  width: 20%;
 }
 
 .containerDireccionTotal{
@@ -447,12 +449,20 @@ input[type="number"] {
 .containerTotal{
   display: flex;
   justify-content: center;
-  width: 75%;
+  width: 100%;
   margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.containerCantPrice{
+  display: flex;
+  align-items: center;
+  min-width: fit-content;
 }
 
 .totalCesta{
   width: 30%;
+  min-width: fit-content;
   display: flex;
   flex-direction: column;
 }
@@ -477,6 +487,7 @@ input[type="number"] {
   color: black;
   padding: 10px 0px;
   transition: all 1s ease;
+  width: 100%;
 }
 
 .btnContinuar:hover {
@@ -485,4 +496,24 @@ input[type="number"] {
   border: solid 1px transparent;
   transition: all 1s ease;
 }
+
+
+@media (max-width: 700px){
+  .item, .containerTotal {
+    flex-direction: column;
+    align-content: center;
+  }
+
+  .containerTotal > div{
+    width: 100% !important;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 960px){
+  .containerCantPrice {
+    flex-direction: column;
+  }
+}
+
 </style>

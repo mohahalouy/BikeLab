@@ -60,14 +60,15 @@
           </div>
         </div>
         <div v-if="cargado" class="d-flex flex-column" style="gap: 20px;max-width: 30%;">
-          <p class="font-weight-bold" style="font-size: 26px;"> {{this.dataEquipamiento.nombreEs}}</p>
+          <p v-if="idioma==='es'" class="font-weight-bold" style="font-size: 26px;"> {{this.dataEquipamiento.nombreEs}}</p>
+          <p v-else class="font-weight-bold" style="font-size: 26px;"> {{this.dataEquipamiento.nombreEn}}</p>
           <p>{{this.dataEquipamiento.codigoArticulo}}</p>
           <div class="d-flex" style="justify-content: space-evenly">
             <div v-for="(item,index) in (this.dataEquipamiento.tallas).split(',')" :key="index" class="tallas" @click="selectTalla">
               {{item}}
             </div>
           </div>
-          <a class="d-flex text-dark text-decoration-none" href="https://www.bragard.com/img/cms/CMS/guide-des-tailles/es.pdf" target="_blank">
+          <a class="d-flex text-dark text-decoration-none" style="width: fit-content" href="https://www.bragard.com/img/cms/CMS/guide-des-tailles/es.pdf" target="_blank">
             <svg class="mr-2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1"
                  x="0px" y="0px" viewBox="0 0 56 56" style="enable-background:new 0 0 56 56;" xml:space="preserve" width="20px" height="20px">
 <g>
@@ -116,7 +117,7 @@
 </g>
               <g>
 </g></svg>
-            Mostrar tabla de tallas
+            {{$t('78')}}
           </a>
           <h2 class="font-weight-bold">
             {{
@@ -127,24 +128,24 @@
               })
             }}
           </h2>
-          <button class="btnAniadir" @click="addToCart">Añadir a la cesta</button>
+          <button class="btnAniadir" @click="addToCart">{{$t('76')}}</button>
           <div>
             <ul class="list-unstyled">
               <li>
                 <font-awesome-icon :icon="[ 'fa', 'check' ]" style="color: red" class="mr-2"/>
-                Pago con tarjeta de crédito (MasterCard y VISA)
+                {{$t('79')}}
               </li>
               <li>
                 <font-awesome-icon :icon="[ 'fa', 'check' ]" style="color: red" class="mr-2"/>
-                Devoluciones gratuitas dentro de 14 días
+                {{$t('80')}}
               </li>
               <li>
                 <font-awesome-icon :icon="[ 'fa', 'check' ]" style="color: red" class="mr-2"/>
-                Entrega dentro de 4 a 6 días laborales.
+                {{$t('81')}}
               </li>
               <li>
                 <font-awesome-icon :icon="[ 'fa', 'check' ]" style="color: red" class="mr-2"/>
-                Recogida en tienda o envío a domicilio
+                {{$t('82')}}
               </li>
             </ul>
           </div>
@@ -152,8 +153,9 @@
       </div>
 
       <div v-if="cargado" class=" detallesProducto mt-5">
-      <p class="font-weight-bold">Detalles del producto</p>
-      <div v-html="this.dataEquipamiento.detallesEs" style="width: 60%"></div>
+      <p class="font-weight-bold">{{$t('77')}}</p>
+      <div v-if="idioma==='es'" v-html="this.dataEquipamiento.detallesEs" style="width: 60%"></div>
+      <div v-else v-html="this.dataEquipamiento.detallesEn" style="width: 60%"></div>
   </div>
     </section>
     <div v-if="!cargado" class="equipamiento">
@@ -173,6 +175,7 @@ import HeaderPrincipal from "../components/HeaderPrincipal";
 import FullDisplayHeader from "../components/FullDisplayHeader";
 import Footer from "../components/Footer";
 import $ from "jquery";
+import {mapState} from "vuex";
 
 export default {
   name: "Equipamiento",
@@ -181,6 +184,9 @@ export default {
     FullDisplayHeader,
     Footer
   },
+  computed: mapState([
+    'idioma'
+  ]),
   data: function () {
     return {
       cargado:false,
@@ -270,6 +276,7 @@ export default {
 
 .header{
   position: relative;
+  color: black;
 }
 
 .equipamiento{

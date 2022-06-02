@@ -70,14 +70,12 @@ export default {
 }
 
 .carousel-caption > p{
-  font-family: 'letraVisor';
   color: white;
   text-transform: uppercase;
   font-size: 2em;
 }
 
 .carousel-caption > h1{
-  font-family: 'letraVisor';
   color: white;
   text-transform: uppercase;
   font-size: 3em;

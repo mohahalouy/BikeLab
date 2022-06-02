@@ -7,16 +7,16 @@
     <section class="addClothing">
       <div class="listaIdiomas text-dark">
         <div class="title">
-          Idioma
+          {{$t('5')}}
         </div>
         <div class="select_wrap">
           <ul class="default_option">
             <li>
               <div class="option español">
                 <div class="icon">
-                  <img src="http://127.0.0.1:8000/uploads/imgStatic/banderaEspaña.png" alt="es">
+                  <img src="http://127.0.0.1:8000/uploads/imgStatic/banderaEspaña.png" alt="Español">
                 </div>
-                <p>Español</p>
+                <p>{{$t('41')}}</p>
               </div>
             </li>
           </ul>
@@ -24,17 +24,17 @@
             <li>
               <div class="option español">
                 <div class="icon">
-                  <img src="http://127.0.0.1:8000/uploads/imgStatic/banderaEspaña.png" alt="en">
+                  <img src="http://127.0.0.1:8000/uploads/imgStatic/banderaEspaña.png" alt="Español">
                 </div>
-                <p>Español</p>
+                <p>{{$t('41')}}</p>
               </div>
             </li>
             <li>
               <div class="option ingles">
                 <div class="icon">
-                  <img src="http://127.0.0.1:8000/uploads/imgStatic/banderaInglaterra.png" alt="en">
+                  <img src="http://127.0.0.1:8000/uploads/imgStatic/banderaInglaterra.png" alt="Inglés">
                 </div>
-                <p>Ingles</p>
+                <p>{{$t('42')}}</p>
               </div>
             </li>
           </ul>
@@ -44,51 +44,51 @@
       <form @submit.prevent="validateEmptyInputs">
         <div v-if="this.idioma==='Español'">
           <div class="mb-3">
-            <label >Nombre</label>
+            <label >{{$t('43')}}</label>
             <input type="text" name="titulo" v-model="dataClothing.nombreEs" class="form-control">
           </div>
           <div class="mb-3">
-            <label >Detalles Html</label>
+            <label >{{$t('44')}}</label>
             <textarea name="destacado" v-model="dataClothing.detallesEs" class="form-control" rows="5"></textarea>
           </div>
         </div>
         <div v-else>
           <div class="mb-3">
-            <label >Nombre</label>
+            <label >{{$t('43')}}</label>
             <input type="text" name="titulo" v-model="dataClothing.nombreEn" class="form-control">
           </div>
           <div class="mb-3">
-            <label >Detalles Html</label>
+            <label >{{$t('44')}}</label>
             <textarea name="destacado" v-model="dataClothing.detallesEn" class="form-control" rows="5"></textarea>
           </div>
         </div>
         <div class="mb-3">
-          <label >Código artículo</label>
+          <label >{{$t('45')}}</label>
           <input type="text" name="titulo" v-model="dataClothing.codigoArticulo" class="form-control">
         </div>
         <div class="mb-3">
-            <p >Tipo del artículo</p>
+            <p >{{$t('46')}}</p>
           <div class="d-flex" style="justify-content: space-evenly">
             <label>
               <input type="radio" name="tipoArticulo" value="ropaHombre" checked>
-              Ropa Hombre
+              {{$t('24')}}
             </label>
             <label>
               <input type="radio" name="tipoArticulo" value="ropaMujer">
-              Ropa Mujer
+              {{$t('25')}}
             </label>
             <label>
               <input type="radio" name="tipoArticulo" value="ropaNinio">
-              Ropa Niño
+              {{$t('26')}}
             </label>
             <label>
               <input type="radio" name="tipoArticulo" value="accesorios">
-              Accesorios
+              {{$t('27')}}
             </label>
           </div>
         </div>
         <div>
-          <p>Tallas disponibles</p>
+          <p>{{$t('47')}}</p>
           <div class="d-flex" style="justify-content: space-evenly">
             <label>
               <input type="checkbox" value="xs" class="checkTallas">
@@ -120,21 +120,21 @@
             </label>
             <label>
               <input type="checkbox" value="unica" class="checkTallas">
-              Talla única
+              {{$t('48')}}
             </label>
           </div>
         </div>
         <div class="mb-3">
-          <label >Precio</label>
+          <label >{{$t('49')}}</label>
           <input type="number" name="nombre" v-model="dataClothing.precio" class="form-control" min="0" step="any">
         </div>
         <div class="mb-3">
-          <label >Imagen Portada</label>
+          <label >{{$t('50')}}</label>
           <input v-on:change="onFileChange" type="file" name="image" id="fileName" class="course form-control imagen" style="padding: 0px; height: fit-content">
         </div>
         <div class="d-flex mb-3" style="justify-content: space-evenly">
-          <router-link class="btn btn-secondary" to="/">Volver Home</router-link>
-          <button type="submit" class="btn btn-primary">Guardar</button>
+          <router-link class="btn btn-secondary" to="/">{{$t('51')}}</router-link>
+          <button type="submit" class="btn btn-primary">{{$t('52')}}</button>
         </div>
       </form>
     </section>
@@ -147,6 +147,7 @@ import HeaderPrincipal from "../components/HeaderPrincipal";
 import FullDisplayHeader from "../components/FullDisplayHeader";
 import Footer from "../components/Footer";
 import $ from "jquery";
+import i18n from "../i18n";
 
 export default {
   name: "addClothing",
@@ -196,7 +197,7 @@ export default {
         var currentele = $(this).html();
         $(".default_option li").html(currentele);
         $(this).parents(".select_wrap").removeClass("active");
-        that.idioma=$('.default_option li p')[0].textContent
+        that.idioma=$('.default_option .icon img')[0].alt
       })
     },
     validateEmptyInputs(){
@@ -221,9 +222,12 @@ export default {
 
       if (valido) {
         this.addClothing()
-      }
-      else{
-        alert('Debes rellenar todos los campos y no puede haber valores negativos')
+      } else {
+        if (i18n.locale === 'es')
+          alert('Debes rellenar todos los campos y no puede haber valores negativos')
+        else
+          alert('You must fill in all the fields and there can be no negative values')
+
       }
     },
     async addClothing() {
@@ -251,7 +255,10 @@ export default {
 
         if (response.ok) {
           setTimeout(function () {
-            alert('Ropa insertada correctamente')
+            if (i18n.locale === 'es')
+              alert('Ropa insertada correctamente')
+            else
+              alert('Clothing inserted correctly')
           }, 500);
 
           $('.imagen').each(function (index, input) {
@@ -277,7 +284,10 @@ export default {
           }
         } else {
           setTimeout(function () {
-            alert('Error, intentelo mas tarde')
+            if (i18n.locale === 'es')
+              alert('Error, intentelo mas tarde')
+            else
+              alert('Error, try again later')
           }, 500);
         }
 
@@ -313,6 +323,7 @@ export default {
 .addClothing {
   grid-area: addClothing;
   width: 50%;
+  font-size: 20px;
 }
 
 .listaIdiomas .title {

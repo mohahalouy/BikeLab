@@ -4,24 +4,29 @@
     <div class="fullDisplayHeader">
       <FullDisplayHeader></FullDisplayHeader>
     </div>
-    <div v-if="idioma==='es'"  class="noticia">
-      <h1 class="mb-5">{{this.dataNoticia.tituloEs}}</h1>
+    <section v-if="cargadoNoticias" class="noticia">
+      <a @click="$router.go(-1)" class="returnButton">
+        <font-awesome-icon :icon="[ 'fas', 'arrow-left' ]" class="ml-2"/>
+       {{$t('85')}}
+      </a>
+      <h1 v-if="idioma==='es'" class="mb-5">{{this.dataNoticia.tituloEs}}</h1>
+      <h1 v-else class="mb-5">{{this.dataNoticia.tituloEn}}</h1>
       <p class="text-danger">{{this.dataNoticia.fecha}}</p>
       <picture class="imgNoticia">
         <img class="img-fluid" :src="'http://127.0.0.1:8000/uploads/noticias/'+this.dataNoticia.imagen">
       </picture>
-      <div class="textoNoti mt-5" v-html="this.dataNoticia.textoEs"></div>
-      <div class="textoNoti mt-5"></div>
-    </div>
-    <div v-else class="noticia">
-      <h1 class="mb-5">{{this.dataNoticia.tituloEn}}</h1>
-      <p class="text-danger">{{this.dataNoticia.fecha}}</p>
-      <picture class="imgNoticia">
-        <img class="img-fluid" :src="'http://127.0.0.1:8000/uploads/noticias/'+this.dataNoticia.imagen">
-      </picture>
-      <div class="textoNoti mt-5" v-html="this.dataNoticia.textoEn"></div>
-      <div class="textoNoti mt-5"></div>
-    </div>
+      <div v-if="idioma==='es'" class="textoNoti mt-5" v-html="this.dataNoticia.textoEs"></div>
+      <div v-else class="textoNoti mt-5" v-html="this.dataNoticia.textoEn"></div>
+    </section>
+    <section v-else class="noticia LoadingHomeNoticias">
+      <p>l</p>
+      <p>o</p>
+      <p>a</p>
+      <p>d</p>
+      <p>i</p>
+      <p>n</p>
+      <p>g</p>
+    </section>
     <Footer class="footer"></Footer>
   </div>
 </template>
@@ -44,7 +49,8 @@ export default {
   },
   data: function () {
     return {
-      dataNoticia: []
+      dataNoticia: [],
+      cargadoNoticias:false
     }
   },
   methods:{
@@ -56,6 +62,8 @@ export default {
       let content=await response.json()
 
       this.dataNoticia=content[0]
+
+      this.cargadoNoticias=true;
     },
     goUp(){
       $('html, body').animate({scrollTop:0}, 500);
@@ -146,7 +154,6 @@ export default {
 
 .noticia{
   width: 100%;
-  font-family: letraVisor;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -180,8 +187,12 @@ export default {
   object-fit: cover;
   object-position: 50% 50%;
 }
-.footer{
-  grid-area: footer;
-  color: white;
+
+.returnButton{
+  text-decoration: none;
+  font-size: 1.4em;
+  cursor: pointer;
+  color: darkred;
 }
+
 </style>

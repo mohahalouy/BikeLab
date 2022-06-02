@@ -6,6 +6,7 @@ import addNews from '../views/addNews'
 import addModels from '../views/addModels'
 import addClothing from '../views/addClothing'
 import Noticia from '../views/Noticia'
+import Noticias from '../views/Noticias'
 import Equipamientos from '../views/Equipamientos'
 import Equipamiento from '../views/Equipamiento'
 import Modelo from '../views/Modelo'
@@ -33,6 +34,11 @@ const routes = [
     path: '/noticia',
     name: 'Noticia',
     component: Noticia
+  },
+  {
+    path: '/noticias',
+    name: 'Noticias',
+    component: Noticias
   },
   {
     path: '/equipamientos',

@@ -7,16 +7,16 @@
     <div class="addNews">
       <div class="listaIdiomas text-dark">
         <div class="title">
-          Idioma
+          {{$t('5')}}
         </div>
         <div class="select_wrap">
           <ul class="default_option">
             <li>
               <div class="option español">
                 <div class="icon">
-                  <img src="http://127.0.0.1:8000/uploads/imgStatic/banderaEspaña.png" alt="es">
+                  <img src="http://127.0.0.1:8000/uploads/imgStatic/banderaEspaña.png" alt="Español">
                 </div>
-                <p>Español</p>
+                <p>{{$t('41')}}</p>
               </div>
             </li>
           </ul>
@@ -24,17 +24,17 @@
             <li>
               <div class="option español">
                 <div class="icon">
-                  <img src="http://127.0.0.1:8000/uploads/imgStatic/banderaEspaña.png" alt="en">
+                  <img src="http://127.0.0.1:8000/uploads/imgStatic/banderaEspaña.png" alt="Español">
                 </div>
-                <p>Español</p>
+                <p>{{$t('41')}}</p>
               </div>
             </li>
             <li>
               <div class="option ingles">
                 <div class="icon">
-                  <img src="http://127.0.0.1:8000/uploads/imgStatic/banderaInglaterra.png" alt="en">
+                  <img src="http://127.0.0.1:8000/uploads/imgStatic/banderaInglaterra.png" alt="Inglés">
                 </div>
-                <p>Ingles</p>
+                <p>{{$t('42')}}</p>
               </div>
             </li>
           </ul>
@@ -44,47 +44,47 @@
       <form  @submit.prevent="validateEmptyInputs">
         <div v-if="this.idioma==='Español'">
           <div class="mb-3">
-            <label >Titulo</label>
+            <label >{{$t('63')}}</label>
             <input type="text" name="titulo" v-model="dataNews.tituloEs" class="form-control">
           </div>
           <div class="mb-3">
-            <label >Fecha</label>
+            <label >{{$t('64')}}</label>
             <input type="date" id="fecha" name="trip-start" v-model="dataNews.fecha" class="form-control">
           </div>
           <div class="mb-3">
-            <label >Preview texto</label>
+            <label >{{$t('53')}}</label>
             <input type="text" name="preText" v-model="dataNews.previewTextoEs" class="form-control">
           </div>
           <div class="mb-3">
-            <label >Texto</label>
+            <label >{{$t('54')}}</label>
             <textarea name="texto" v-model="dataNews.textoEs" class="form-control" rows="5"></textarea>
           </div>
         </div>
         <div v-else>
           <div class="mb-3">
-            <label >Titulo Ingles</label>
+            <label >{{$t('63')}}</label>
             <input type="text" name="titulo" v-model="dataNews.tituloEn" class="form-control">
           </div>
           <div class="mb-3">
-            <label >Fecha</label>
+            <label >{{$t('64')}}</label>
             <input type="date" id="fecha" name="trip-start" v-model="dataNews.fecha" class="form-control">
           </div>
           <div class="mb-3">
-            <label >Preview texto Ingles</label>
+            <label >{{$t('53')}}</label>
             <input type="text" name="preText" v-model="dataNews.previewTextoEn" class="form-control">
           </div>
           <div class="mb-3">
-            <label >Texto Ingles</label>
+            <label >{{$t('54')}}</label>
             <textarea name="texto" v-model="dataNews.textoEn" class="form-control" rows="5"></textarea>
           </div>
         </div>
         <div class="mb-3">
-          <label >Subir Image</label>
+          <label >{{$t('50')}}</label>
           <input v-on:change="onFileChange" type="file" name="image" id="fileName" class="course form-control imagen" >
         </div>
         <div class="d-flex mb-3" style="justify-content: space-evenly">
-          <router-link class="btn btn-secondary" to="/">Volver Home</router-link>
-          <button type="submit" class="btn btn-primary">Guardar</button>
+          <router-link class="btn btn-secondary" to="/">{{$t('51')}}</router-link>
+          <button type="submit" class="btn btn-primary">{{$t('52')}}</button>
         </div>
       </form>
     </div>
@@ -148,11 +148,11 @@ export default {
         $(this).parent().toggleClass("active");
       })
 
-      $(".select_ul li").click(function(){
+      $(".select_ul li").click(function () {
         var currentele = $(this).html();
         $(".default_option li").html(currentele);
         $(this).parents(".select_wrap").removeClass("active");
-        that.idioma=$('.default_option li p')[0].textContent
+        that.idioma=$('.default_option .icon img')[0].alt
       })
     },
     validateFileType() {

@@ -102,11 +102,6 @@ export default {
     'idioma',
     'countItemsCart'
   ]),
-  mounted() {
-    this.comprobarIdioma()
-    this.reconectUser();
-    this.getIdsLocalStore();
-  },
   methods: {
     selectLanguage() {
       $('.otherLanguage').toggleClass('d-flex')
@@ -140,22 +135,6 @@ export default {
       $('.fullDisplayHeader').removeClass('desactivate')
       $('body').toggleClass('noScrollBody')
       $('html, body').animate({scrollTop: 0}, 500);
-    },
-    comprobarIdioma() {
-      if (i18n.locale === 'en') {
-        let nombreNuevo = $('.otherLanguage').children()[2]
-        let banderaNueva = $('.otherLanguage').children()[3]
-
-        let nombre = $('.imgBanderas').children()[3]
-        let bandera = $('.imgBanderas').children()[4]
-        let svg = $('.imgBanderas').children()[2]
-
-        $('.imgBanderas').html('')
-        $('.otherLanguage').html('')
-
-        $('.imgBanderas').append(nombreNuevo, banderaNueva, svg)
-        $('.otherLanguage').append(nombre, bandera)
-      }
     },
     showAlert() {
       let that = this
@@ -424,12 +403,6 @@ export default {
       await this.$store.commit('SET_ADMIN', false)
       $('.loading').hide()
       $('body').removeClass('noScrollBody')
-    },
-    getIdsLocalStore() {
-      if(JSON.parse(localStorage.getItem('arrayIds'))!=null){
-        this.$store.commit('SET_ITEMS_CART_ID', JSON.parse(localStorage.getItem('arrayIds')))
-        this.$store.commit('SET_ITEMS_CART_COUNT', JSON.parse(localStorage.getItem('arrayIds')).length)
-      }
     },
     verTypesEquipamiento(){
       event.preventDefault();

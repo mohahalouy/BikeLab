@@ -35,13 +35,15 @@
           <li class="col-12 col-xl-3 p-0">
             <a href="" @click="verTypesEquipamiento">{{ $t('2') }}</a>
           </li>
-          <li class="col-12 col-xl-3 p-0"><a class="m-0" href="">{{$t('3')}}</a></li>
+          <li class="col-12 col-xl-3 p-0">
+            <router-link to="/noticias"> {{ $t('3') }}</router-link>
+          </li>
           <li class="col-12 col-xl-3 p-0"><a class="m-0" href="">{{$t('4')}}</a></li>
         </ul>
       </section>
       <hr class="lineFooter">
       <section class="copyReturnUp row justify-content-center">
-        <p class="m-0 col-12 text-uppercase">{{$t('39')}}</p>
+        <p class="m-0 col-12 text-uppercase text-white">{{$t('39')}}</p>
         <p class="goUp m-0 col-12 col-xl-3" @click="goUp">{{$t('40')}}<font-awesome-icon :icon="[ 'fas', 'arrow-up' ]" class="ml-2"/></p>
       </section>
     </div>
@@ -172,7 +174,6 @@ footer .socialIcon li a:hover {
 }
 
 .copyReturnUp {
-  font-family: 'letraVisor';
   font-size: 1.2em;
 }
 

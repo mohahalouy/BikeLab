@@ -7,16 +7,16 @@
     <div class="addModels">
       <div class="listaIdiomas text-dark">
         <div class="title">
-          Idioma
+          {{$t('5')}}
         </div>
         <div class="select_wrap">
           <ul class="default_option">
             <li>
               <div class="option español">
                 <div class="icon">
-                  <img src="http://127.0.0.1:8000/uploads/imgStatic/banderaEspaña.png" alt="es">
+                  <img src="http://127.0.0.1:8000/uploads/imgStatic/banderaEspaña.png" alt="Español">
                 </div>
-                <p>Español</p>
+                <p>{{$t('41')}}</p>
               </div>
             </li>
           </ul>
@@ -24,17 +24,17 @@
             <li>
               <div class="option español">
                 <div class="icon">
-                  <img src="http://127.0.0.1:8000/uploads/imgStatic/banderaEspaña.png" alt="en">
+                  <img src="http://127.0.0.1:8000/uploads/imgStatic/banderaEspaña.png" alt="Español">
                 </div>
-                <p>Español</p>
+                <p>{{$t('41')}}</p>
               </div>
             </li>
             <li>
               <div class="option ingles">
                 <div class="icon">
-                  <img src="http://127.0.0.1:8000/uploads/imgStatic/banderaInglaterra.png" alt="en">
+                  <img src="http://127.0.0.1:8000/uploads/imgStatic/banderaInglaterra.png" alt="Inglés">
                 </div>
-                <p>Ingles</p>
+                <p>{{$t('42')}}</p>
               </div>
             </li>
           </ul>
@@ -44,61 +44,61 @@
       <form @submit.prevent="validateEmptyInputs">
         <div v-if="this.idioma==='Español'">
           <div class="mb-3">
-            <label>Nombre</label>
+            <label>{{$t('43')}}</label>
             <input type="text" name="nombre" v-model="dataModels.nombreEs" class="form-control">
           </div>
           <div class="mb-3">
-            <label>Texto Preview modelo</label>
+            <label>{{$t('53')}}</label>
             <input type="text" name="previewTexto" v-model="dataModels.previewTextoEs" class="form-control">
           </div>
           <div class="mb-3">
-            <label>Texto modelo html</label>
+            <label>{{$t('54')}}</label>
             <textarea name="textModelo" v-model="dataModels.textoEs" class="form-control" rows="5"></textarea>
           </div>
           <div class="mb-3">
-            <label>Aspectos más destacados</label>
+            <label>{{$t('55')}}</label>
             <textarea name="destacado" v-model="dataModels.destacadoEs" class="form-control" rows="5"></textarea>
           </div>
           <div class="mb-3">
-            <label>Enlace video</label>
+            <label>{{$t('58')}}</label>
             <input type="text" name="enlace" v-model="dataModels.enlace" class="form-control">
           </div>
-          <p>Datos Motor:</p>
+          <p>{{$t('56')}}</p>
           <div class="mb-3">
-            <label>Tipo motor</label>
+            <label>{{$t('57')}}</label>
             <input type="text" name="tipoMotorEs" v-model="dataModels.tipoMotorEs" class="form-control">
           </div>
         </div>
         <div v-else>
           <div class="mb-3">
-            <label>Nombre Ingles</label>
+            <label>{{$t('43')}}</label>
             <input type="text" name="nombre" v-model="dataModels.nombreEn" class="form-control">
           </div>
           <div class="mb-3">
-            <label>Texto Preview modelo Ingles</label>
+            <label>{{$t('53')}}</label>
             <input type="text" name="previewTexto" v-model="dataModels.previewTextoEn" class="form-control">
           </div>
           <div class="mb-3">
-            <label>Texto modelo html Ingles</label>
+            <label>{{$t('54')}}</label>
             <textarea name="textModelo" v-model="dataModels.textoEn" class="form-control" rows="5"></textarea>
           </div>
           <div class="mb-3">
-            <label>Aspectos más destacados Ingles</label>
+            <label>{{$t('55')}}</label>
             <textarea name="destacado" v-model="dataModels.destacadoEn" class="form-control" rows="5"></textarea>
           </div>
           <div class="mb-3">
-            <label>Enlace video</label>
+            <label>{{$t('58')}}</label>
             <input type="text" name="enlace" v-model="dataModels.enlace" class="form-control">
           </div>
-          <p>Datos Motor:</p>
+          <p>{{$t('56')}}</p>
           <div class="mb-3">
-            <label>Tipo motor Ingles</label>
+            <label>{{$t('57')}}</label>
             <input type="text" name="tipoMotorEn" v-model="dataModels.tipoMotorEn" class="form-control">
           </div>
         </div>
         <div class="mb-3 d-flex flex-column">
-          <label>Modelo</label>
-          <select v-on:change="onModelChange">
+          <label>{{$t('1')}}</label>
+          <select v-on:change="onModelChange" class="selectTypeModel">
             <option></option>
             <option>Naked</option>
             <option>Adventure</option>
@@ -107,7 +107,7 @@
           </select>
         </div>
         <div class="mb-3">
-          <label>Precio</label>
+          <label>{{$t('49')}}</label>
           <input type="number" name="nombre" v-model="dataModels.precio" class="form-control" min="0" step="any">
         </div>
         <div class="mb-3">
@@ -115,28 +115,28 @@
           <input type="number" name="cv" v-model="dataModels.cv" class="form-control" min="0" step="any">
         </div>
         <div class="mb-3">
-          <label>Cc de cilindrada</label>
+          <label>{{$t('59')}}</label>
           <input type="number" name="cc" v-model="dataModels.cc" class="form-control" min="0" step="any">
         </div>
         <div class="mb-3">
-          <label>Nm de par máx.</label>
+          <label>{{$t('60')}}</label>
           <input type="number" name="cc" v-model="dataModels.nm" class="form-control" min="0" step="any">
         </div>
         <div class="mb-3">
-          <label>Mm de altura del asiento</label>
+          <label>{{$t('61')}}</label>
           <input type="number" name="alturaAsiento" v-model="dataModels.alturaAsiento" class="form-control" min="0" step="any">
         </div>
         <div class="mb-3">
-          <label>Sonido motor</label>
+          <label>{{$t('62')}}</label>
           <input v-on:change="onSoundChange" type="file" name="sound" id="soundName" class="course form-control sound">
         </div>
         <div class="mb-3">
-          <label >Imagen portada</label>
+          <label >{{$t('50')}}</label>
           <input v-on:change="onFileChange" type="file" name="image" id="fileName" class="course form-control imagen">
         </div>
         <div class="d-flex mb-3" style="justify-content: space-evenly">
-          <router-link class="btn btn-secondary" to="/">Volver Home</router-link>
-          <button type="submit" class="btn btn-primary">Guardar</button>
+          <router-link class="btn btn-secondary" to="/">{{$t('51')}}</router-link>
+          <button type="submit" class="btn btn-primary">{{$t('52')}}</button>
         </div>
       </form>
     </div>
@@ -150,6 +150,7 @@ import $ from "jquery";
 import HeaderPrincipal from "../components/HeaderPrincipal";
 import FullDisplayHeader from "../components/FullDisplayHeader";
 import Footer from "../components/Footer";
+import i18n from "../i18n";
 
 export default {
   name: "addModels",
@@ -199,7 +200,7 @@ export default {
         var currentele = $(this).html();
         $(".default_option li").html(currentele);
         $(this).parents(".select_wrap").removeClass("active");
-        that.idioma = $('.default_option li p')[0].textContent
+        that.idioma=$('.default_option .icon img')[0].alt
       })
     },
     goUp() {
@@ -217,7 +218,10 @@ export default {
       if (valido) {
         this.validateFileTypeImg()
       }else{
-        alert('Debes rellenar todos los campos y no puede haber valores negativos')
+        if (i18n.locale === 'es')
+          alert('Debes rellenar todos los campos y no puede haber valores negativos')
+        else
+          alert('You must fill in all the fields and there can be no negative values')
       }
     },
     onSoundChange(e) {
@@ -254,7 +258,11 @@ export default {
       if (extFile == "mp3") {
         this.addModel()
       } else {
-        alert("Solo se aceptan extensiones mp3")
+        if (i18n.locale === 'es')
+          alert("Solo se aceptan extensiones mp3")
+        else
+          alert('Only mp3 extensions are accepted')
+
       }
     },
     async addModel() {
@@ -294,15 +302,21 @@ export default {
 
         if (response.ok) {
           setTimeout(function () {
-            alert('Modelo insertado correctamente')
+            if (i18n.locale === 'es')
+              alert('Modelo insertado correctamente')
+            else
+              alert('Model inserted correctly')
+
           }, 500);
 
           //Vaciar el formulario
-     /*     $('input, textarea').each(function (index, input) {
+          $('input, textarea').each(function (index, input) {
             input.value=''
-          })*/
+          })
 
-    /*      this.dataModels = {
+          $(".selectTypeModel").val($(".selectTypeModel option:first").val());
+
+          this.dataModels = {
             nombreEs: '',
             nombreEn: '',
             previewTextoEs: '',
@@ -312,6 +326,9 @@ export default {
             destacadoEs: '',
             destacadoEn: '',
             enlace: '',
+            tipoMotorEs: '',
+            tipoMotorEn: '',
+            modelo:'',
             precio: 0,
             cv: 0,
             cc: 0,
@@ -319,10 +336,14 @@ export default {
             alturaAsiento: 0,
             sonidoMotor: '',
             imagen: ''
-          }*/
+          }
+
         } else {
           setTimeout(function () {
-            alert('Error, intentelo mas tarde')
+            if (i18n.locale === 'es')
+              alert('Error, intentelo mas tarde')
+            else
+              alert('Error, try again later')
           }, 500);
         }
 
