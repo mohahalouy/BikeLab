@@ -231,7 +231,10 @@ export default {
         await this.$store.commit('SET_AUTH', false)
       }
 
-    }
+    },
+    changeTitle() {
+      document.querySelector('title').textContent = 'AddNews';
+    },
   }
 }
 </script>

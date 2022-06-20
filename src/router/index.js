@@ -17,6 +17,8 @@ import Payment from '../views/Payment'
 import Pedidos from '../views/Pedidos'
 import Pedido from '../views/Pedido'
 import editarDatos from '../views/EditarDatosUsuario'
+import editarPedidos from '../views/EditarDatosPedidos'
+import editarPedido from '../views/EditarDatosPedido'
 
 Vue.use(VueRouter)
 
@@ -105,6 +107,16 @@ const routes = [
     path: '/editarDatos',
     name: 'editarDatos',
     component: editarDatos
+  },
+  {
+    path: '/editarPedidos',
+    name: 'editarPedidos',
+    component: editarPedidos
+  },
+  {
+    path: '/editarPedido/:id',
+    name: 'editarPedido',
+    component: editarPedido
   },
 ]
 

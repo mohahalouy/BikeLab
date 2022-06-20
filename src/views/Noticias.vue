@@ -57,8 +57,12 @@ export default {
   },
   mounted() {
     this.noticias();
+    this.changeTitle()
   },
   methods: {
+    changeTitle() {
+      document.querySelector('title').textContent = 'Noticias';
+    },
     async noticias() {
       let response = await fetch('https://proyectogradoback.herokuapp.com/api/noticias', {
         headers: {"Accept": "application/json", 'Content-Type': 'application/json'}

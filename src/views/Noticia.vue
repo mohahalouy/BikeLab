@@ -53,7 +53,15 @@ export default {
       cargadoNoticias:false
     }
   },
+  mounted() {
+    this.getNoticia();
+    this.goUp();
+    this.changeTitle()
+  },
   methods:{
+    changeTitle() {
+      document.querySelector('title').textContent = 'Noticia';
+    },
     async getNoticia() {
       let response = await fetch('https://proyectogradoback.herokuapp.com/api/noticia?id=' + this.$route.query.id, {
         headers: {"Accept": "application/json", 'Content-Type': 'application/json'}
@@ -68,10 +76,6 @@ export default {
     goUp(){
       $('html, body').animate({scrollTop:0}, 500);
     }
-  },
-  mounted() {
-    this.getNoticia();
-    this.goUp();
   }
 }
 </script>

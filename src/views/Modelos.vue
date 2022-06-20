@@ -73,6 +73,11 @@ export default {
       cargado:false
     }
   },
+  mounted() {
+    this.getModelos();
+    this.goUp();
+    this.changeTitle()
+  },
   methods:{
     async getModelos() {
       let response = await fetch('https://proyectogradoback.herokuapp.com/api/modelos', {
@@ -90,11 +95,10 @@ export default {
     },
     goUp() {
       $('html, body').animate({scrollTop: 0}, 500);
-    }
-  },
-  mounted() {
-    this.getModelos();
-    this.goUp();
+    },
+    changeTitle() {
+      document.querySelector('title').textContent = 'Modelos';
+    },
   }
 }
 </script>

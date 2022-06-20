@@ -4,6 +4,7 @@
     <button class="buttonAccess buttonAddNews py-1"> {{$t('21')}}</button>
     <button class="buttonAccess buttonAddModels py-1"> {{$t('22')}}</button>
     <button class="buttonAccess buttonAddClothing py-1"> {{$t('23')}}</button>
+    <button class="buttonAccess buttonEditOrders py-1"> {{$t('140')}}</button>
   </div>
 </template>
 

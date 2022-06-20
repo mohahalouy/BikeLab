@@ -19,6 +19,16 @@
       <span class="mx-2 separadorHeader"></span>
       <button v-if="!authenticated" @click="showAlert" class="buttonAccess">{{$t('8')}}</button>
       <button v-if="adminUser" @click="showAlertAdmin" class="buttonAccess mr-2">{{$t('9')}}</button>
+      <div class="editarUser">
+        <font-awesome-icon v-if="authenticated" @click="showOptionsUser" :icon="[ 'fa', 'user' ]"/>
+        <div class="containerOptionsUser">
+          <div class="userArrow-up"></div>
+          <div class="optionsUser">
+            <router-link to="/editarDatos">{{$t('138')}}</router-link>
+            <router-link to="/verPedidos">{{$t('139')}}</router-link>
+          </div>
+        </div>
+      </div>
       <span class="mx-2 separadorHeader"></span>
       <button v-if="authenticated" @click="logout" class="buttonAccess">{{$t('10')}}</button>
       <div class="carritoCompra">
@@ -303,6 +313,11 @@ export default {
             that.$swal.close()
             router.push('/addClothing')
           });
+
+          $(".menuAdmin .buttonEditOrders").click(function () {
+            that.$swal.close()
+            router.push('/editarPedidos')
+          });
         }
       });
     },
@@ -416,6 +431,9 @@ export default {
           });
         }
       });
+    },
+    showOptionsUser() {
+      $('.editarUser .containerOptionsUser').toggleClass('d-flex')
     }
   }
 }
@@ -454,6 +472,46 @@ export default {
   background: red;
   color: white;
 }
+
+.editarUser {
+  color: white;
+  align-self: center;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.editarUser .containerOptionsUser {
+  display: none;
+  flex-direction: column;
+  top: 20px;
+  position: absolute;
+  width: max-content;
+  align-items: center;
+
+}
+
+.editarUser .containerOptionsUser .optionsUser {
+  display: flex;
+  flex-direction: column;
+  background-color: #eaeaea;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.editarUser .containerOptionsUser .optionsUser a {
+  color: black;
+}
+
+.userArrow-up {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid white;
+}
+
 
 .toggleMenu {
   display: flex;

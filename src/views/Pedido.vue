@@ -4,7 +4,7 @@
     <div class="fullDisplayHeader">
       <FullDisplayHeader></FullDisplayHeader>
     </div>
-    <section v-if="cargado" class="pedido">
+    <section v-if="cargado" class="pedido mb-4">
       <p class="align-self-start font-weight-bold" style="font-size: 40px">{{$t('121')}}</p>
       <div class="d-flex w-100">
         <div class="w-50 d-flex justify-content-between px-5 py-3 bordes">
@@ -37,8 +37,8 @@
         </div>
         <div class="w-50 d-flex justify-content-between px-5 py-3 bordes flex-wrap">
           <span class="d-flex align-items-center"><font-awesome-icon class="mr-1" :icon="[ 'fa', 'money-bill-wave' ]"/>{{$t('125')}}</span>
-          <div v-if="this.dataPedido[0].order_shipping_type===1" class="text-right">
-            <p>{{this.dataPedido[0].nombre}}</p>
+          <div v-if="this.dataPedido[0].direccion!='' && this.dataPedido[0].direccion!=null" class="text-right">
+            <p>{{ this.dataPedido[0].nombre }}</p>
             <p>C/{{this.dataPedido[0].direccion}}</p>
             <p>{{this.dataPedido[0].ciudad}}</p>
           </div>
@@ -103,7 +103,7 @@
                class="d-flex justify-content-between">
               <span>{{$t('130')}}</span>
               <span>{{
-                  (this.dataPedido[0].totalCesta - 7.5).toLocaleString('de-DE', {
+                  (parseFloat(this.dataPedido[0].totalCesta) - 7.5).toLocaleString('de-DE', {
                     style: 'currency',
                     currency: 'EUR',
                     minimumFractionDigits: 2
@@ -114,7 +114,7 @@
               <span>{{$t('130')}}</span>
               <span>
                 {{
-                  (this.dataPedido[0].totalCesta).toLocaleString('de-DE', {
+                  (parseFloat(this.dataPedido[0].totalCesta)).toLocaleString('de-DE', {
                     style: 'currency',
                     currency: 'EUR',
                     minimumFractionDigits: 2
@@ -126,7 +126,7 @@
               <span>Total <small style="color: #c5c2c2">{{$t('131')}}</small> </span>
               <span>
                 {{
-                  (this.dataPedido[0].totalCesta).toLocaleString('de-DE', {
+                  (parseFloat(this.dataPedido[0].totalCesta)).toLocaleString('de-DE', {
                     style: 'currency',
                     currency: 'EUR',
                     minimumFractionDigits: 2
@@ -166,9 +166,13 @@ export default {
     }
   },
   mounted(){
-    this.getDatosPedidos()
+    this.getDatosPedidos();
+    this.changeTitle();
   },
   methods: {
+    changeTitle() {
+      document.querySelector('title').textContent = 'Pedido';
+    },
     async getDatosPedidos() {
       let data = new FormData();
       data.append('id', this.$route.params.id)

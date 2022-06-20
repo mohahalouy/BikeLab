@@ -26,7 +26,7 @@
             <p v-else style="max-width: 350px;min-width: 350px;">{{ item.nombreEn }}</p>
             <p>
               {{
-                item.precio.toLocaleString('de-DE', {
+                parseFloat(item.precio).toLocaleString('de-DE', {
                   style: 'currency',
                   currency: 'EUR',
                   minimumFractionDigits: 2
@@ -74,6 +74,7 @@ export default {
   },
   mounted() {
     this.getEquipamiento();
+    this.changeTitle()
   },
   watch: {
     '$route.query.tipoArticulo'() {
@@ -81,6 +82,9 @@ export default {
     }
   },
   methods: {
+    changeTitle() {
+      document.querySelector('title').textContent = 'Equipamientos';
+    },
     async getEquipamiento() {
       this.cargado=false;
       let response = await fetch('https://proyectogradoback.herokuapp.com/api/equipamientos?tipoArticulo=' + this.$route.query.tipoArticulo, {

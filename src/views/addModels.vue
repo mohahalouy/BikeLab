@@ -188,6 +188,7 @@ export default {
   mounted() {
     this.cambioIdioma()
     this.goUp();
+    this.changeTitle()
   },
   methods: {
     cambioIdioma() {
@@ -351,7 +352,10 @@ export default {
         await this.$store.commit('SET_AUTH', false)
       }
 
-    }
+    },
+    changeTitle() {
+      document.querySelector('title').textContent = 'AddModels';
+    },
   }
 }
 </script>

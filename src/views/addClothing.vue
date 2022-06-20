@@ -291,7 +291,10 @@ export default {
           }, 500);
         }
 
-    }
+    },
+    changeTitle() {
+      document.querySelector('title').textContent = 'AddClothing';
+    },
   }
 }
 </script>

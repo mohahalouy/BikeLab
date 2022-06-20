@@ -30,7 +30,7 @@
                 <small class="error">error message</small>
               </div>
             </li>
-            <li class="d-flex">
+            <li class="d-flex flex-wrap">
               <div>
                 <label for="fechaExpiracion">{{$t('119')}}</label>
                 <div class="divInputError">
@@ -52,7 +52,7 @@
             </li>
           </ul>
           <input type="submit"
-                 :value="[[ $t('117') +' '+  (this.$store.state.totalCesta).toLocaleString('de-DE', {
+                 :value="[[ $t('117') +' '+  (parseFloat(this.$store.state.totalCesta)).toLocaleString('de-DE', {
                     style: 'currency',
                     currency: 'EUR',
                     minimumFractionDigits: 2}) ]]"

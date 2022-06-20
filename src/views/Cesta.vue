@@ -135,7 +135,7 @@
             <span>{{$t('74')}}</span>
             <span>
               {{
-                (this.totalCesta).toLocaleString('de-DE', {
+                (parseFloat(this.totalCesta)).toLocaleString('de-DE', {
                   style: 'currency',
                   currency: 'EUR',
                   minimumFractionDigits: 2
@@ -539,6 +539,9 @@ export default {
       }else{
         this.showAlertLoginRegister();
       }
+    },
+    changeTitle() {
+      document.querySelector('title').textContent = 'Cesta';
     },
   }
 }

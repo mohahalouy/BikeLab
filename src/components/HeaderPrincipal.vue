@@ -374,6 +374,11 @@ export default {
             that.$swal.close()
             router.push('/addClothing')
           });
+
+          $(".menuAdmin .buttonEditOrders").click(function () {
+            that.$swal.close()
+            router.push('/editarPedidos')
+          });
         }
       });
     },

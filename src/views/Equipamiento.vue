@@ -5,11 +5,11 @@
       <FullDisplayHeader></FullDisplayHeader>
     </div>
     <section  class="equipamiento">
-      <div class="d-flex" style="justify-content: space-evenly">
-        <a @click="$router.go(-1)" class="returnButton">
-          <font-awesome-icon :icon="[ 'fas', 'arrow-left' ]" class="ml-2"/>
-          {{ $t('85') }}
-        </a>
+      <a @click="$router.go(-1)" class="returnButton">
+        <font-awesome-icon :icon="[ 'fas', 'arrow-left' ]" class="ml-2"/>
+        {{ $t('85') }}
+      </a>
+      <div class="d-flex containerItem" style="justify-content: space-evenly">
         <div v-if="cargado" class="containerSlider" >
 
           <!-- Full-width images with number text -->
@@ -126,7 +126,7 @@
           </a>
           <h2 class="font-weight-bold">
             {{
-              this.dataEquipamiento.precio.toLocaleString('de-DE', {
+              parseFloat(this.dataEquipamiento.precio).toLocaleString('de-DE', {
                 style: 'currency',
                 currency: 'EUR',
                 minimumFractionDigits: 2
@@ -215,8 +215,12 @@ export default {
 
   mounted() {
     this.getEquipamiento();
+    this.changeTitle()
     },
   methods:{
+    changeTitle() {
+      document.querySelector('title').textContent = 'Equipamiento';
+    },
     async getEquipamiento() {
       let response=await fetch('https://proyectogradoback.herokuapp.com/api/equipamiento/' + this.$route.params.id, {
         headers: {"Accept": "application/json", 'Content-Type': 'application/json'}
@@ -490,5 +494,29 @@ export default {
   cursor: pointer;
   color: darkred;
   align-self: flex-start;
+}
+
+@media (max-width: 1000px) {
+  .containerItem{
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .containerItem > div{
+    width: 90%;
+    max-width: 90% !important;
+
+  }
+
+  .detallesProducto{
+    width: 100%;
+  }
+}
+
+@media (max-width: 650px) {
+  .detallesProducto{
+    flex-direction: column;
+    align-items: center;
+  }
 }
 </style>

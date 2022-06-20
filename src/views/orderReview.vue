@@ -104,7 +104,7 @@
             <span>{{ $t('73') }}</span>
             <span v-if="this.totalCesta>0">
               {{
-                (this.totalEnvio).toLocaleString('de-DE', {
+                (parseFloat(this.totalEnvio)).toLocaleString('de-DE', {
                   style: 'currency',
                   currency: 'EUR',
                   minimumFractionDigits: 2
@@ -125,7 +125,7 @@
             <span>{{ $t('74') }}</span>
             <span>
               {{
-                (this.totalCesta).toLocaleString('de-DE', {
+                (parseFloat(this.totalCesta)).toLocaleString('de-DE', {
                   style: 'currency',
                   currency: 'EUR',
                   minimumFractionDigits: 2

@@ -30,6 +30,7 @@ export default {
   },
   mounted() {
     this.goUp();
+    this.changeTitle();
   },
   computed: mapState([
     'authenticated'
@@ -37,7 +38,10 @@ export default {
   methods: {
     goUp() {
       $('html, body').animate({scrollTop: 0}, 500);
-    }
+    },
+    changeTitle() {
+      document.querySelector('title').textContent = 'Home';
+    },
   }
 }
 </script>

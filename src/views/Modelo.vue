@@ -202,6 +202,17 @@
     <audio v-if="cargado" style="display: none" id="sonidoMotor"
            :src="'https://proyectogradoback.herokuapp.com/uploads/modelos/sonidoMotor/'+this.dataModel.sonidoMotor" controls>
     </audio>
+    <div class="swalIrCarrito">
+      <p class="text-left text-dark">{{$t('96')}}</p>
+      <div class="d-flex align-items-center">
+        <button class="irCarrito mr-4">
+          {{$t('97')}}
+        </button>
+        <a class="seguirComprando" style="cursor: pointer">
+          {{$t('98')}}
+        </a>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -211,6 +222,7 @@ import FullDisplayHeader from "../components/FullDisplayHeader";
 import Footer from "../components/Footer";
 import $ from "jquery";
 import {mapState} from "vuex";
+import router from "../router";
 
 export default {
   name: "Modelo",
@@ -231,8 +243,12 @@ export default {
   mounted() {
     this.getModel();
     this.goUp();
+    this.changeTitle()
   },
   methods: {
+    changeTitle() {
+      document.querySelector('title').textContent = 'Modelo';
+    },
     async getModel() {
       let response = await fetch('https://proyectogradoback.herokuapp.com/api/modelo?id=' + this.$route.query.id, {
         headers: {"Accept": "application/json", 'Content-Type': 'application/json'}
@@ -276,7 +292,29 @@ export default {
       }
       this.$store.commit('SET_ITEMS_CART_COUNT', (this.$store.state.arrayIdsCompra).length)
       localStorage.setItem("arrayIds", JSON.stringify(this.$store.state.arrayIdsCompra));
-    }
+      this.swalIrcarrito();
+    },
+    swalIrcarrito(){
+      let that = this
+
+      this.$swal({
+        customClass: 'swalIrCarrito',
+        html: $('.swalIrCarrito').html(),
+        showCancelButton: false,
+        showConfirmButton: false,
+        allowOutsideClick: true,
+        showCloseButton:true,
+        didOpen: function () {
+          $(".swalIrCarrito .irCarrito").click(function () {
+            that.$swal.close()
+            router.push({ path: '/cesta'});
+          });
+          $(".swalIrCarrito .seguirComprando").click(function () {
+            that.$swal.close()
+          });
+        }
+      });
+    },
 
   },
 
@@ -496,6 +534,28 @@ export default {
   font-size: 1.4em;
   cursor: pointer;
   color: darkred;
+}
+
+.swalIrCarrito{
+  display: none;
+}
+
+.irCarrito{
+  background-color: red;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  font-weight: bold;
+  transition: background-color 0.5s ease;
+}
+
+.irCarrito:hover{
+  background-color: darkred;
+}
+
+.seguirComprando{
+  color: red;
+  font-weight: bold;
 }
 
 @media (max-width: 600px) {

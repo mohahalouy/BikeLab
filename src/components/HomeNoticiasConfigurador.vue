@@ -152,7 +152,7 @@
       },
       async sendEmail() {
         let data=new FormData()
-        data.append('email',)
+        data.append('email','mohamedjuanra1@gmail.com')
         await fetch('https://proyectogradoback.herokuapp.com/api/sendEmail', {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
