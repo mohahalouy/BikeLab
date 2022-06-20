@@ -97,7 +97,7 @@
             </p>
           </div>
           <div class="text-left" style="width: 220px;">
-            <p v-if="this.dataPedido[0].order_shipping_type===1 && this.dataPedido[0].totalCesta<100" class="d-flex justify-content-between" ><span>Gastos de Envio</span> <span >7,50€</span></p>
+            <p v-if="this.dataPedido[0].order_shipping_type===1 && this.dataPedido[0].totalCesta<100" class="d-flex justify-content-between" ><span>{{$t('129')}}</span> <span >7,50€</span></p>
             <p v-else class="d-flex justify-content-between" ><span>{{$t('129')}}</span> <span >0,00€</span></p>
             <p v-if="this.dataPedido[0].order_shipping_type===1 && this.dataPedido[0].totalCesta<100"
                class="d-flex justify-content-between">

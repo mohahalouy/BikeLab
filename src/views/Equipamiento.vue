@@ -6,6 +6,10 @@
     </div>
     <section  class="equipamiento">
       <div class="d-flex" style="justify-content: space-evenly">
+        <a @click="$router.go(-1)" class="returnButton">
+          <font-awesome-icon :icon="[ 'fas', 'arrow-left' ]" class="ml-2"/>
+          {{ $t('85') }}
+        </a>
         <div v-if="cargado" class="containerSlider" >
 
           <!-- Full-width images with number text -->
@@ -478,5 +482,13 @@ export default {
 .seguirComprando{
   color: red;
   font-weight: bold;
+}
+
+.returnButton{
+  text-decoration: none;
+  font-size: 1.4em;
+  cursor: pointer;
+  color: darkred;
+  align-self: flex-start;
 }
 </style>

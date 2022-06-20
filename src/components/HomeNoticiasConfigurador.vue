@@ -110,7 +110,7 @@
 
       <section class="newsletter mt-3 mx-0 row w-100">
         <p class="my-0 mx-2 mx-md-0 col-12 col-md-4 p-0">{{$t('38')}}</p>
-        <a class="buttonNewsletter col-6 col-md-3">
+        <a  @click="sendEmail" class="buttonNewsletter col-6 col-md-3">
           {{$t('14')}}
         </a>
       </section>
@@ -149,6 +149,16 @@
         this.dataNoticias=content;
 
         this.cargadoNoticias=true;
+      },
+      async sendEmail() {
+        let data=new FormData()
+        data.append('email',)
+        await fetch('https://proyectogradoback.herokuapp.com/api/sendEmail', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          credentials: 'include',
+          body: data
+        });
       }
   }
   }

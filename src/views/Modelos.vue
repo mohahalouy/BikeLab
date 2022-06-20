@@ -4,10 +4,7 @@
     <div class="fullDisplayHeader">
       <FullDisplayHeader></FullDisplayHeader>
     </div>
-    <section v-if="cargado" class="todosModelos px-2 py-5" data-aos="zoom-in-up"
-             data-aos-easing="ease-in-back"
-             data-aos-offset="0"
-             data-aos-duration="500">
+    <section v-if="cargado" class="todosModelos px-2 py-5">
       <h1>
         {{$t('94')}}
       </h1>
@@ -33,6 +30,14 @@
             </div>
           </div>
         </div>
+      </div>
+    </section>
+    <section v-else class="todosModelos d-flex justify-content-center">
+      <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
       </div>
     </section>
 
