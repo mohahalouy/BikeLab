@@ -16,9 +16,10 @@
         <!--            <img href="" src="../assets/banderaInglaterra.png" alt="en">-->
         <!--          </div>-->
       </div>
-      <span style="border: 1px solid white" class="mx-2"></span>
+      <span class="mx-2 separadorHeader"></span>
       <button v-if="!authenticated" @click="showAlert" class="buttonAccess">{{$t('8')}}</button>
       <button v-if="adminUser" @click="showAlertAdmin" class="buttonAccess mr-2">{{$t('9')}}</button>
+      <span class="mx-2 separadorHeader"></span>
       <button v-if="authenticated" @click="logout" class="buttonAccess">{{$t('10')}}</button>
       <div class="carritoCompra">
         <router-link to="/cesta">
@@ -56,11 +57,11 @@
           <a href="" @click="verTypesEquipamiento">{{ $t('2') }}</a>
         </li>
         <li class="my-3">
-          <a href="">{{ $t('3') }}</a>
+          <router-link to="/noticias"> {{ $t('3') }}</router-link>
         </li>
-        <li class="my-3">
-          <a href="">{{ $t('4') }}</a>
-        </li>
+<!--        <li class="my-3">-->
+<!--          <a href="">{{ $t('4') }}</a>-->
+<!--        </li>-->
       </ul>
     </nav>
     <div class="login" style='display: none'>
@@ -305,41 +306,11 @@ export default {
         }
       });
     },
-    async reconectUser() {
-      $('.loading').show()
-      $('body').addClass('noScrollBody')
-
-      try {
-        let response = await fetch('http://localhost:8000/api/user', {
-          headers: {"Accept": "application/json", 'Content-Type': 'application/json'},
-          credentials: 'include'
-        });
-        $('.loading').hide()
-        $('body').removeClass('noScrollBody')
-        if (response.ok) {
-          let content = await response.json();
-
-          let permisosAdmin = await content.rol === "1" ? true : false;
-
-          await this.$store.commit('SET_NOMBRE_USER', content.name)
-
-          await this.$store.commit('SET_ADMIN', permisosAdmin)
-
-          await this.$store.commit('SET_AUTH', true)
-        } else {
-          await this.$store.commit('SET_AUTH', false)
-        }
-
-      } catch (e) {
-        await this.$store.commit('SET_AUTH', false)
-      }
-
-    },
     async loginUser() {
       $('.loading').show()
       $('body').addClass('noScrollBody')
       $('#app').removeClass('difuminated')
-      $('#app').css('z-index', 1061);
+      $('.swalRegistro .formulario').hide()
       try {
         let response = await fetch('http://localhost:8000/api/login', {
           method: 'POST',
@@ -349,13 +320,19 @@ export default {
         });
         $('.loading').hide()
         $('body').removeClass('noScrollBody')
-        $('#app').css('z-index', 0);
+        $('.swalRegistro .formulario').show()
         if (response.ok) {
           let content = await response.json();
 
           let permisosAdmin = await content.rol === "1" ? true : false;
 
           await this.$store.commit('SET_NOMBRE_USER', content.name)
+
+          await this.$store.commit('SET_ID_USER', content.id)
+
+          await this.$store.commit('SET_EMAIL_USER', content.email)
+
+          await this.$store.commit('SET_DATOS_CARGADOS', true)
 
           await this.$store.commit('SET_ADMIN', permisosAdmin)
 
@@ -367,6 +344,7 @@ export default {
           this.setErrorFor($('.swalRegistro .formulario .signinBx .password'), 'Invalid or incorrect');
           await this.$store.commit('SET_AUTH', false)
           $('#app').addClass('difuminated')
+          $('.swalRegistro .formulario').show()
 
         }
       } catch (e) {
@@ -398,6 +376,12 @@ export default {
       });
       await this.$store.commit('SET_NOMBRE_USER', '')
 
+      await this.$store.commit('SET_ID_USER', 0)
+
+      await this.$store.commit('SET_EMAIL_USER', "")
+
+      await this.$store.commit('SET_DATOS_CARGADOS', false)
+
       await this.$store.commit('SET_AUTH', false)
 
       await this.$store.commit('SET_ADMIN', false)
@@ -416,19 +400,19 @@ export default {
         didOpen: function () {
           $(".menuTypeClothing .buttonRopaHombre").click(function () {
             that.$swal.close()
-            router.push({ path: 'equipamientos', query: { tipoArticulo: 'ropaHombre' }}).catch(()=>{});
+            router.push({ path: '/equipamientos', query: { tipoArticulo: 'ropaHombre' }}).catch(()=>{});
           });
           $(".menuTypeClothing .buttonRopaMujer").click(function () {
             that.$swal.close()
-            router.push({ path: 'equipamientos', query: { tipoArticulo: 'ropaMujer' }}).catch(()=>{});
+            router.push({ path: '/equipamientos', query: { tipoArticulo: 'ropaMujer' }}).catch(()=>{});
           });
           $(".menuTypeClothing .buttonRopaNinio").click(function () {
             that.$swal.close()
-            router.push({ path: 'equipamientos', query: { tipoArticulo: 'ropaNinio' }}).catch(()=>{});
+            router.push({ path: '/equipamientos', query: { tipoArticulo: 'ropaNinio' }}).catch(()=>{});
           });
           $(".menuTypeClothing .buttonAccesorios").click(function () {
             that.$swal.close()
-            router.push({ path: 'equipamientos', query: { tipoArticulo: 'accesorios' }}).catch(()=>{});
+            router.push({ path: '/equipamientos', query: { tipoArticulo: 'accesorios' }}).catch(()=>{});
           });
         }
       });
@@ -448,8 +432,8 @@ export default {
   justify-content: center;
 }
 
-.nav > ul > li > a {
-  color: white;
+.fullDisplayHeader .nav > ul > li > a {
+  color: white !important;
   text-decoration: none;
   font-size: 1.11111em;
   font-weight: 700;
@@ -550,6 +534,14 @@ export default {
   background-color: rgb(255 255 255 / 50%);
   cursor: pointer;
   animation: animationDown 1s forwards;
+}
+
+.home .separadorHeader{
+  border: 1px solid white;
+}
+
+.separadorHeader{
+  border: 1px solid black;
 }
 
 @keyframes animationDown {

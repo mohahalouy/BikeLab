@@ -16,10 +16,21 @@
         <!--            <img href="" src="../assets/banderaInglaterra.png" alt="en">-->
         <!--          </div>-->
       </div>
-      <span style="border: 1px solid white" class="mx-2"></span>
-      <button v-if="!authenticated" @click="showAlert" class="buttonAccess">{{$t('8')}}</button>
-      <button v-if="adminUser" @click="showAlertAdmin" class="buttonAccess mr-2">{{$t('9')}}</button>
-      <button v-if="authenticated" @click="logout" class="buttonAccess">{{$t('10')}}</button>
+      <span class="mx-2 separadorHeader"></span>
+      <button v-if="!authenticated" @click="showAlert" class="buttonAccess">{{ $t('8') }}</button>
+      <button v-if="adminUser" @click="showAlertAdmin" class="buttonAccess mr-2">{{ $t('9') }}</button>
+      <div class="editarUser">
+        <font-awesome-icon v-if="authenticated" @click="showOptionsUser" :icon="[ 'fa', 'user' ]"/>
+        <div class="containerOptionsUser">
+          <div class="userArrow-up"></div>
+          <div class="optionsUser">
+            <router-link to="/editarDatos">{{$t('138')}}</router-link>
+            <router-link to="/verPedidos">{{$t('139')}}</router-link>
+          </div>
+        </div>
+      </div>
+      <span class="mx-2 separadorHeader"></span>
+      <button v-if="authenticated" @click="logout" class="buttonAccess">{{ $t('10') }}</button>
       <div class="carritoCompra">
         <router-link to="/cesta">
           <svg xmlns="http://www.w3.org/2000/svg" version="1.0"
@@ -55,9 +66,9 @@
           <li class="mr-5">
             <router-link to="/noticias"> {{ $t('3') }}</router-link>
           </li>
-          <li class="mr-5">
-            <a href="">{{ $t('4') }}</a>
-          </li>
+<!--          <li class="mr-5">-->
+<!--            <a href="">{{ $t('4') }}</a>-->
+<!--          </li>-->
         </ul>
       </nav>
       <aside class="d-flex align-items-center">
@@ -131,8 +142,8 @@ export default {
     'countItemsCart'
   ]),
   mounted() {
-    this.comprobarIdioma()
     this.reconectUser();
+    this.comprobarIdioma()
     this.getIdsLocalStore();
   },
   methods: {
@@ -158,6 +169,9 @@ export default {
       $('.otherLanguage').append(nombre, bandera)
 
       this.$store.commit('SET_IDIOMA', i18n.locale)
+    },
+    showOptionsUser() {
+      $('.editarUser .containerOptionsUser').toggleClass('d-flex')
     },
     activateMenu() {
       $('.header').fadeToggle();
@@ -264,6 +278,9 @@ export default {
           this.setErrorFor(userName, 'El nombre del usuario no puede estar en blanco');
         else
           this.setErrorFor(userName, 'UserName cannot be blank');
+      } else {
+        userName.parent().removeClass('error')
+        userName.parent().addClass('success')
       }
 
 
@@ -279,6 +296,9 @@ export default {
           this.setErrorFor(email, 'El email no es valido');
         else
           this.setErrorFor(email, 'Not a valid email');
+      } else {
+        email.parent().removeClass('error')
+        email.parent().addClass('success')
       }
 
       if (passwordConfirmValue === '') {
@@ -304,6 +324,11 @@ export default {
           this.setErrorFor(password, 'Password isn´t same');
           this.setErrorFor(passwordConfirm, 'Password isn´t same');
         }
+      } else {
+        password.parent().removeClass('error')
+        password.parent().addClass('success')
+        passwordConfirm.parent().removeClass('error')
+        passwordConfirm.parent().addClass('success')
       }
 
 
@@ -353,6 +378,7 @@ export default {
       });
     },
     async reconectUser() {
+      $('html, body').animate({scrollTop: 0}, 500);
       $('.loading').show()
       $('body').addClass('noScrollBody')
 
@@ -370,6 +396,12 @@ export default {
 
           await this.$store.commit('SET_NOMBRE_USER', content.name)
 
+          await this.$store.commit('SET_ID_USER', content.id)
+
+          await this.$store.commit('SET_EMAIL_USER', content.email)
+
+          await this.$store.commit('SET_DATOS_CARGADOS', true)
+
           await this.$store.commit('SET_ADMIN', permisosAdmin)
 
           await this.$store.commit('SET_AUTH', true)
@@ -386,7 +418,7 @@ export default {
       $('.loading').show()
       $('body').addClass('noScrollBody')
       $('#app').removeClass('difuminated')
-      $('#app').css('z-index', 1061);
+      $('.swalRegistro .formulario').hide()
       try {
         let response = await fetch('http://localhost:8000/api/login', {
           method: 'POST',
@@ -396,13 +428,19 @@ export default {
         });
         $('.loading').hide()
         $('body').removeClass('noScrollBody')
-        $('#app').css('z-index', 0);
+        $('.swalRegistro .formulario').show()
         if (response.ok) {
           let content = await response.json();
 
           let permisosAdmin = await content.rol === "1" ? true : false;
 
           await this.$store.commit('SET_NOMBRE_USER', content.name)
+
+          await this.$store.commit('SET_ID_USER', content.id)
+
+          await this.$store.commit('SET_EMAIL_USER', content.email)
+
+          await this.$store.commit('SET_DATOS_CARGADOS', true)
 
           await this.$store.commit('SET_ADMIN', permisosAdmin)
 
@@ -414,6 +452,7 @@ export default {
           this.setErrorFor($('.swalRegistro .formulario .signinBx .password'), 'Invalid or incorrect');
           await this.$store.commit('SET_AUTH', false)
           $('#app').addClass('difuminated')
+          $('.swalRegistro .formulario').show()
 
         }
       } catch (e) {
@@ -445,6 +484,12 @@ export default {
       });
       await this.$store.commit('SET_NOMBRE_USER', '')
 
+      await this.$store.commit('SET_ID_USER', 0)
+
+      await this.$store.commit('SET_EMAIL_USER', "")
+
+      await this.$store.commit('SET_DATOS_CARGADOS', false)
+
       await this.$store.commit('SET_AUTH', false)
 
       await this.$store.commit('SET_ADMIN', false)
@@ -452,12 +497,12 @@ export default {
       $('body').removeClass('noScrollBody')
     },
     getIdsLocalStore() {
-      if(JSON.parse(localStorage.getItem('arrayIds'))!=null){
+      if (JSON.parse(localStorage.getItem('arrayIds')) != null) {
         this.$store.commit('SET_ITEMS_CART_ID', JSON.parse(localStorage.getItem('arrayIds')))
         this.$store.commit('SET_ITEMS_CART_COUNT', JSON.parse(localStorage.getItem('arrayIds')).length)
       }
     },
-    verTypesEquipamiento(){
+    verTypesEquipamiento() {
       event.preventDefault();
       let that = this
       this.$swal({
@@ -466,22 +511,27 @@ export default {
         showCancelButton: false,
         showConfirmButton: false,
         allowOutsideClick: true,
+        showCloseButton: true,
         didOpen: function () {
           $(".menuTypeClothing .buttonRopaHombre").click(function () {
             that.$swal.close()
-            router.push({ path: '/equipamientos', query: { tipoArticulo: 'ropaHombre' }}).catch(()=>{});
+            router.push({path: '/equipamientos', query: {tipoArticulo: 'ropaHombre'}}).catch(() => {
+            });
           });
           $(".menuTypeClothing .buttonRopaMujer").click(function () {
             that.$swal.close()
-            router.push({ path: '/equipamientos', query: { tipoArticulo: 'ropaMujer' }}).catch(()=>{});
+            router.push({path: '/equipamientos', query: {tipoArticulo: 'ropaMujer'}}).catch(() => {
+            });
           });
           $(".menuTypeClothing .buttonRopaNinio").click(function () {
             that.$swal.close()
-            router.push({ path: '/equipamientos', query: { tipoArticulo: 'ropaNinio' }}).catch(()=>{});
+            router.push({path: '/equipamientos', query: {tipoArticulo: 'ropaNinio'}}).catch(() => {
+            });
           });
           $(".menuTypeClothing .buttonAccesorios").click(function () {
             that.$swal.close()
-            router.push({ path: '/equipamientos', query: { tipoArticulo: 'accesorios' }}).catch(()=>{});
+            router.push({path: '/equipamientos', query: {tipoArticulo: 'accesorios'}}).catch(() => {
+            });
           });
         }
       });
@@ -510,32 +560,17 @@ export default {
 }
 
 .nav > ul > li > a {
-  color: white;
+  color: black;
   text-decoration: none;
   font-size: 1.11em;
   font-weight: 700;
   text-transform: uppercase;
 }
 
-.modelos .nav > ul > li > a {
-  color: black;
+.home .nav > ul > li > a{
+  color: white;
 }
 
-.noticias .nav > ul > li > a {
-  color: black;
-}
-
-.containerEquipamiento .nav > ul > li > a {
-  color: black;
-}
-
-.equipamientoContainer .nav > ul > li > a {
-  color: black;
-}
-
-.noticiasContainer .nav > ul > li > a {
-  color: black;
-}
 .idiomas {
   display: flex;
   align-items: center;
@@ -549,6 +584,45 @@ export default {
   border-radius: 10px;
   background: red;
   color: white;
+}
+
+.editarUser {
+  align-self: center;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  color: black;
+}
+
+.editarUser .containerOptionsUser {
+  display: none;
+  flex-direction: column;
+  top: 20px;
+  position: absolute;
+  width: max-content;
+  align-items: center;
+
+}
+
+.editarUser .containerOptionsUser .optionsUser {
+  display: flex;
+  flex-direction: column;
+  background-color: #eaeaea;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.editarUser .containerOptionsUser .optionsUser a {
+  color: black;
+}
+
+.userArrow-up {
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid black;
 }
 
 .toggleMenu {
@@ -661,6 +735,14 @@ export default {
   position: absolute;
   top: -8px;
   left: 17px;
+}
+
+.home .separadorHeader{
+  border: 1px solid white;
+}
+
+.separadorHeader{
+  border: 1px solid black;
 }
 
 @keyframes animationDown {

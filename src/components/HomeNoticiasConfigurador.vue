@@ -1,24 +1,24 @@
   <template>
     <section class="containerNoticiasConfigurador mt-5 mb-5">
-      <section data-aos="fade-up" class="position-relative">
-        <a href="" class="linkNonStyle">
-          <div class="centarPalabras configurador">
-            <p class="m-0 textVisor">Visor 360º</p>
-            <h1 class="m-0 textVisor">Visualiza la moto desde todas las perspectivas</h1>
-          </div>
-          <div class="letrasVisorResponsive">
-            <p class="m-0">Visor 360º</p>
-            <h4 class="m-0">Visualiza la moto desde todas las perspectivas</h4>
-          </div>
-        </a>
-      </section>
+<!--      <section data-aos="fade-up" class="position-relative">-->
+<!--        <a href="" class="linkNonStyle">-->
+<!--          <div class="centarPalabras configurador">-->
+<!--            <p class="m-0 textVisor">Visor 360º</p>-->
+<!--            <h1 class="m-0 textVisor">Visualiza la moto desde todas las perspectivas</h1>-->
+<!--          </div>-->
+<!--          <div class="letrasVisorResponsive">-->
+<!--            <p class="m-0">Visor 360º</p>-->
+<!--            <h4 class="m-0">Visualiza la moto desde todas las perspectivas</h4>-->
+<!--          </div>-->
+<!--        </a>-->
+<!--      </section>-->
 
       <section v-if="cargadoNoticias" class="noticia m-0 mt-3 row w-100">
         <article class="col-12 col-sm-6 col-lg-4 py-3 px-0 px-sm-2 d-flex flex-column" data-aos="zoom-in"
                  data-aos-duration="500"
                  v-for="item in this.dataNoticias" :key="item.id">
           <router-link :to="{ name: 'Noticia', query: { id: item.id }}" class="linkNonStyle">
-            <img class="img-fluid" :src="'http://127.0.0.1:8000/uploads/noticias/'+item.imagen">
+            <img class="img-fluid imgNoticias" :src="'http://127.0.0.1:8000/uploads/noticias/'+item.imagen">
           </router-link>
           <div v-if="idioma==='es'" class="letrasVisorNoticas text-left">
             <p class="">{{ item.fecha }}</p>
@@ -50,7 +50,7 @@
 
       <section class="modelos row mt-3 mx-0 w-100">
         <article data-aos="flip-right" class="col-12 col-md-6 py-3 px-0 px-md-2">
-          <a class="linkNonStyle" href="">
+          <router-link :to="{ name: 'Modelo', query: { id: '1' }}" class="linkNonStyle">
             <div class="modelo centarPalabras" style="background-image: url('http://127.0.0.1:8000/uploads/imgStatic/s1000rrHomeModelos.jpg')">
               <p class="m-0 textVisor letrasVisor" style="font-size: 1.5em;">#GETHYPERSPORT</p>
               <p class="m-0 textVisor letrasVisor">S100rr</p>
@@ -59,19 +59,19 @@
               <p class="mb-0">GET A HYPERSPORT</p>
               <h3 class="">Bike Lab Sport</h3>
             </div>
-          </a>
+          </router-link>
         </article>
         <article data-aos="flip-left" class="col-12 col-md-6 py-3 px-0 px-md-2">
-          <a class="linkNonStyle" href="">
+          <router-link :to="{ name: 'Modelo', query: { id: '3' }}" class="linkNonStyle">
             <div class="modelo centarPalabras" style="background-image: url('http://127.0.0.1:8000/uploads/imgStatic/mt-09HomeModelos.jpg')">
-              <p class="m-0 textVisor letrasVisor" style="font-size: 1.5em;">#GETHYPERNAKED</p>
-              <p class="m-0 textVisor letrasVisor">MT-09 SP</p>
+              <p class="m-0 textVisor letrasVisor" style="font-size: 1.5em;">#GETNAKED</p>
+              <p class="m-0 textVisor letrasVisor">MT-07</p>
             </div>
             <div class="letrasVisorResponsive text-center">
-              <p class="mb-0">GET A HYPERNAKED</p>
+              <p class="mb-0">GET A NAKED</p>
               <h3 class="">Bike Lab NAKED</h3>
             </div>
-          </a>
+          </router-link>
         </article>
       </section>
 
@@ -378,6 +378,12 @@
   .buttonNewsletter:hover:after {
     transform: scaleX(1);
     transition-delay: 1s;
+  }
+
+  .imgNoticias{
+    height: 400px;
+    max-height: 400px;
+    object-fit: cover;
   }
 
 

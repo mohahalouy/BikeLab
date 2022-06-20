@@ -24,7 +24,7 @@ AOS.init({
 
 //libreria icon
 import {library} from '@fortawesome/fontawesome-svg-core'
-import {faInstagram, faTwitter, faFacebook, faTiktok} from "@fortawesome/free-brands-svg-icons";
+import {faInstagram, faTwitter, faFacebook, faTiktok, faCcVisa} from "@fortawesome/free-brands-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 import {
     faArrowUp,
@@ -33,13 +33,22 @@ import {
     faExclamationCircle,
     faCheck,
     faArrowRight,
-    faArrowLeft
+    faArrowLeft,
+    faPhone,
+    faEnvelope,
+    faUser,
+    faCreditCard,
+    faClock,
+    faFileExcel,
+    faLocationArrow,
+    faMoneyBillWave,
 } from '@fortawesome/free-solid-svg-icons'
 import i18n from './i18n'
 import router from './router'
 import store from './store'
 
-library.add(faInstagram, faTwitter, faFacebook, faTiktok, faArrowUp, faAngleDown, faCheckCircle, faExclamationCircle, faCheck, faArrowRight, faArrowLeft)
+library.add(faInstagram, faTwitter, faFacebook, faTiktok, faArrowUp, faAngleDown, faCheckCircle, faExclamationCircle, faCheck, faArrowRight,
+    faArrowLeft, faPhone, faEnvelope, faUser, faCreditCard,faClock,faFileExcel, faLocationArrow,faMoneyBillWave, faCcVisa)
 
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 

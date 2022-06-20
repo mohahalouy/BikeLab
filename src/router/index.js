@@ -11,6 +11,12 @@ import Equipamientos from '../views/Equipamientos'
 import Equipamiento from '../views/Equipamiento'
 import Modelo from '../views/Modelo'
 import Cesta from '../views/Cesta'
+import Checkout from '../views/Checkout'
+import orderReview from '../views/orderReview'
+import Payment from '../views/Payment'
+import Pedidos from '../views/Pedidos'
+import Pedido from '../views/Pedido'
+import editarDatos from '../views/EditarDatosUsuario'
 
 Vue.use(VueRouter)
 
@@ -69,6 +75,36 @@ const routes = [
     path: '/cesta',
     name: 'Cesta',
     component: Cesta
+  },
+  {
+    path: '/checkout',
+    name: 'Checkout',
+    component: Checkout
+  },
+  {
+    path: '/orderReview',
+    name: 'orderReview',
+    component: orderReview
+  },
+  {
+    path: '/payment',
+    name: 'Payment',
+    component: Payment
+  },
+  {
+    path: '/verPedidos',
+    name: 'Pedidos',
+    component: Pedidos
+  },
+  {
+    path: '/pedido/:id',
+    name: 'Pedido',
+    component: Pedido
+  },
+  {
+    path: '/editarDatos',
+    name: 'editarDatos',
+    component: editarDatos
   },
 ]
 

@@ -13,7 +13,9 @@
       >
         <p class="m-0">{{$t('33')}}</p>
         <h1 class="m-0">{{$t('34')}}</h1>
-        <a href=""><div>{{$t('30')}}</div></a>
+        <router-link :to="{ name: 'Modelo', query: { id: '4' }}" class="linkNonStyle">
+          <div>{{$t('30')}}</div>
+        </router-link>
       </b-carousel-slide>
       <b-carousel-slide
           class="h100vh"
@@ -21,13 +23,17 @@
       >
         <p class="m-0">{{$t('31')}}</p>
         <h1 class="m-0">{{$t('32')}}</h1>
-        <a href=""><div>{{$t('30')}}</div></a>
+        <router-link :to="{ name: 'Modelo', query: { id: '5' }}" class="linkNonStyle">
+          <div>{{$t('30')}}</div>
+        </router-link>
       </b-carousel-slide>      <b-carousel-slide
         class="h100vh"
         img-src='http://127.0.0.1:8000/uploads/imgStatic/s1000rrHome.jpg'>
       <p class="m-0">{{$t('28')}}</p>
       <h1 class="m-0">{{$t('29')}}</h1>
-      <a href=""><div>{{$t('30')}}</div></a>
+      <router-link :to="{ name: 'Modelo', query: { id: '1' }}" class="linkNonStyle">
+        <div>{{$t('30')}}</div>
+      </router-link>
     </b-carousel-slide>
 
     </b-carousel>

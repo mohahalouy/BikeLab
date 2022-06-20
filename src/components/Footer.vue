@@ -29,16 +29,16 @@
       </header>
       <section class="footerLinks">
         <ul class="row row-cols-xl-4 m-0 align-items-center">
-          <li class="col-12 col-xl-3 p-0">
+          <li class="col-12 col-xl-4 p-0">
             <router-link to="/modelos"> {{ $t('1') }}</router-link>
           </li>
-          <li class="col-12 col-xl-3 p-0">
+          <li class="col-12 col-xl-4 p-0">
             <a href="" @click="verTypesEquipamiento">{{ $t('2') }}</a>
           </li>
-          <li class="col-12 col-xl-3 p-0">
+          <li class="col-12 col-xl-4 p-0">
             <router-link to="/noticias"> {{ $t('3') }}</router-link>
           </li>
-          <li class="col-12 col-xl-3 p-0"><a class="m-0" href="">{{$t('4')}}</a></li>
+<!--          <li class="col-12 col-xl-3 p-0"><a class="m-0" href="">{{$t('4')}}</a></li>-->
         </ul>
       </section>
       <hr class="lineFooter">
@@ -79,19 +79,19 @@ export default {
         didOpen: function () {
           $(".menuTypeClothing .buttonRopaHombre").click(function () {
             that.$swal.close()
-            router.push({ path: 'equipamientos', query: { tipoArticulo: 'ropaHombre' }}).catch(()=>{});
+            router.push({ path: '/equipamientos', query: { tipoArticulo: 'ropaHombre' }}).catch(()=>{});
           });
           $(".menuTypeClothing .buttonRopaMujer").click(function () {
             that.$swal.close()
-            router.push({ path: 'equipamientos', query: { tipoArticulo: 'ropaMujer' }}).catch(()=>{});
+            router.push({ path: '/equipamientos', query: { tipoArticulo: 'ropaMujer' }}).catch(()=>{});
           });
           $(".menuTypeClothing .buttonRopaNinio").click(function () {
             that.$swal.close()
-            router.push({ path: 'equipamientos', query: { tipoArticulo: 'ropaNinio' }}).catch(()=>{});
+            router.push({ path: '/equipamientos', query: { tipoArticulo: 'ropaNinio' }}).catch(()=>{});
           });
           $(".menuTypeClothing .buttonAccesorios").click(function () {
             that.$swal.close()
-            router.push({ path: 'equipamientos', query: { tipoArticulo: 'accesorios' }}).catch(()=>{});
+            router.push({ path: '/equipamientos', query: { tipoArticulo: 'accesorios' }}).catch(()=>{});
           });
         }
       });

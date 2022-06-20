@@ -10,17 +10,17 @@
         {{$t('85')}}
       </a>
       <div class="containerImgPrice">
-        <video v-if="this.dataModel.nombreEs==='BMW S 1000 RR'" id="video1" loop autoplay muted="muted">
+        <video v-if="this.dataModel.nombreEs==='BMW S 1000 RR 2021'" id="video1" loop autoplay muted="muted">
           <source
               :src="'http://127.0.0.1:8000/uploads/modelos/'+this.dataModel.nombreEs+'/'+this.dataModel.nombreEs+'Portada.mp4'"
               type="video/mp4">
         </video>
-        <picture v-else>
-          <img class="img-fluid"
+        <picture v-else class="w-100">
+          <img class="img-fluid w-100"
                :src="'http://127.0.0.1:8000/uploads/modelos/'+this.dataModel.nombreEs+'/'+this.dataModel.nombreEs+'Portada.jpg'">
         </picture>
         <div class="precioModelo">
-          <h5 v-if="this.idioma==='es'" class="font-weight-bold">{{ this.dataModel.nombreEs }}</h5>
+          <h5 v-if="idioma==='es'" class="font-weight-bold">{{ this.dataModel.nombreEs }}</h5>
           <h5 v-else class="font-weight-bold">{{ this.dataModel.nombreEn }}</h5>
           <h5>{{ $t('86') }}
             {{
@@ -38,13 +38,13 @@
       </div>
 
       <div class="text-dark text-left w-80 textPreview">
-        <h1 v-if="this.idioma==='es'" class="font-weight-bold">{{ this.dataModel.nombreEs }}</h1>
+        <h1 v-if="idioma==='es'" class="font-weight-bold">{{ this.dataModel.nombreEs }}</h1>
         <h1 v-else class="font-weight-bold">{{ this.dataModel.nombreEn }}</h1>
         <div>
-          <h4 v-if="this.idioma==='es'" class="font-weight-bold">{{ this.dataModel.previewEs }}</h4>
+          <h4 v-if="idioma==='es'" class="font-weight-bold">{{ this.dataModel.previewEs }}</h4>
           <h4 v-else class="font-weight-bold">{{ this.dataModel.previewEn }}</h4>
           <div class="textVideo">
-            <div v-if="this.idioma==='es'">{{ this.dataModel.destacadoEs }}</div>
+            <div v-if="idioma==='es'">{{ this.dataModel.destacadoEs }}</div>
             <div v-else>{{ this.dataModel.destacadoEn }}</div>
             <iframe style="width: 40%;" height="315" :src="this.dataModel.enlace" title="YouTube video player"
                     frameborder="0"
@@ -151,7 +151,7 @@
                     </div>
                   </div>
                 </div>
-                <p v-if="this.idioma==='es'" class="text-center">{{ this.dataModel.tipoMotorEs }}</p>
+                <p v-if="idioma==='es'" class="text-center">{{ this.dataModel.tipoMotorEs }}</p>
                 <p v-else class="text-center">{{ this.dataModel.tipoMotorEn }}</p>
               </div>
             </div>
@@ -180,7 +180,7 @@
             <div class="lineaMotor"></div>
           </div>
           <h2 class="text-center">{{$t('92')}}</h2>
-          <div class="position-relative d-flex justify-content-end">
+          <div class="position-relative d-flex justify-content-end w-100">
             <img style="width: 100%;"
                  :src="'http://127.0.0.1:8000/uploads/modelos/'+this.dataModel.nombreEs+'/'+this.dataModel.nombreEs+'-2.jpg'">
             <div class="botonArrancar" @click="arrancarMotor">
@@ -190,8 +190,16 @@
         </div>
       </div>
     </div>
+    <div v-else class="modelo">
+      <div class="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
     <Footer class="footer"></Footer>
-    <audio style="display: none" id="sonidoMotor"
+    <audio v-if="cargado" style="display: none" id="sonidoMotor"
            :src="'http://127.0.0.1:8000/uploads/modelos/sonidoMotor/'+this.dataModel.sonidoMotor" controls>
     </audio>
   </div>
@@ -240,40 +248,34 @@ export default {
     },
     arrancarMotor() {
       $('.botonArrancar').toggleClass('scaleButton')
-      if ($('.botonArrancar').find('span').text() === 'Arrancar motor' && this.idioma==='es') {
-        $('.botonArrancar').find('span').text("Apagar motor")
+      if ($('.botonArrancar').hasClass('scaleButton')) {
+        $('.botonArrancar').find('span').html(this.$t('116'))
         $('#sonidoMotor')[0].play()
-      }else if($('.botonArrancar').find('span').text() === 'Start engine' && this.idioma==='en'){
-        $('.botonArrancar').find('span').text("Stop engine")
-        $('#sonidoMotor')[0].play()
-      }else if ($('.botonArrancar').find('span').text() === 'Apagar motor' && this.idioma==='es') {
-        $('.botonArrancar').find('span').text("Arrancar motor")
-        $('#sonidoMotor')[0].pause()
-      }else if ($('.botonArrancar').find('span').text() === 'Stop engine' && this.idioma==='en') {
-        $('.botonArrancar').find('span').text("Start engine")
+      }else if (!$('.botonArrancar').hasClass('scaleButton')) {
+        $('.botonArrancar').find('span').html(this.$t('93'))
         $('#sonidoMotor')[0].pause()
       }
 
-      document.getElementById('sonidoMotor').addEventListener('ended', function () {
-        $('.botonArrancar').find('span').text("Arrancar motor")
+      let that = this;
+      $('#sonidoMotor').on('ended', function () {
+        $('.botonArrancar').find('span').html(that.$t('93'))
         $('.botonArrancar').removeClass('scaleButton')
       });
     },
     addToCart() {
       let existe=false;
       for (const item in this.$store.state.arrayIdsCompra) {
-        if (parseInt(this.$route.query.id) === parseInt(this.$store.state.arrayIdsCompra[item].id) && this.$store.state.arrayIdsCompra[item].tipoArticulo === 'modelo') {
+        console.log(parseInt(this.$route.query.id))
+        if (parseInt(this.$route.query.id) === parseInt(this.$store.state.arrayIdsCompra[item].id) && this.$store.state.arrayIdsCompra[item].tipoArticulo === 'modelos') {
           existe = true;
-          this.$store.state.arrayIdsCompra[item].cantidad = parseInt(this.$store.state.arrayIdsCompra[item].cantidad) + 1
+          this.$store.state.arrayIdsCompra[item].cantidad ++;
         }
       }
       if (!existe) {
         this.$store.commit('ADD_ITEMS_CART_ID', {id: parseInt(this.$route.query.id) , cantidad: 1, tipoArticulo: 'modelos'})
       }
       this.$store.commit('SET_ITEMS_CART_COUNT', (this.$store.state.arrayIdsCompra).length)
-      console.log(this.$store.state.arrayIdsCompra)
       localStorage.setItem("arrayIds", JSON.stringify(this.$store.state.arrayIdsCompra));
-      console.log(JSON.parse(localStorage.getItem('arrayIds')))
     }
 
   },
@@ -316,6 +318,7 @@ export default {
 .modelo .containerImgPrice {
   position: relative;
   display: flex;
+  width: 100%;
 }
 
 .w-80{
@@ -367,7 +370,7 @@ export default {
   position: absolute;
   top: 50px;
   width: 100%;
-  color: black;
+  color: darkred;
 }
 
 .motorLeft {
@@ -457,8 +460,8 @@ export default {
   justify-content: center;
   align-items: center;
   text-align: center;
-  width: 18%;
-  height: 20%;
+  width: 200px;
+  height: 200px;
   color: gray;
   transition: transform 1s, color 1s;
 }
@@ -564,13 +567,6 @@ export default {
     position: relative;
     width: 100%;
     padding: 20px;
-  }
-}
-
-@media (min-width: 1000px) {
-  .botonArrancar {
-    width: 22%;
-    height: 24%;
   }
 }
 

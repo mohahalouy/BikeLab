@@ -6,7 +6,7 @@
     </div>
     <section  class="equipamiento">
       <div class="d-flex" style="justify-content: space-evenly">
-        <div class="containerSlider" style="display: none">
+        <div v-if="cargado" class="containerSlider" >
 
           <!-- Full-width images with number text -->
           <div class="mySlides">
@@ -17,19 +17,19 @@
             <img :src="'http://127.0.0.1:8000/uploads/equipamiento/id'+this.dataEquipamiento.id+'/2.jpg'" style="width:100%">
           </div>
 
-          <div class="mySlides">
+          <div v-if="this.dataEquipamiento.tipoArticulo!='ropaNinio'" class="mySlides">
             <img :src="'http://127.0.0.1:8000/uploads/equipamiento/id'+this.dataEquipamiento.id+'/3.jpg'" style="width:100%">
           </div>
 
-          <div class="mySlides">
+          <div v-if="this.dataEquipamiento.tipoArticulo!='ropaNinio'" class="mySlides">
             <img :src="'http://127.0.0.1:8000/uploads/equipamiento/id'+this.dataEquipamiento.id+'/4.jpg'" style="width:100%">
           </div>
 
-          <div class="mySlides">
+          <div v-if="this.dataEquipamiento.tipoArticulo!='ropaNinio'" class="mySlides">
             <img :src="'http://127.0.0.1:8000/uploads/equipamiento/id'+this.dataEquipamiento.id+'/5.jpg'" style="width:100%">
           </div>
 
-          <div class="mySlides">
+          <div v-if="this.dataEquipamiento.tipoArticulo!='ropaNinio'" class="mySlides">
             <img :src="'http://127.0.0.1:8000/uploads/equipamiento/id'+this.dataEquipamiento.id+'/6.jpg'" style="width:100%">
           </div>
 
@@ -45,16 +45,16 @@
             <div class="column">
               <img class="demo cursor" :src="'http://127.0.0.1:8000/uploads/equipamiento/id'+this.dataEquipamiento.id+'/2.jpg'" style="width:100%" @click="currentSlide(2)">
             </div>
-            <div class="column">
+            <div v-if="this.dataEquipamiento.tipoArticulo!='ropaNinio'" class="column">
               <img class="demo cursor" :src="'http://127.0.0.1:8000/uploads/equipamiento/id'+this.dataEquipamiento.id+'/3.jpg'" style="width:100%" @click="currentSlide(3)" >
             </div>
-            <div class="column">
+            <div v-if="this.dataEquipamiento.tipoArticulo!='ropaNinio'" class="column">
               <img class="demo cursor" :src="'http://127.0.0.1:8000/uploads/equipamiento/id'+this.dataEquipamiento.id+'/4.jpg'" style="width:100%" @click="currentSlide(4)" >
             </div>
-            <div class="column">
+            <div v-if="this.dataEquipamiento.tipoArticulo!='ropaNinio'" class="column">
               <img class="demo cursor" :src="'http://127.0.0.1:8000/uploads/equipamiento/id'+this.dataEquipamiento.id+'/5.jpg'" style="width:100%" @click="currentSlide(5)">
             </div>
-            <div class="column">
+            <div v-if="this.dataEquipamiento.tipoArticulo!='ropaNinio'" class="column">
               <img class="demo cursor" :src="'http://127.0.0.1:8000/uploads/equipamiento/id'+this.dataEquipamiento.id+'/6.jpg'" style="width:100%" @click="currentSlide(6)">
             </div>
           </div>
@@ -62,12 +62,13 @@
         <div v-if="cargado" class="d-flex flex-column" style="gap: 20px;max-width: 30%;">
           <p v-if="idioma==='es'" class="font-weight-bold" style="font-size: 26px;"> {{this.dataEquipamiento.nombreEs}}</p>
           <p v-else class="font-weight-bold" style="font-size: 26px;"> {{this.dataEquipamiento.nombreEn}}</p>
-          <p>{{this.dataEquipamiento.codigoArticulo}}</p>
+          <p>Ref: {{this.dataEquipamiento.codigoArticulo}}</p>
           <div class="d-flex" style="justify-content: space-evenly">
             <div v-for="(item,index) in (this.dataEquipamiento.tallas).split(',')" :key="index" class="tallas" @click="selectTalla">
               {{item}}
             </div>
           </div>
+          <span class="text-danger errorTalla" style="display: none">Debes seleccionar la talla</span>
           <a class="d-flex text-dark text-decoration-none" style="width: fit-content" href="https://www.bragard.com/img/cms/CMS/guide-des-tailles/es.pdf" target="_blank">
             <svg class="mr-2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1"
                  x="0px" y="0px" viewBox="0 0 56 56" style="enable-background:new 0 0 56 56;" xml:space="preserve" width="20px" height="20px">
@@ -167,6 +168,17 @@
       </div>
     </div>
     <Footer class="footer"></Footer>
+    <div class="swalIrCarrito">
+      <p class="text-left text-dark">{{$t('96')}}</p>
+      <div class="d-flex align-items-center">
+        <button class="irCarrito mr-4">
+          {{$t('97')}}
+        </button>
+        <a class="seguirComprando" style="cursor: pointer">
+          {{$t('98')}}
+        </a>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -176,6 +188,7 @@ import FullDisplayHeader from "../components/FullDisplayHeader";
 import Footer from "../components/Footer";
 import $ from "jquery";
 import {mapState} from "vuex";
+import router from "../router";
 
 export default {
   name: "Equipamiento",
@@ -198,7 +211,6 @@ export default {
 
   mounted() {
     this.getEquipamiento();
-    this.showSlides(this.slideIndex)
     },
   methods:{
     async getEquipamiento() {
@@ -209,7 +221,9 @@ export default {
       this.dataEquipamiento = content
       if (await response.status === 200){
         this.cargado = true
-        $('.containerSlider').show()
+        this.$nextTick(function () {
+          this.showSlides(this.slideIndex)
+        })
       }
 
     },
@@ -220,19 +234,53 @@ export default {
     },
     addToCart() {
       let existe = false;
+      if ($('.tallas.active').length > 0) {
+        $('.errorTalla').hide()
         for (const item in this.$store.state.arrayIdsCompra) {
-          if (parseInt(this.$route.params.id) === parseInt(this.$store.state.arrayIdsCompra[item].id) && this.$store.state.arrayIdsCompra[item].tipoArticulo === 'equipamiento') {
+          if (parseInt(this.$store.state.arrayIdsCompra[item].id) === parseInt(this.$route.params.id)
+              && this.$store.state.arrayIdsCompra[item].tipoArticulo === 'equipamiento'
+              && this.$store.state.arrayIdsCompra[item].talla === this.talla) {
             existe = true;
             this.$store.state.arrayIdsCompra[item].cantidad = parseInt(this.$store.state.arrayIdsCompra[item].cantidad) + 1
           }
         }
         if (!existe) {
-          this.$store.commit('ADD_ITEMS_CART_ID', {id:  parseInt(this.$route.params.id), cantidad: 1, tipoArticulo: 'equipamiento', talla:this.talla})
+          this.$store.commit('ADD_ITEMS_CART_ID', {
+            id: parseInt(this.$route.params.id),
+            cantidad: 1,
+            tipoArticulo: 'equipamiento',
+            talla: this.talla
+          })
         }
         this.$store.commit('SET_ITEMS_CART_COUNT', (this.$store.state.arrayIdsCompra).length)
-        console.log(this.$store.state.arrayIdsCompra)
         localStorage.setItem("arrayIds", JSON.stringify(this.$store.state.arrayIdsCompra));
-        console.log(JSON.parse(localStorage.getItem('arrayIds')))
+
+        this.swalIrcarrito();
+      } else {
+        $('.errorTalla').show()
+      }
+
+    },
+    swalIrcarrito(){
+      let that = this
+
+      this.$swal({
+        customClass: 'swalIrCarrito',
+        html: $('.swalIrCarrito').html(),
+        showCancelButton: false,
+        showConfirmButton: false,
+        allowOutsideClick: true,
+        showCloseButton:true,
+        didOpen: function () {
+          $(".swalIrCarrito .irCarrito").click(function () {
+            that.$swal.close()
+            router.push({ path: '/cesta'});
+          });
+          $(".swalIrCarrito .seguirComprando").click(function () {
+            that.$swal.close()
+          });
+        }
+      });
     },
     plusSlides(n) {
       this.showSlides(this.slideIndex += n);
@@ -286,48 +334,6 @@ export default {
   text-align: left;
   flex-direction: column;
   align-items: center;
-}
-
-.lds-ring {
-  display: inline-block;
-  position: relative;
-  width: 80px;
-  height: 80px;
-  color: red;
-}
-
-.lds-ring div {
-  box-sizing: border-box;
-  display: block;
-  position: absolute;
-  width: 64px;
-  height: 64px;
-  margin: 8px;
-  border: 8px solid red;
-  border-radius: 50%;
-  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: red transparent transparent transparent;
-}
-
-.lds-ring div:nth-child(1) {
-  animation-delay: -0.45s;
-}
-
-.lds-ring div:nth-child(2) {
-  animation-delay: -0.3s;
-}
-
-.lds-ring div:nth-child(3) {
-  animation-delay: -0.15s;
-}
-
-@keyframes lds-ring {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
 }
 
 .tallas{
@@ -450,5 +456,27 @@ export default {
 
 .column .demo{
   height: 130px;
+}
+
+.swalIrCarrito{
+  display: none;
+}
+
+.irCarrito{
+  background-color: red;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  font-weight: bold;
+  transition: background-color 0.5s ease;
+}
+
+.irCarrito:hover{
+  background-color: darkred;
+}
+
+.seguirComprando{
+  color: red;
+  font-weight: bold;
 }
 </style>

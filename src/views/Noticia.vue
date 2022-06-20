@@ -4,7 +4,7 @@
     <div class="fullDisplayHeader">
       <FullDisplayHeader></FullDisplayHeader>
     </div>
-    <section v-if="cargadoNoticias" class="noticia">
+    <section v-if="cargadoNoticias" class="noticia mb-5">
       <a @click="$router.go(-1)" class="returnButton">
         <font-awesome-icon :icon="[ 'fas', 'arrow-left' ]" class="ml-2"/>
        {{$t('85')}}

@@ -167,6 +167,9 @@ export default {
 .modelo > div > div > div > div img {
   padding: 10px 0;
   transition: transform 0.5s;
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
 }
 
 .modelo > div > div > div > div:hover img {

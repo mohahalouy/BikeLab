@@ -5,19 +5,27 @@
       <FullDisplayHeader></FullDisplayHeader>
     </div>
     <section class="itemsCesta">
-      <div v-if="this.dataCesta.length<=0">
+      <div v-if="!this.cargadoCesta">
+        <div class="lds-ring">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+      <div v-else-if="this.dataCesta.length<=0">
         <p>{{$t('65')}}</p>
       </div>
       <div v-else>
         <p class="align-self-start font-weight-bold">{{$t('66')}}</p>
         <div v-for="(item,index) in this.dataCesta" :key="index" class="item">
           <span class="removeItem" :data-id="item.id" :data-tipo="item.tipoCesta" @click="removeItem">&#10005;</span>
-          <picture  v-if="item.tipoCesta==='modelos'" class="imgNoticia" >
+          <picture  v-if="item.tipoCesta==='modelos'" class="imgCompra" >
             <router-link :to="{ name: 'Modelo', query: { id: item.id }}" class="linkNonStyle">
               <img class="img-fluid" :src="'http://127.0.0.1:8000/uploads/'+item.tipoCesta+'/imagenes/'+item.imagen">
             </router-link>
           </picture>
-          <picture  v-else class="imgNoticia" >
+          <picture  v-else class="imgCompra" >
             <router-link :to="{ name: 'Equipamiento', params: { id:item.id, nombreProducto: item.nombreEs }}"  class="linkNonStyle">
             <img class="img-fluid" :src="'http://127.0.0.1:8000/uploads/'+item.tipoCesta+'/imagenes/'+item.imagen">
             </router-link>
@@ -135,11 +143,14 @@
               }}
             </span>
           </div>
-          <button class="btnContinuar">{{$t('75')}}</button>
+          <button class="btnContinuar" @click="finishBuying">{{$t('75')}}</button>
         </div>
       </div>
     </section>
     <Footer class="footer"></Footer>
+    <div v-if="!authenticated" class="login" style='display: none'>
+      <login></login>
+    </div>
   </div>
 </template>
 
@@ -147,27 +158,44 @@
 import HeaderPrincipal from "../components/HeaderPrincipal";
 import FullDisplayHeader from "../components/FullDisplayHeader";
 import Footer from "../components/Footer";
+import Login from "../components/Login";
 import {mapState} from "vuex";
 import $ from 'jquery';
+// import moment from 'moment'
+import i18n from "../i18n";
+import router from "../router";
 
 export default {
   name: "Cesta",
   components: {
     HeaderPrincipal,
     FullDisplayHeader,
-    Footer
+    Footer,
+    Login
   },
   data: function () {
     return {
       dataCesta:[],
+      cargadoCesta:false,
       totalCesta:0,
       totalEnvio:0,
-      entregaDomicilio:true
+      entregaDomicilio:true,
+      dataLogin: {
+        email: '',
+        password: ''
+      },
+      dataRegister: {
+        name: '',
+        email: '',
+        password: ''
+      }
     }
   },
   computed: mapState([
     'arrayIdsCompra',
-    'idioma'
+    'idioma',
+    'authenticated',
+    'idUser'
   ]),
   mounted() {
     this.getArticulo()
@@ -275,7 +303,8 @@ export default {
 
       this.dataCesta = await response.json()
 
-      console.log(this.dataCesta)
+      this.cargadoCesta=true;
+
       this.calcularTotal()
     },
     calcularTotal(){
@@ -298,7 +327,219 @@ export default {
       else
         this.entregaDomicilio = false;
       this.calcularTotal()
-    }
+    },
+    showAlertLoginRegister() {
+      let that = this
+      this.$swal({
+        customClass: 'swalRegistro',
+        html: $('.login').html(),
+        showCancelButton: false,
+        showConfirmButton: false,
+        allowOutsideClick: true,
+        didOpen: function () {
+          $('#app').addClass('difuminated')
+          $("section.formulario .signin, section.formulario .signup").on("click", function () {
+            $('section.formulario, section.formulario .container').toggleClass('active')
+          });
+
+          $(".signinBx form").submit(function () {
+            that.validateLogin(event)
+          });
+          $(".signupBx form").submit(function () {
+            that.validateCreate(event)
+          });
+        },
+        didClose: function () {
+          $('#app').removeClass('difuminated')
+          $('section.formulario, section.formulario .container').removeClass('active');
+        }
+      });
+    },
+    validateLogin(e) {
+      e.preventDefault();
+      let valido = true;
+      let email = $('.swalRegistro .formulario .signinBx .email')
+      let password = $('.swalRegistro .formulario .signinBx .password')
+      let emailValue = email[0].value.trim()
+      let passwordValue = password[0].value.trim()
+      if (emailValue === '') {
+        valido = false;
+        if (i18n.locale === 'es')
+          this.setErrorFor(email, 'El email no puede estar en blanco');
+        else
+          this.setErrorFor(email, 'Email cannot be blank');
+
+      } else if (!this.isEmail(emailValue)) {
+        valido = false;
+        if (i18n.locale === 'es')
+          this.setErrorFor(email, 'El email no es valido');
+        else
+          this.setErrorFor(email, 'Not a valid email');
+      }
+
+      if (passwordValue === '') {
+        valido = false;
+        if (i18n.locale === 'es')
+          this.setErrorFor(password, 'La contraseña no puede estar en blanco');
+        else
+          this.setErrorFor(password, 'Password cannot be blank');
+      }
+
+      if (valido) {
+        this.dataLogin.email = emailValue
+        this.dataLogin.password = passwordValue
+        this.loginUser()
+      }
+    },
+    validateCreate(e) {
+      e.preventDefault();
+      let valido = true;
+      let userName = $('.swalRegistro .formulario .signupBx .userName')
+      let email = $('.swalRegistro .formulario .signupBx .email')
+      let password = $('.swalRegistro .formulario .signupBx .password')
+      let passwordConfirm = $('.swalRegistro .formulario .signupBx .confirmPassword')
+      let userNameValue = userName[0].value.trim()
+      let emailValue = email[0].value.trim()
+      let passwordValue = password[0].value.trim()
+      let passwordConfirmValue = passwordConfirm[0].value.trim()
+
+      if (userNameValue === '') {
+        valido = false;
+        if (i18n.locale === 'es')
+          this.setErrorFor(userName, 'El nombre del usuario no puede estar en blanco');
+        else
+          this.setErrorFor(userName, 'UserName cannot be blank');
+      }
+
+
+      if (emailValue === '') {
+        valido = false;
+        if (i18n.locale === 'es')
+          this.setErrorFor(email, 'El email no puede estar en blanco');
+        else
+          this.setErrorFor(email, 'Email cannot be blank');
+      } else if (!this.isEmail(emailValue)) {
+        valido = false;
+        if (i18n.locale === 'es')
+          this.setErrorFor(email, 'El email no es valido');
+        else
+          this.setErrorFor(email, 'Not a valid email');
+      }
+
+      if (passwordConfirmValue === '') {
+        valido = false;
+        if (i18n.locale === 'es')
+          this.setErrorFor(passwordConfirm, 'La contraseña no puede estar en blanco');
+        else
+          this.setErrorFor(passwordConfirm, 'Password cannot be blank');
+      }
+
+      if (passwordValue === '') {
+        valido = false;
+        if (i18n.locale === 'es')
+          this.setErrorFor(password, 'La contraseña no puede estar en blanco');
+        else
+          this.setErrorFor(password, 'Password cannot be blank');
+      } else if (passwordValue != passwordConfirmValue) {
+        valido = false;
+        if (i18n.locale === 'es') {
+          this.setErrorFor(password, 'La contraseña no coincide');
+          this.setErrorFor(passwordConfirm, 'La contraseña no coincide');
+        } else {
+          this.setErrorFor(password, 'Password isn´t same');
+          this.setErrorFor(passwordConfirm, 'Password isn´t same');
+        }
+      }
+
+
+      if (valido) {
+        this.$swal.close()
+        this.dataRegister.email = emailValue
+        this.dataRegister.name = userNameValue
+        this.dataRegister.password = passwordValue
+        this.registerUser()
+      }
+    },
+    setErrorFor(input, message) {
+      let formControl = input.parent()
+      let small = formControl.find('small')[0]
+
+      small.innerText = message;
+
+      formControl.removeClass('success')
+      formControl.addClass('error')
+    },
+    isEmail(email) {
+      return /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
+    },
+    async loginUser() {
+      $('html, body').animate({scrollTop:0}, 0);
+      $('.loading').show()
+      $('body').addClass('noScrollBody')
+      $('#app').removeClass('difuminated')
+      $('#app').css('z-index', 1061);
+      try {
+        let response = await fetch('http://localhost:8000/api/login', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          credentials: 'include',
+          body: JSON.stringify(this.dataLogin)
+        });
+        $('.loading').hide()
+        $('body').removeClass('noScrollBody')
+        $('#app').css('z-index', 0);
+        if (response.ok) {
+          let content = await response.json();
+
+          let permisosAdmin = await content.rol === "1" ? true : false;
+
+          await this.$store.commit('SET_NOMBRE_USER', content.name)
+
+          await this.$store.commit('SET_ID_USER', content.id)
+
+          await this.$store.commit('SET_EMAIL_USER', content.email)
+
+          await this.$store.commit('SET_ADMIN', permisosAdmin)
+
+          await this.$store.commit('SET_AUTH', true)
+
+          this.$swal.close()
+
+          await router.push({name: 'Checkout'});
+        } else {
+          this.setErrorFor($('.swalRegistro .formulario .signinBx .email'), 'Invalid or incorrect');
+          this.setErrorFor($('.swalRegistro .formulario .signinBx .password'), 'Invalid or incorrect');
+          await this.$store.commit('SET_AUTH', false)
+          $('#app').addClass('difuminated')
+
+        }
+      } catch (e) {
+        await this.$store.commit('SET_AUTH', false)
+      }
+    },
+    async registerUser() {
+      $('html, body').animate({scrollTop:0}, 0);
+      $('.loading').show()
+      $('body').addClass('noScrollBody')
+      let that = this;
+      await fetch('http://localhost:8000/api/register', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(that.dataRegister)
+      }).then(function () {
+            that.dataLogin.email = that.dataRegister.email;
+            that.dataLogin.password = that.dataRegister.password;
+            that.loginUser();
+          }
+      );
+    },
+    finishBuying(){
+      if(this.authenticated) {
+        router.push({name: 'Checkout'});
+      }else{
+        this.showAlertLoginRegister();
+      }
+    },
   }
 }
 </script>
@@ -345,8 +586,9 @@ export default {
   justify-content: center;
 }
 
-.imgNoticia{
+.imgCompra{
   max-width: 25%;
+  padding: 20px 0;
 }
 
 .cesta .nav > ul > li > a{
