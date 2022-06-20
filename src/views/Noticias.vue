@@ -60,7 +60,7 @@ export default {
   },
   methods: {
     async noticias() {
-      let response = await fetch('http://localhost:8000/api/noticias', {
+      let response = await fetch('https://proyectogradoback.herokuapp.com/api/noticias', {
         headers: {"Accept": "application/json", 'Content-Type': 'application/json'}
       })
 

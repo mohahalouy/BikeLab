@@ -55,7 +55,7 @@ export default {
   },
   methods:{
     async getNoticia() {
-      let response = await fetch('http://localhost:8000/api/noticia?id=' + this.$route.query.id, {
+      let response = await fetch('https://proyectogradoback.herokuapp.com/api/noticia?id=' + this.$route.query.id, {
         headers: {"Accept": "application/json", 'Content-Type': 'application/json'}
       })
 

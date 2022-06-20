@@ -197,7 +197,7 @@ export default {
       document.querySelector('title').textContent = 'Order Review';
     },
     async getArticulo() {
-      let response = await fetch('http://localhost:8000/api/articulos', {
+      let response = await fetch('https://proyectogradoback.herokuapp.com/api/articulos', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -214,7 +214,7 @@ export default {
     async getDatosPersonales() {
       let data = new FormData();
       data.append('idUser', this.idUser);
-      let response = await fetch('http://localhost:8000/api/cargarDatosPersonales', {
+      let response = await fetch('https://proyectogradoback.herokuapp.com/api/cargarDatosPersonales', {
         method: 'POST',
         body: data,
       })

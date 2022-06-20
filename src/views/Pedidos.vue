@@ -80,7 +80,7 @@ export default {
       let data=new FormData();
       data.append('idUser', this.idUser)
 
-      let response=await fetch('http://localhost:8000/api/Orders', {
+      let response=await fetch('https://proyectogradoback.herokuapp.com/api/Orders', {
         method: 'POST',
         body: data,
       })
@@ -109,7 +109,7 @@ export default {
       this.getImgsProducts()
     },
     async getImgsProducts() {
-      let response=await fetch('http://localhost:8000/api/Items', {
+      let response=await fetch('https://proyectogradoback.herokuapp.com/api/Items', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

@@ -70,7 +70,7 @@ export default {
   },
   methods:{
     async getModelos() {
-      let response = await fetch('http://localhost:8000/api/modelos', {
+      let response = await fetch('https://proyectogradoback.herokuapp.com/api/modelos', {
         headers: {"Accept": "application/json", 'Content-Type': 'application/json'}
       })
 

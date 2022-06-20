@@ -200,7 +200,7 @@ export default {
       formControl.addClass('error')
     },
     async getArticulo() {
-      let response = await fetch('http://localhost:8000/api/articulos', {
+      let response = await fetch('https://proyectogradoback.herokuapp.com/api/articulos', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -227,7 +227,7 @@ export default {
     async getDatosPersonales() {
       let data = new FormData();
       data.append('idUser', this.idUser);
-      let response = await fetch('http://localhost:8000/api/cargarDatosPersonales', {
+      let response = await fetch('https://proyectogradoback.herokuapp.com/api/cargarDatosPersonales', {
         method: 'POST',
         body: data,
       })
@@ -245,7 +245,7 @@ export default {
       data.append('direccion', this.dataPersonales[0].direccion);
       data.append('ciudad', this.dataPersonales[0].cp + " " + this.dataPersonales[0].ciudad);
       data.append('totalCesta', this.$store.state.totalCesta);
-      let response = await fetch('http://localhost:8000/api/savePurchase', {
+      let response = await fetch('https://proyectogradoback.herokuapp.com/api/savePurchase', {
         method: 'POST',
         body: data,
       })

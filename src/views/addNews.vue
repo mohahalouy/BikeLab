@@ -195,7 +195,7 @@ export default {
       window.scrollTo(0, 0);
       $('.loading').show()
       try {
-        let response = await fetch('http://localhost:8000/api/addNews', {
+        let response = await fetch('https://proyectogradoback.herokuapp.com/api/addNews', {
           method: 'POST',
           body: data
         });

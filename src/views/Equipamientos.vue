@@ -83,7 +83,7 @@ export default {
   methods: {
     async getEquipamiento() {
       this.cargado=false;
-      let response = await fetch('http://localhost:8000/api/equipamientos?tipoArticulo=' + this.$route.query.tipoArticulo, {
+      let response = await fetch('https://proyectogradoback.herokuapp.com/api/equipamientos?tipoArticulo=' + this.$route.query.tipoArticulo, {
         headers: {"Accept": "application/json", 'Content-Type': 'application/json'}
       })
 

@@ -312,7 +312,7 @@ export default {
       $('#app').removeClass('difuminated')
       $('.swalRegistro .formulario').hide()
       try {
-        let response = await fetch('http://localhost:8000/api/login', {
+        let response = await fetch('https://proyectogradoback.herokuapp.com/api/login', {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
           credentials: 'include',
@@ -355,7 +355,7 @@ export default {
       $('.loading').show()
       $('body').addClass('noScrollBody')
       let that = this;
-      await fetch('http://localhost:8000/api/register', {
+      await fetch('https://proyectogradoback.herokuapp.com/api/register', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(that.dataRegister)
@@ -369,7 +369,7 @@ export default {
     async logout() {
       $('.loading').show()
       $('body').addClass('noScrollBody')
-      await fetch('http://localhost:8000/api/logout', {
+      await fetch('https://proyectogradoback.herokuapp.com/api/logout', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         credentials: 'include'

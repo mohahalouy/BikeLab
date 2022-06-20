@@ -293,7 +293,7 @@ export default {
       $('.loading').show()
       $('body').addClass('noScrollBody')
       try {
-        let response = await fetch('http://localhost:8000/api/addModel', {
+        let response = await fetch('https://proyectogradoback.herokuapp.com/api/addModel', {
           method: 'POST',
           body: data
         });

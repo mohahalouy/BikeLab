@@ -214,7 +214,7 @@ export default {
     },
   methods:{
     async getEquipamiento() {
-      let response=await fetch('http://localhost:8000/api/equipamiento/' + this.$route.params.id, {
+      let response=await fetch('https://proyectogradoback.herokuapp.com/api/equipamiento/' + this.$route.params.id, {
         headers: {"Accept": "application/json", 'Content-Type': 'application/json'}
       })
       let content = await response.json();

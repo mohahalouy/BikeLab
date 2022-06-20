@@ -291,7 +291,7 @@ export default {
 
     },
     async getArticulo() {
-      let response = await fetch('http://localhost:8000/api/articulos', {
+      let response = await fetch('https://proyectogradoback.herokuapp.com/api/articulos', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -479,7 +479,7 @@ export default {
       $('#app').removeClass('difuminated')
       $('#app').css('z-index', 1061);
       try {
-        let response = await fetch('http://localhost:8000/api/login', {
+        let response = await fetch('https://proyectogradoback.herokuapp.com/api/login', {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
           credentials: 'include',
@@ -522,7 +522,7 @@ export default {
       $('.loading').show()
       $('body').addClass('noScrollBody')
       let that = this;
-      await fetch('http://localhost:8000/api/register', {
+      await fetch('https://proyectogradoback.herokuapp.com/api/register', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(that.dataRegister)

@@ -173,7 +173,7 @@ export default {
       let data = new FormData();
       data.append('id', this.$route.params.id)
 
-      let response = await fetch('http://localhost:8000/api/Order', {
+      let response = await fetch('https://proyectogradoback.herokuapp.com/api/Order', {
         method: 'POST',
         body: data,
       })
@@ -182,7 +182,7 @@ export default {
       await this.getArticulo()
     },
     async getArticulo() {
-      let response = await fetch('http://localhost:8000/api/articulos', {
+      let response = await fetch('https://proyectogradoback.herokuapp.com/api/articulos', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

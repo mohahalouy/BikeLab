@@ -247,7 +247,7 @@ export default {
       $('.loading').show()
 
 
-        let response = await fetch('http://localhost:8000/api/addClothing', {
+        let response = await fetch('https://proyectogradoback.herokuapp.com/api/addClothing', {
           method: 'POST',
           body: data
         });
