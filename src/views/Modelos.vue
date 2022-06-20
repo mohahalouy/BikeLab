@@ -22,7 +22,7 @@
               <div v-for="(items,index) in item" :key="index">
                 <router-link :to="{ name: 'Modelo', query: { id: items.id }}" class="linkNonStyle">
                   <picture class="imgNoticia">
-                    <img class="img-fluid" :src="'http://127.0.0.1:8000/uploads/modelos/imagenes/'+items.imagen">
+                    <img class="img-fluid" :src="'https://proyectogradoback.herokuapp.com/uploads/modelos/imagenes/'+items.imagen">
                   </picture>
                   <h5 v-if="idioma==='es'">{{ items.nombreEs }}</h5>
                   <h5 v-else>{{ items.nombreEn }}</h5>

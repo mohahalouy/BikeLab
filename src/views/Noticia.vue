@@ -13,7 +13,7 @@
       <h1 v-else class="mb-5">{{this.dataNoticia.tituloEn}}</h1>
       <p class="text-danger">{{this.dataNoticia.fecha}}</p>
       <picture class="imgNoticia">
-        <img class="img-fluid" :src="'http://127.0.0.1:8000/uploads/noticias/'+this.dataNoticia.imagen">
+        <img class="img-fluid" :src="'https://proyectogradoback.herokuapp.com/uploads/noticias/'+this.dataNoticia.imagen">
       </picture>
       <div v-if="idioma==='es'" class="textoNoti mt-5" v-html="this.dataNoticia.textoEs"></div>
       <div v-else class="textoNoti mt-5" v-html="this.dataNoticia.textoEn"></div>

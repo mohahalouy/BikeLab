@@ -8,7 +8,7 @@
       <h1 class="titleNoticia col-12">{{$t('3')}}</h1>
       <article v-for="(item, index) in this.dataNoticias " :key=index class="col-sm-12 col-md-6 col-lg-6 col-xl-4 py-2 py-xl-2 px-xl-2">
         <router-link :to="{ name: 'Noticia', query: { id: item.id }}" class="linkNonStyle">
-          <img class="img-fluid imgNoticia" :src="'http://127.0.0.1:8000/uploads/noticias/'+item.imagen">
+          <img class="img-fluid imgNoticia" :src="'https://proyectogradoback.herokuapp.com/uploads/noticias/'+item.imagen">
         </router-link>
         <div class="letrasVisorNoticas text-left">
           <p class="">{{ item.fecha }}</p>

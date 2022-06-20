@@ -6,7 +6,7 @@
     </div>
     <section class="equipamiento">
       <div class="portada"
-           :style="{ 'background-image': 'url(http://127.0.0.1:8000/uploads/Portadasequipamiento/'+this.$route.query.tipoArticulo+'.jpg)' }">
+           :style="{ 'background-image': 'url(https://proyectogradoback.herokuapp.com/uploads/Portadasequipamiento/'+this.$route.query.tipoArticulo+'.jpg)' }">
         <h1 v-if="this.$route.query.tipoArticulo==='ropaHombre'">{{$t('24')}}</h1>
         <h1 v-else-if="this.$route.query.tipoArticulo==='ropaMujer'">{{$t('25')}}</h1>
         <h1 v-else-if="this.$route.query.tipoArticulo==='ropaNinio'">{{$t('26')}}</h1>
@@ -19,7 +19,7 @@
             <div>
               <picture class="imgItem">
                 <img class="img-fluid h-100"
-                     :src="'http://127.0.0.1:8000/uploads/equipamiento/imagenes/'+item.imagen">
+                     :src="'https://proyectogradoback.herokuapp.com/uploads/equipamiento/imagenes/'+item.imagen">
               </picture>
             </div>
             <p v-if="idioma==='es'" style="max-width: 350px;min-width: 350px;">{{ item.nombreEs }}</p>

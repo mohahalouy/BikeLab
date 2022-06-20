@@ -3,7 +3,7 @@
     <div class="container">
       <div class="user signinBx">
         <div class="imgBx">
-          <img src="http://127.0.0.1:8000/uploads/imgStatic/multistrada.jpg">
+          <img src="https://proyectogradoback.herokuapp.com/uploads/imgStatic/multistrada.jpg">
         </div>
         <div class="formBx">
           <form>
@@ -27,7 +27,7 @@
       </div>
       <div class="user signupBx">
         <div class="imgBx">
-          <img src="http://127.0.0.1:8000/uploads/imgStatic/multistrada2.jpg">
+          <img src="https://proyectogradoback.herokuapp.com/uploads/imgStatic/multistrada2.jpg">
         </div>
         <div class="formBx">
           <form>

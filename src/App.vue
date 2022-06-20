@@ -14,7 +14,7 @@ export default {
 @font-face {
   font-family: 'letraVisor';
   src: url("assets/BlenderPro-Bold/BlenderPro-Bold.ttf");
-  /*src:url("http://127.0.0.1:8000/uploads/Letras/BlenderPro-Bold/BlenderPro-Bold.ttf") format('truetype');*/
+  /*src:url("https://proyectogradoback.herokuapp.com/uploads/Letras/BlenderPro-Bold/BlenderPro-Bold.ttf") format('truetype');*/
 }
 * {
   margin: 0;

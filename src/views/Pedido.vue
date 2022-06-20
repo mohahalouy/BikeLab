@@ -60,9 +60,9 @@
           <div class="d-flex">
             <div>
               <img class="imgItems" v-if="item.tipoCesta ==='equipamiento'"
-                   :src="'http://127.0.0.1:8000/uploads/equipamiento/imagenes/'+item.imagen">
+                   :src="'https://proyectogradoback.herokuapp.com/uploads/equipamiento/imagenes/'+item.imagen">
               <img class="imgItems" v-else-if="item.tipoCesta ==='modelos'"
-                   :src="'http://127.0.0.1:8000/uploads/modelos/imagenes/'+item.imagen">
+                   :src="'https://proyectogradoback.herokuapp.com/uploads/modelos/imagenes/'+item.imagen">
             </div>
             <div class="text-left">
               <p v-if="idioma==='es'" >{{item.nombreEs}}</p>

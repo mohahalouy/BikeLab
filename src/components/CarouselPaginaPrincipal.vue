@@ -9,7 +9,7 @@
     >
       <b-carousel-slide
           class="h100vh"
-          img-src='http://127.0.0.1:8000/uploads/imgStatic/R1MHome.jpg'
+          img-src='https://proyectogradoback.herokuapp.com/uploads/imgStatic/R1MHome.jpg'
       >
         <p class="m-0">{{$t('33')}}</p>
         <h1 class="m-0">{{$t('34')}}</h1>
@@ -19,7 +19,7 @@
       </b-carousel-slide>
       <b-carousel-slide
           class="h100vh"
-          img-src='http://127.0.0.1:8000/uploads/imgStatic/multistrada2.jpg'
+          img-src='https://proyectogradoback.herokuapp.com/uploads/imgStatic/multistrada2.jpg'
       >
         <p class="m-0">{{$t('31')}}</p>
         <h1 class="m-0">{{$t('32')}}</h1>
@@ -28,7 +28,7 @@
         </router-link>
       </b-carousel-slide>      <b-carousel-slide
         class="h100vh"
-        img-src='http://127.0.0.1:8000/uploads/imgStatic/s1000rrHome.jpg'>
+        img-src='https://proyectogradoback.herokuapp.com/uploads/imgStatic/s1000rrHome.jpg'>
       <p class="m-0">{{$t('28')}}</p>
       <h1 class="m-0">{{$t('29')}}</h1>
       <router-link :to="{ name: 'Modelo', query: { id: '1' }}" class="linkNonStyle">

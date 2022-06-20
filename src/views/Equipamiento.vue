@@ -10,27 +10,27 @@
 
           <!-- Full-width images with number text -->
           <div class="mySlides">
-            <img :src="'http://127.0.0.1:8000/uploads/equipamiento/id'+this.dataEquipamiento.id+'/1.jpg'" style="width:100%">
+            <img :src="'https://proyectogradoback.herokuapp.com/uploads/equipamiento/id'+this.dataEquipamiento.id+'/1.jpg'" style="width:100%">
           </div>
 
           <div class="mySlides">
-            <img :src="'http://127.0.0.1:8000/uploads/equipamiento/id'+this.dataEquipamiento.id+'/2.jpg'" style="width:100%">
+            <img :src="'https://proyectogradoback.herokuapp.com/uploads/equipamiento/id'+this.dataEquipamiento.id+'/2.jpg'" style="width:100%">
           </div>
 
           <div v-if="this.dataEquipamiento.tipoArticulo!='ropaNinio'" class="mySlides">
-            <img :src="'http://127.0.0.1:8000/uploads/equipamiento/id'+this.dataEquipamiento.id+'/3.jpg'" style="width:100%">
+            <img :src="'https://proyectogradoback.herokuapp.com/uploads/equipamiento/id'+this.dataEquipamiento.id+'/3.jpg'" style="width:100%">
           </div>
 
           <div v-if="this.dataEquipamiento.tipoArticulo!='ropaNinio'" class="mySlides">
-            <img :src="'http://127.0.0.1:8000/uploads/equipamiento/id'+this.dataEquipamiento.id+'/4.jpg'" style="width:100%">
+            <img :src="'https://proyectogradoback.herokuapp.com/uploads/equipamiento/id'+this.dataEquipamiento.id+'/4.jpg'" style="width:100%">
           </div>
 
           <div v-if="this.dataEquipamiento.tipoArticulo!='ropaNinio'" class="mySlides">
-            <img :src="'http://127.0.0.1:8000/uploads/equipamiento/id'+this.dataEquipamiento.id+'/5.jpg'" style="width:100%">
+            <img :src="'https://proyectogradoback.herokuapp.com/uploads/equipamiento/id'+this.dataEquipamiento.id+'/5.jpg'" style="width:100%">
           </div>
 
           <div v-if="this.dataEquipamiento.tipoArticulo!='ropaNinio'" class="mySlides">
-            <img :src="'http://127.0.0.1:8000/uploads/equipamiento/id'+this.dataEquipamiento.id+'/6.jpg'" style="width:100%">
+            <img :src="'https://proyectogradoback.herokuapp.com/uploads/equipamiento/id'+this.dataEquipamiento.id+'/6.jpg'" style="width:100%">
           </div>
 
           <!-- Next and previous buttons -->
@@ -40,22 +40,22 @@
           <!-- Thumbnail images -->
           <div class="row" style="gap: 20px;flex-wrap: nowrap;">
             <div class="column">
-              <img class="demo cursor" :src="'http://127.0.0.1:8000/uploads/equipamiento/id'+this.dataEquipamiento.id+'/1.jpg'" style="width:100%" @click="currentSlide(1)" >
+              <img class="demo cursor" :src="'https://proyectogradoback.herokuapp.com/uploads/equipamiento/id'+this.dataEquipamiento.id+'/1.jpg'" style="width:100%" @click="currentSlide(1)" >
             </div>
             <div class="column">
-              <img class="demo cursor" :src="'http://127.0.0.1:8000/uploads/equipamiento/id'+this.dataEquipamiento.id+'/2.jpg'" style="width:100%" @click="currentSlide(2)">
+              <img class="demo cursor" :src="'https://proyectogradoback.herokuapp.com/uploads/equipamiento/id'+this.dataEquipamiento.id+'/2.jpg'" style="width:100%" @click="currentSlide(2)">
             </div>
             <div v-if="this.dataEquipamiento.tipoArticulo!='ropaNinio'" class="column">
-              <img class="demo cursor" :src="'http://127.0.0.1:8000/uploads/equipamiento/id'+this.dataEquipamiento.id+'/3.jpg'" style="width:100%" @click="currentSlide(3)" >
+              <img class="demo cursor" :src="'https://proyectogradoback.herokuapp.com/uploads/equipamiento/id'+this.dataEquipamiento.id+'/3.jpg'" style="width:100%" @click="currentSlide(3)" >
             </div>
             <div v-if="this.dataEquipamiento.tipoArticulo!='ropaNinio'" class="column">
-              <img class="demo cursor" :src="'http://127.0.0.1:8000/uploads/equipamiento/id'+this.dataEquipamiento.id+'/4.jpg'" style="width:100%" @click="currentSlide(4)" >
+              <img class="demo cursor" :src="'https://proyectogradoback.herokuapp.com/uploads/equipamiento/id'+this.dataEquipamiento.id+'/4.jpg'" style="width:100%" @click="currentSlide(4)" >
             </div>
             <div v-if="this.dataEquipamiento.tipoArticulo!='ropaNinio'" class="column">
-              <img class="demo cursor" :src="'http://127.0.0.1:8000/uploads/equipamiento/id'+this.dataEquipamiento.id+'/5.jpg'" style="width:100%" @click="currentSlide(5)">
+              <img class="demo cursor" :src="'https://proyectogradoback.herokuapp.com/uploads/equipamiento/id'+this.dataEquipamiento.id+'/5.jpg'" style="width:100%" @click="currentSlide(5)">
             </div>
             <div v-if="this.dataEquipamiento.tipoArticulo!='ropaNinio'" class="column">
-              <img class="demo cursor" :src="'http://127.0.0.1:8000/uploads/equipamiento/id'+this.dataEquipamiento.id+'/6.jpg'" style="width:100%" @click="currentSlide(6)">
+              <img class="demo cursor" :src="'https://proyectogradoback.herokuapp.com/uploads/equipamiento/id'+this.dataEquipamiento.id+'/6.jpg'" style="width:100%" @click="currentSlide(6)">
             </div>
           </div>
         </div>

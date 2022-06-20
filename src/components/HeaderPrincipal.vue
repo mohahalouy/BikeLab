@@ -4,12 +4,12 @@
       <div id="idiomas" class="idiomas">
         <div class="imgBanderas" @click="selectLanguage">
           <span class="nombreIdioma">Español</span>
-          <img src="http://127.0.0.1:8000/uploads/imgStatic/banderaEspaña.png" alt="es">
+          <img src="https://proyectogradoback.herokuapp.com/uploads/imgStatic/banderaEspaña.png" alt="es">
           <font-awesome-icon :icon="[ 'fas', 'angle-down' ]"/>
         </div>
         <div class="otherLanguage" @click="changeLanguage">
           <span class="nombreIdioma">English</span>
-          <img src="http://127.0.0.1:8000/uploads/imgStatic/banderaInglaterra.png" alt="en">
+          <img src="https://proyectogradoback.herokuapp.com/uploads/imgStatic/banderaInglaterra.png" alt="en">
         </div>
         <!--          <div id="imgIdiomas" class="d-flex imgBanderas" @click="changeLanguage">-->
         <!--            <img href="" src="../assets/banderaEspaña.png" alt="es">-->
@@ -74,7 +74,7 @@
       <aside class="d-flex align-items-center">
         <div id="logoHeader" class="logoHeader">
           <router-link to="/">
-            <img href="" src="http://127.0.0.1:8000/uploads/imgStatic/MH.png">
+            <img href="" src="https://proyectogradoback.herokuapp.com/uploads/imgStatic/MH.png">
           </router-link>
         </div>
       </aside>
@@ -383,7 +383,7 @@ export default {
       $('body').addClass('noScrollBody')
 
       try {
-        let response = await fetch('http://localhost:8000/api/user', {
+        let response = await fetch('https://proyectogradoback.herokuapp.com/api/user', {
           headers: {"Accept": "application/json", 'Content-Type': 'application/json'},
           credentials: 'include'
         });
@@ -420,7 +420,7 @@ export default {
       $('#app').removeClass('difuminated')
       $('.swalRegistro .formulario').hide()
       try {
-        let response = await fetch('http://localhost:8000/api/login', {
+        let response = await fetch('https://proyectogradoback.herokuapp.com/api/login', {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
           credentials: 'include',
@@ -463,7 +463,7 @@ export default {
       $('.loading').show()
       $('body').addClass('noScrollBody')
       let that = this;
-      await fetch('http://localhost:8000/api/register', {
+      await fetch('https://proyectogradoback.herokuapp.com/api/register', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(that.dataRegister)
@@ -477,7 +477,7 @@ export default {
     async logout() {
       $('.loading').show()
       $('body').addClass('noScrollBody')
-      await fetch('http://localhost:8000/api/logout', {
+      await fetch('https://proyectogradoback.herokuapp.com/api/logout', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         credentials: 'include'

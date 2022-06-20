@@ -14,13 +14,13 @@
         <div v-for="(item,index) in this.dataCesta" :key="index" class="item">
           <picture v-if="item.tipoCesta==='modelos'" class="imgCompra">
             <router-link :to="{ name: 'Modelo', query: { id: item.id }}" class="linkNonStyle">
-              <img class="img-fluid" :src="'http://127.0.0.1:8000/uploads/'+item.tipoCesta+'/imagenes/'+item.imagen">
+              <img class="img-fluid" :src="'https://proyectogradoback.herokuapp.com/uploads/'+item.tipoCesta+'/imagenes/'+item.imagen">
             </router-link>
           </picture>
           <picture v-else class="imgCompra">
             <router-link :to="{ name: 'Equipamiento', params: { id:item.id, nombreProducto: item.nombreEs }}"
                          class="linkNonStyle">
-              <img class="img-fluid" :src="'http://127.0.0.1:8000/uploads/'+item.tipoCesta+'/imagenes/'+item.imagen">
+              <img class="img-fluid" :src="'https://proyectogradoback.herokuapp.com/uploads/'+item.tipoCesta+'/imagenes/'+item.imagen">
             </router-link>
           </picture>
           <div class="text-left d-flex flex-column">

@@ -4,12 +4,12 @@
       <div id="idiomas" class="idiomas">
         <div class="imgBanderas" @click="selectLanguage">
           <span class="nombreIdioma">Español</span>
-          <img src="http://127.0.0.1:8000/uploads/imgStatic/banderaEspaña.png" alt="es">
+          <img src="https://proyectogradoback.herokuapp.com/uploads/imgStatic/banderaEspaña.png" alt="es">
           <font-awesome-icon :icon="[ 'fas', 'angle-down' ]"/>
         </div>
         <div class="otherLanguage" @click="changeLanguage">
           <span class="nombreIdioma">English</span>
-          <img src="http://127.0.0.1:8000/uploads/imgStatic/banderaInglaterra.png" alt="en">
+          <img src="https://proyectogradoback.herokuapp.com/uploads/imgStatic/banderaInglaterra.png" alt="en">
         </div>
         <!--          <div id="imgIdiomas" class="d-flex imgBanderas" @click="changeLanguage">-->
         <!--            <img href="" src="../assets/banderaEspaña.png" alt="es">-->
@@ -44,7 +44,7 @@
       </div>
       <aside class="d-flex align-items-center">
         <div id="logoHeader" class="logoHeader">
-          <img href="" src="http://127.0.0.1:8000/uploads/imgStatic/MH.png">
+          <img href="" src="https://proyectogradoback.herokuapp.com/uploads/imgStatic/MH.png">
         </div>
       </aside>
     </div>
