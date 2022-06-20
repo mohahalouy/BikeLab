@@ -15,40 +15,40 @@
         <form  @submit.prevent="actualizarDatos">
           <fieldset>
             <legend class="text-left">
-             Detalles del pedido
+              {{ $t('141') }}
             </legend>
             <ul class="list-unstyled listaDatosPersonales">
               <li>
-                <label for="id">Numero pedido<span class="text-danger">*</span></label>
+                <label for="id">{{ $t('152') }}<span class="text-danger">*</span></label>
                 <div class="divInputError">
                   <input class="id w-50" id="id" type="text" name="id" v-model="dataPedido[0].id">
                 </div>
               </li>
               <li>
-                <label for="nombre">Nombre<span class="text-danger">*</span></label>
+                <label for="nombre">{{$t('43')}}<span class="text-danger">*</span></label>
                 <div class="divInputError">
                   <input class="nombre w-50" id="nombre" type="text" name="nombre" v-model="dataPedido[0].nombre">
                 </div>
               </li>
               <li>
-                <label class="mr-4">Estado del pedido<span class="text-danger">*</span></label>
+                <label class="mr-4">{{ $t('142') }}<span class="text-danger">*</span></label>
                 <input type="radio" name="gender" checked value="Pendiente" id="Pendiente" class=" cursorPointer" v-model="dataPedido[0].order_status">
-                <label for="Pendiente" class="pl-2  mr-4 cursorPointer">Pendiente</label>
+                <label for="Pendiente" class="pl-2  mr-4 cursorPointer">{{ $t('143') }}</label>
                 <input type="radio" name="gender" value="En proceso" id="En proceso" class=" cursorPointer" v-model="dataPedido[0].order_status">
-                <label for="En proceso" class="pl-2 mr-4 cursorPointer">En proceso</label>
+                <label for="En proceso" class="pl-2 mr-4 cursorPointer">{{ $t('144') }}</label>
                 <input type="radio" name="gender" value="Enviado" id="Enviado" class=" cursorPointer" v-model="dataPedido[0].order_status">
-                <label for="Enviado" class="pl-2 mr-4 cursorPointer">Enviado</label>
+                <label for="Enviado" class="pl-2 mr-4 cursorPointer">{{ $t('145') }}</label>
                 <input type="radio" name="gender" value="Entregado" id="Entregado" class=" cursorPointer" v-model="dataPedido[0].order_status">
-                <label for="Entregado" class="pl-2 mr-4 cursorPointer">Entregado</label>
+                <label for="Entregado" class="pl-2 mr-4 cursorPointer">{{ $t('146') }}</label>
               </li>
               <li>
-                <label for="order">Pedido<span class="text-danger">*</span></label>
+                <label for="order">{{$t('124')}}<span class="text-danger">*</span></label>
                 <div class="divInputError">
                   <input class="order w-50" id="order" type="text" name="order" v-model="dataPedido[0].order">
                 </div>
               </li>
               <li>
-                <label for="order_date">Fecha pedido<span class="text-danger">*</span></label>
+                <label for="order_date">{{ $t('149') }}<span class="text-danger">*</span></label>
                 <div class="divInputError">
                   <input class="order_date w-50" id="order_date" type="text" name="order_date" v-model="dataPedido[0].order_date">
                 </div>
@@ -56,31 +56,31 @@
               <li>
                 <label>Tipo Envio<span class="text-danger">*</span></label>
                 <input type="radio" name="order_shipping_type" value="Domicilio" id="Domicilio" class=" cursorPointer" v-model="dataPedido[0].order_shipping_type">
-                <label for="Domicilio" class="pl-2 mr-4 cursorPointer">Domicilio</label>
+                <label for="Domicilio" class="pl-2 mr-4 cursorPointer">{{ $t('150') }}</label>
                 <input type="radio" name="order_shipping_type" value="Concesionario" id="Concesionario" class=" cursorPointer" v-model="dataPedido[0].order_shipping_type">
-                <label for="Concesionario" class="pl-2 mr-4 cursorPointer">Concesionario</label>
+                <label for="Concesionario" class="pl-2 mr-4 cursorPointer">{{ $t('151') }}</label>
               </li>
               <li>
-                <label for="direccion">Dirección<span class="text-danger">*</span></label>
+                <label for="direccion">{{$t('106')}}<span class="text-danger">*</span></label>
                 <div class="divInputError">
                   <input class="direccion w-50" id="direccion" type="text" name="direccion" v-model="dataPedido[0].direccion">
                 </div>
               </li>
               <li>
-                <label for="ciudad">Ciudad<span class="text-danger">*</span></label>
+                <label for="ciudad">{{$t('108')}}<span class="text-danger">*</span></label>
                 <div class="divInputError">
                   <input class="direccion w-50" id="ciudad" type="text" name="ciudad" v-model="dataPedido[0].ciudad">
                 </div>
               </li>
               <li>
-                <label for="totalCesta">Total<span class="text-danger">*</span></label>
+                <label for="totalCesta">{{$t('74')}}<span class="text-danger">*</span></label>
                 <div class="divInputError">
                   <input class="direccion w-50" id="totalCesta" type="number" name="totalCesta" v-model="dataPedido[0].totalCesta">
                 </div>
               </li>
             </ul>
           </fieldset>
-          <input class="buttonRevisarPedido" type="submit" :value="[[ $t('138') ]]" tabindex="-1">
+          <input class="buttonRevisarPedido" type="submit" :value="[[ $t('140') ]]" tabindex="-1">
         </form>
       </div>
       <div v-else class="formDatos">
