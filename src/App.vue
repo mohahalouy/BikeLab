@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+<!--    <router-view></router-view>-->
+    Realizando tareas de mantenimiento
   </div>
 </template>
 
@@ -33,7 +34,9 @@ body{
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: white;
+  /*color: white;*/
+  color: black;
+  font-size: 40px;
   width: 100%;
   max-width: 2000px;
 }
