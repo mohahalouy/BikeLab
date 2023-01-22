@@ -1,29 +1,41 @@
 <template>
   <div id="app">
-<!--    <router-view></router-view>-->
-    Realizando tareas de mantenimiento
+    <!--    <router-view></router-view>-->
+    <div style="color: black; font-size: 20px">
+      <p>
+        Realizando tareas de mantenimiento
+      </p>
+      <p>
+        Demo en entorno local:
+      </p>
+    </div>
+    <video class="video" controls width="100%">
+      <source src="../public/videoDemo/demoVideo.mp4" type="video/mp4">
+    </video>
   </div>
 </template>
 
 <script>
 
 export default {
-  name: 'App'}
+  name: 'App'
+}
 </script>
 
 <style>
 @font-face {
   font-family: 'letraVisor';
   src: url("assets/BlenderPro-Bold/BlenderPro-Bold.ttf");
-  /*src:url("https://proyectogradoback.herokuapp.com/uploads/Letras/BlenderPro-Bold/BlenderPro-Bold.ttf") format('truetype');*/
+  /*src:url("http://127.0.0.1:8000/uploads/Letras/BlenderPro-Bold/BlenderPro-Bold.ttf") format('truetype');*/
 }
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body{
+body {
   display: flex;
   padding: 0 !important;
   justify-content: center;
@@ -34,19 +46,17 @@ body{
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  /*color: white;*/
-  color: black;
-  font-size: 40px;
+  color: white;
   width: 100%;
   max-width: 2000px;
 }
 
-#app.difuminated{
+#app.difuminated {
   filter: blur(10px);
 }
 
 
-.loading{
+.loading {
   display: none;
   position: absolute;
   height: 100vh;
@@ -172,7 +182,7 @@ body{
 
 /*Animacion loader de las noticias*/
 
-.LoadingHomeNoticias{
+.LoadingHomeNoticias {
   display: flex !important;
   flex-direction: row !important;
   justify-content: center !important;
@@ -229,7 +239,7 @@ body{
     transform: scale(1);
     color: pink;
     -webkit-text-stroke: 3px red;
-    filter: drop-shadow(0 0 1px black)drop-shadow(0 0 1px black)drop-shadow(0 0 3px red)drop-shadow(0 0 5px red)hue-rotate(10turn);
+    filter: drop-shadow(0 0 1px black) drop-shadow(0 0 1px black) drop-shadow(0 0 3px red) drop-shadow(0 0 5px red) hue-rotate(10turn);
   }
 
   50% {
