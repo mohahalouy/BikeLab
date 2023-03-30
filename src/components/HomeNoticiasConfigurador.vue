@@ -18,7 +18,7 @@
                  data-aos-duration="500"
                  v-for="item in this.dataNoticias" :key="item.id">
           <router-link :to="{ name: 'Noticia', query: { id: item.id }}" class="linkNonStyle">
-            <img class="img-fluid imgNoticias" :src="'https://proyectogradoback.herokuapp.com/uploads/noticias/'+item.imagen">
+            <img class="img-fluid imgNoticias" :src="'https://bike-lab-back.up.railway.app/uploads/noticias/'+item.imagen">
           </router-link>
           <div v-if="idioma==='es'" class="letrasVisorNoticas text-left">
             <p class="">{{ item.fecha }}</p>
@@ -51,7 +51,7 @@
       <section class="modelos row mt-3 mx-0 w-100">
         <article data-aos="flip-right" class="col-12 col-md-6 py-3 px-0 px-md-2">
           <router-link :to="{ name: 'Modelo', query: { id: '1' }}" class="linkNonStyle">
-            <div class="modelo centarPalabras" style="background-image: url('https://proyectogradoback.herokuapp.com/uploads/imgStatic/s1000rrHomeModelos.jpg')">
+            <div class="modelo centarPalabras" style="background-image: url('https://bike-lab-back.up.railway.app/uploads/imgStatic/s1000rrHomeModelos.jpg')">
               <p class="m-0 textVisor letrasVisor" style="font-size: 1.5em;">#GETHYPERSPORT</p>
               <p class="m-0 textVisor letrasVisor">S100rr</p>
             </div>
@@ -63,7 +63,7 @@
         </article>
         <article data-aos="flip-left" class="col-12 col-md-6 py-3 px-0 px-md-2">
           <router-link :to="{ name: 'Modelo', query: { id: '3' }}" class="linkNonStyle">
-            <div class="modelo centarPalabras" style="background-image: url('https://proyectogradoback.herokuapp.com/uploads/imgStatic/mt-09HomeModelos.jpg')">
+            <div class="modelo centarPalabras" style="background-image: url('https://bike-lab-back.up.railway.app/uploads/imgStatic/mt-09HomeModelos.jpg')">
               <p class="m-0 textVisor letrasVisor" style="font-size: 1.5em;">#GETNAKED</p>
               <p class="m-0 textVisor letrasVisor">MT-07</p>
             </div>
@@ -78,16 +78,16 @@
       <section class="findUsContainer mx-0 mt-3 row w-100">
         <div class="col-12 col-md-6 row p-0 m-0">
           <a href="https://www.instagram.com/p/CeO_52mqIrN/" class="col-6 p-0" target="_blank">
-            <div class="imgInsta" style="background-image: url('https://proyectogradoback.herokuapp.com/uploads/imgStatic/mt-09HomeModelos.jpg')"></div>
+            <div class="imgInsta" style="background-image: url('https://bike-lab-back.up.railway.app/uploads/imgStatic/mt-09HomeModelos.jpg')"></div>
           </a>
           <a href="https://www.instagram.com/p/CePQgskqX7V/" class="col-6 p-0" target="_blank">
-            <div class="imgInsta" style="background-image: url('https://proyectogradoback.herokuapp.com/uploads/imgStatic/s1000rrHome.jpg')"></div>
+            <div class="imgInsta" style="background-image: url('https://bike-lab-back.up.railway.app/uploads/imgStatic/s1000rrHome.jpg')"></div>
           </a>
           <a href="https://www.instagram.com/p/CeO_nG8qDiG/" class="col-6 p-0" target="_blank">
-            <div class="imgInsta" style="background-image: url('https://proyectogradoback.herokuapp.com/uploads/imgStatic/R1MHome.jpg')"></div>
+            <div class="imgInsta" style="background-image: url('https://bike-lab-back.up.railway.app/uploads/imgStatic/R1MHome.jpg')"></div>
           </a>
           <a href="https://www.instagram.com/p/CePQUUBqptL/" class="col-6 p-0" target="_blank">
-            <div class="imgInsta" style="background-image: url('https://proyectogradoback.herokuapp.com/uploads/imgStatic/multistrada2.jpg')"></div>
+            <div class="imgInsta" style="background-image: url('https://bike-lab-back.up.railway.app/uploads/imgStatic/multistrada2.jpg')"></div>
           </a>
         </div>
         <div class="col-12 col-md-6 findUsInstaContainer p-0">
@@ -138,7 +138,7 @@
     },
     methods: {
       async noticias() {
-        let response = await fetch('https://proyectogradoback.herokuapp.com/api/noticias', {
+        let response = await fetch('https://bike-lab-back.up.railway.app/api/noticias', {
           headers: {"Accept": "application/json", 'Content-Type': 'application/json'}
         })
 
@@ -153,7 +153,7 @@
       async sendEmail() {
         let data=new FormData()
         data.append('email','mohamedjuanra1@gmail.com')
-        await fetch('https://proyectogradoback.herokuapp.com/api/sendEmail', {
+        await fetch('https://bike-lab-back.up.railway.app/api/sendEmail', {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
           credentials: 'include',

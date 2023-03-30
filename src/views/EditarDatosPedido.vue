@@ -123,7 +123,7 @@ export default {
       let data = new FormData();
       data.append('id', this.$route.params.id)
 
-      let response = await fetch('https://proyectogradoback.herokuapp.com/api/Order', {
+      let response = await fetch('https://bike-lab-back.up.railway.app/api/Order', {
         method: 'POST',
         body: data,
       })
@@ -151,7 +151,7 @@ export default {
       data.append('totalCesta', this.dataPedido[0].totalCesta)
 
 
-      let response = await fetch('https://proyectogradoback.herokuapp.com/api/actualizarPedido', {
+      let response = await fetch('https://bike-lab-back.up.railway.app/api/actualizarPedido', {
         method: 'POST',
         credentials: 'include',
         body: data

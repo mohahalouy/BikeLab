@@ -14,13 +14,13 @@
         <div v-for="(item,index) in this.dataCesta" :key="index" class="item">
           <picture v-if="item.tipoCesta==='modelos'" class="imgCompra">
             <router-link :to="{ name: 'Modelo', query: { id: item.id }}" class="linkNonStyle">
-              <img class="img-fluid" :src="'https://proyectogradoback.herokuapp.com/uploads/'+item.tipoCesta+'/imagenes/'+item.imagen">
+              <img class="img-fluid" :src="'https://bike-lab-back.up.railway.app/uploads/'+item.tipoCesta+'/imagenes/'+item.imagen">
             </router-link>
           </picture>
           <picture v-else class="imgCompra">
             <router-link :to="{ name: 'Equipamiento', params: { id:item.id, nombreProducto: item.nombreEs }}"
                          class="linkNonStyle">
-              <img class="img-fluid" :src="'https://proyectogradoback.herokuapp.com/uploads/'+item.tipoCesta+'/imagenes/'+item.imagen">
+              <img class="img-fluid" :src="'https://bike-lab-back.up.railway.app/uploads/'+item.tipoCesta+'/imagenes/'+item.imagen">
             </router-link>
           </picture>
           <div class="text-left d-flex flex-column">
@@ -197,7 +197,7 @@ export default {
       document.querySelector('title').textContent = 'Order Review';
     },
     async getArticulo() {
-      let response = await fetch('https://proyectogradoback.herokuapp.com/api/articulos', {
+      let response = await fetch('https://bike-lab-back.up.railway.app/api/articulos', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -214,7 +214,7 @@ export default {
     async getDatosPersonales() {
       let data = new FormData();
       data.append('idUser', this.idUser);
-      let response = await fetch('https://proyectogradoback.herokuapp.com/api/cargarDatosPersonales', {
+      let response = await fetch('https://bike-lab-back.up.railway.app/api/cargarDatosPersonales', {
         method: 'POST',
         body: data,
       })

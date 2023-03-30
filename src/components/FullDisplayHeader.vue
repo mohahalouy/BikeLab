@@ -4,12 +4,12 @@
       <div id="idiomas" class="idiomas">
         <div class="imgBanderas" @click="selectLanguage">
           <span class="nombreIdioma">Español</span>
-          <img src="https://proyectogradoback.herokuapp.com/uploads/imgStatic/banderaEspaña.png" alt="es">
+          <img src="https://bike-lab-back.up.railway.app/uploads/imgStatic/banderaEspaña.png" alt="es">
           <font-awesome-icon :icon="[ 'fas', 'angle-down' ]"/>
         </div>
         <div class="otherLanguage" @click="changeLanguage">
           <span class="nombreIdioma">English</span>
-          <img src="https://proyectogradoback.herokuapp.com/uploads/imgStatic/banderaInglaterra.png" alt="en">
+          <img src="https://bike-lab-back.up.railway.app/uploads/imgStatic/banderaInglaterra.png" alt="en">
         </div>
         <!--          <div id="imgIdiomas" class="d-flex imgBanderas" @click="changeLanguage">-->
         <!--            <img href="" src="../assets/banderaEspaña.png" alt="es">-->
@@ -54,7 +54,7 @@
       </div>
       <aside class="d-flex align-items-center">
         <div id="logoHeader" class="logoHeader">
-          <img href="" src="https://proyectogradoback.herokuapp.com/uploads/imgStatic/MH.png">
+          <img href="" src="https://bike-lab-back.up.railway.app/uploads/imgStatic/MH.png">
         </div>
       </aside>
     </div>
@@ -327,7 +327,7 @@ export default {
       $('#app').removeClass('difuminated')
       $('.swalRegistro .formulario').hide()
       try {
-        let response = await fetch('https://proyectogradoback.herokuapp.com/api/login', {
+        let response = await fetch('https://bike-lab-back.up.railway.app/api/login', {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
           credentials: 'include',
@@ -370,7 +370,7 @@ export default {
       $('.loading').show()
       $('body').addClass('noScrollBody')
       let that = this;
-      await fetch('https://proyectogradoback.herokuapp.com/api/register', {
+      await fetch('https://bike-lab-back.up.railway.app/api/register', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(that.dataRegister)
@@ -384,7 +384,7 @@ export default {
     async logout() {
       $('.loading').show()
       $('body').addClass('noScrollBody')
-      await fetch('https://proyectogradoback.herokuapp.com/api/logout', {
+      await fetch('https://bike-lab-back.up.railway.app/api/logout', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         credentials: 'include'

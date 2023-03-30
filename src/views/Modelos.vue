@@ -19,7 +19,7 @@
               <div v-for="(items,index) in item" :key="index">
                 <router-link :to="{ name: 'Modelo', query: { id: items.id }}" class="linkNonStyle">
                   <picture class="imgNoticia">
-                    <img class="img-fluid" :src="'https://proyectogradoback.herokuapp.com/uploads/modelos/imagenes/'+items.imagen">
+                    <img class="img-fluid" :src="'https://bike-lab-back.up.railway.app/uploads/modelos/imagenes/'+items.imagen">
                   </picture>
                   <h5 v-if="idioma==='es'">{{ items.nombreEs }}</h5>
                   <h5 v-else>{{ items.nombreEn }}</h5>
@@ -80,7 +80,7 @@ export default {
   },
   methods:{
     async getModelos() {
-      let response = await fetch('https://proyectogradoback.herokuapp.com/api/modelos', {
+      let response = await fetch('https://bike-lab-back.up.railway.app/api/modelos', {
         headers: {"Accept": "application/json", 'Content-Type': 'application/json'}
       })
 

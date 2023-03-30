@@ -199,7 +199,7 @@ export default {
     async cargarDatosPersonales() {
       let data = new FormData();
       data.append('idUser', this.$store.state.idUser);
-      let response = await fetch('https://proyectogradoback.herokuapp.com/api/cargarDatosPersonales', {
+      let response = await fetch('https://bike-lab-back.up.railway.app/api/cargarDatosPersonales', {
         method: 'POST',
         body: data,
       })
@@ -353,7 +353,7 @@ export default {
       }
 
 
-      let response = await fetch('https://proyectogradoback.herokuapp.com/api/datosPersonales', {
+      let response = await fetch('https://bike-lab-back.up.railway.app/api/datosPersonales', {
         method: 'POST',
         credentials: 'include',
         body: data
