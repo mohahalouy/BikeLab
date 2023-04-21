@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-        <router-view></router-view>
-    <!--    <div style="color: black; font-size: 20px">
+<!--        <router-view></router-view>-->
+        <div style="color: black; font-size: 20px">
           <p>
             Realizando tareas de mantenimiento
           </p>
@@ -11,7 +11,7 @@
         </div>
         <video class="video" controls width="100%">
           <source src="../public/videoDemo/demoVideo.mp4" type="video/mp4">
-        </video>-->
+        </video>
   </div>
 </template>
 
