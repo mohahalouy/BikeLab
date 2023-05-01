@@ -1,17 +1,17 @@
 <template>
   <div id="app">
-<!--        <router-view></router-view>-->
-        <div style="color: black; font-size: 20px">
-          <p>
-            Realizando tareas de mantenimiento
-          </p>
-          <p>
-            Demo en entorno local:
-          </p>
-        </div>
-        <video class="video" controls width="100%">
-          <source src="../public/videoDemo/demoVideo.mp4" type="video/mp4">
-        </video>
+        <router-view></router-view>
+<!--        <div style="color: black; font-size: 20px">-->
+<!--          <p>-->
+<!--            Realizando tareas de mantenimiento-->
+<!--          </p>-->
+<!--          <p>-->
+<!--            Demo en entorno local:-->
+<!--          </p>-->
+<!--        </div>-->
+<!--        <video class="video" controls width="100%">-->
+<!--          <source src="../public/videoDemo/demoVideo.mp4" type="video/mp4">-->
+<!--        </video>-->
   </div>
 </template>
 
