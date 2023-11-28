@@ -200,7 +200,7 @@ export default {
       formControl.addClass('error')
     },
     async getArticulo() {
-      let response = await fetch('https://bike-lab-back.up.railway.app/api/articulos', {
+      let response = await fetch('https://moha.ulandu.com/api/articulos', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -227,7 +227,7 @@ export default {
     async getDatosPersonales() {
       let data = new FormData();
       data.append('idUser', this.idUser);
-      let response = await fetch('https://bike-lab-back.up.railway.app/api/cargarDatosPersonales', {
+      let response = await fetch('https://moha.ulandu.com/api/cargarDatosPersonales', {
         method: 'POST',
         body: data,
       })
@@ -245,7 +245,7 @@ export default {
       data.append('direccion', this.dataPersonales[0].direccion);
       data.append('ciudad', this.dataPersonales[0].cp + " " + this.dataPersonales[0].ciudad);
       data.append('totalCesta', this.$store.state.totalCesta);
-      let response = await fetch('https://bike-lab-back.up.railway.app/api/savePurchase', {
+      let response = await fetch('https://moha.ulandu.com/api/savePurchase', {
         method: 'POST',
         body: data,
       })

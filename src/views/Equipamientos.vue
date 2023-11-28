@@ -6,7 +6,7 @@
     </div>
     <section class="equipamiento">
       <div class="portada"
-           :style="{ 'background-image': 'url(https://bike-lab-back.up.railway.app/uploads/Portadasequipamiento/'+this.$route.query.tipoArticulo+'.jpg)' }">
+           :style="{ 'background-image': 'url(https://moha.ulandu.com/uploads/Portadasequipamiento/'+this.$route.query.tipoArticulo+'.jpg)' }">
         <h1 v-if="this.$route.query.tipoArticulo==='ropaHombre'">{{$t('24')}}</h1>
         <h1 v-else-if="this.$route.query.tipoArticulo==='ropaMujer'">{{$t('25')}}</h1>
         <h1 v-else-if="this.$route.query.tipoArticulo==='ropaNinio'">{{$t('26')}}</h1>
@@ -19,7 +19,7 @@
             <div>
               <picture class="imgItem">
                 <img class="img-fluid h-100"
-                     :src="'https://bike-lab-back.up.railway.app/uploads/equipamiento/imagenes/'+item.imagen">
+                     :src="'https://moha.ulandu.com/uploads/equipamiento/imagenes/'+item.imagen">
               </picture>
             </div>
             <p v-if="idioma==='es'" style="max-width: 350px;min-width: 350px;">{{ item.nombreEs }}</p>
@@ -87,7 +87,7 @@ export default {
     },
     async getEquipamiento() {
       this.cargado=false;
-      let response = await fetch('https://bike-lab-back.up.railway.app/api/equipamientos?tipoArticulo=' + this.$route.query.tipoArticulo, {
+      let response = await fetch('https://moha.ulandu.com/api/equipamientos?tipoArticulo=' + this.$route.query.tipoArticulo, {
         headers: {"Accept": "application/json", 'Content-Type': 'application/json'}
       })
 

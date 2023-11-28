@@ -128,7 +128,7 @@ export default {
     async cargarDatosPersonales() {
       let data = new FormData();
       data.append('idUser', this.$store.state.idUser);
-      let response = await fetch('https://bike-lab-back.up.railway.app/api/cargarDatosPersonales', {
+      let response = await fetch('https://moha.ulandu.com/api/cargarDatosPersonales', {
         method: 'POST',
         body: data,
       })
@@ -282,7 +282,7 @@ export default {
       }
 
 
-      let response = await fetch('https://bike-lab-back.up.railway.app/api/datosPersonales', {
+      let response = await fetch('https://moha.ulandu.com/api/datosPersonales', {
         method: 'POST',
         credentials: 'include',
         body: data

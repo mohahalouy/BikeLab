@@ -22,12 +22,12 @@
           <span class="removeItem" :data-id="item.id" :data-tipo="item.tipoCesta" @click="removeItem">&#10005;</span>
           <picture  v-if="item.tipoCesta==='modelos'" class="imgCompra" >
             <router-link :to="{ name: 'Modelo', query: { id: item.id }}" class="linkNonStyle">
-              <img class="img-fluid" :src="'https://bike-lab-back.up.railway.app/uploads/'+item.tipoCesta+'/imagenes/'+item.imagen">
+              <img class="img-fluid" :src="'https://moha.ulandu.com/uploads/'+item.tipoCesta+'/imagenes/'+item.imagen">
             </router-link>
           </picture>
           <picture  v-else class="imgCompra" >
             <router-link :to="{ name: 'Equipamiento', params: { id:item.id, nombreProducto: item.nombreEs }}"  class="linkNonStyle">
-            <img class="img-fluid" :src="'https://bike-lab-back.up.railway.app/uploads/'+item.tipoCesta+'/imagenes/'+item.imagen">
+            <img class="img-fluid" :src="'https://moha.ulandu.com/uploads/'+item.tipoCesta+'/imagenes/'+item.imagen">
             </router-link>
           </picture>
           <div class="text-left d-flex flex-column">
@@ -291,7 +291,7 @@ export default {
 
     },
     async getArticulo() {
-      let response = await fetch('https://bike-lab-back.up.railway.app/api/articulos', {
+      let response = await fetch('https://moha.ulandu.com/api/articulos', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -479,7 +479,7 @@ export default {
       $('#app').removeClass('difuminated')
       $('#app').css('z-index', 1061);
       try {
-        let response = await fetch('https://bike-lab-back.up.railway.app/api/login', {
+        let response = await fetch('https://moha.ulandu.com/api/login', {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
           credentials: 'include',
@@ -522,7 +522,7 @@ export default {
       $('.loading').show()
       $('body').addClass('noScrollBody')
       let that = this;
-      await fetch('https://bike-lab-back.up.railway.app/api/register', {
+      await fetch('https://moha.ulandu.com/api/register', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(that.dataRegister)

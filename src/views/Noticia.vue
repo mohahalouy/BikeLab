@@ -13,7 +13,7 @@
       <h1 v-else class="mb-5">{{this.dataNoticia.tituloEn}}</h1>
       <p class="text-danger">{{this.dataNoticia.fecha}}</p>
       <picture class="imgNoticia">
-        <img class="img-fluid" :src="'https://bike-lab-back.up.railway.app/uploads/noticias/'+this.dataNoticia.imagen">
+        <img class="img-fluid" :src="'https://moha.ulandu.com/uploads/noticias/'+this.dataNoticia.imagen">
       </picture>
       <div v-if="idioma==='es'" class="textoNoti mt-5" v-html="this.dataNoticia.textoEs"></div>
       <div v-else class="textoNoti mt-5" v-html="this.dataNoticia.textoEn"></div>
@@ -63,7 +63,7 @@ export default {
       document.querySelector('title').textContent = 'Noticia';
     },
     async getNoticia() {
-      let response = await fetch('https://bike-lab-back.up.railway.app/api/noticia?id=' + this.$route.query.id, {
+      let response = await fetch('https://moha.ulandu.com/api/noticia?id=' + this.$route.query.id, {
         headers: {"Accept": "application/json", 'Content-Type': 'application/json'}
       })
 

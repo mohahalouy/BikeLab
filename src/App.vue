@@ -26,7 +26,7 @@ export default {
 @font-face {
   font-family: 'letraVisor';
   src: url("assets/BlenderPro-Bold/BlenderPro-Bold.ttf");
-  /*src:url("https://bike-lab-back.up.railway.app/uploads/Letras/BlenderPro-Bold/BlenderPro-Bold.ttf") format('truetype');*/
+  /*src:url("https://moha.ulandu.com/uploads/Letras/BlenderPro-Bold/BlenderPro-Bold.ttf") format('truetype');*/
 }
 
 * {

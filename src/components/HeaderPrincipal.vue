@@ -4,12 +4,12 @@
       <div id="idiomas" class="idiomas">
         <div class="imgBanderas" @click="selectLanguage">
           <span class="nombreIdioma">Español</span>
-          <img src="https://bike-lab-back.up.railway.app/uploads/imgStatic/banderaEspaña.png" alt="es">
+          <img src="https://moha.ulandu.com/uploads/imgStatic/banderaEspaña.png" alt="es">
           <font-awesome-icon :icon="[ 'fas', 'angle-down' ]"/>
         </div>
         <div class="otherLanguage" @click="changeLanguage">
           <span class="nombreIdioma">English</span>
-          <img src="https://bike-lab-back.up.railway.app/uploads/imgStatic/banderaInglaterra.png" alt="en">
+          <img src="https://moha.ulandu.com/uploads/imgStatic/banderaInglaterra.png" alt="en">
         </div>
         <!--          <div id="imgIdiomas" class="d-flex imgBanderas" @click="changeLanguage">-->
         <!--            <img href="" src="../assets/banderaEspaña.png" alt="es">-->
@@ -74,7 +74,7 @@
       <aside class="d-flex align-items-center">
         <div id="logoHeader" class="logoHeader">
           <router-link to="/">
-            <img href="" src="https://bike-lab-back.up.railway.app/uploads/imgStatic/MH.png">
+            <img href="" src="https://moha.ulandu.com/uploads/imgStatic/MH.png">
           </router-link>
         </div>
       </aside>
@@ -388,7 +388,7 @@ export default {
       $('body').addClass('noScrollBody')
 
       try {
-        let response = await fetch('https://bike-lab-back.up.railway.app/api/user', {
+        let response = await fetch('https://moha.ulandu.com/api/user', {
           headers: {"Accept": "application/json", 'Content-Type': 'application/json'},
           credentials: 'include'
         });
@@ -425,7 +425,7 @@ export default {
       $('#app').removeClass('difuminated')
       $('.swalRegistro .formulario').hide()
       try {
-        let response = await fetch('https://bike-lab-back.up.railway.app/api/login', {
+        let response = await fetch('https://moha.ulandu.com/api/login', {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
           credentials: 'include',
@@ -468,7 +468,7 @@ export default {
       $('.loading').show()
       $('body').addClass('noScrollBody')
       let that = this;
-      await fetch('https://bike-lab-back.up.railway.app/api/register', {
+      await fetch('https://moha.ulandu.com/api/register', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(that.dataRegister)
@@ -482,7 +482,7 @@ export default {
     async logout() {
       $('.loading').show()
       $('body').addClass('noScrollBody')
-      await fetch('https://bike-lab-back.up.railway.app/api/logout', {
+      await fetch('https://moha.ulandu.com/api/logout', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         credentials: 'include'

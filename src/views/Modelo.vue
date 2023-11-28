@@ -12,12 +12,12 @@
       <div class="containerImgPrice">
         <video v-if="this.dataModel.nombreEs==='BMW S 1000 RR 2021'" id="video1" loop autoplay muted="muted">
           <source
-              :src="'https://bike-lab-back.up.railway.app/uploads/modelos/'+this.dataModel.nombreEs+'/'+this.dataModel.nombreEs+'Portada.mp4'"
+              :src="'https://moha.ulandu.com/uploads/modelos/'+this.dataModel.nombreEs+'/'+this.dataModel.nombreEs+'Portada.mp4'"
               type="video/mp4">
         </video>
         <picture v-else class="w-100">
           <img class="img-fluid w-100"
-               :src="'https://bike-lab-back.up.railway.app/uploads/modelos/'+this.dataModel.nombreEs+'/'+this.dataModel.nombreEs+'Portada.jpg'">
+               :src="'https://moha.ulandu.com/uploads/modelos/'+this.dataModel.nombreEs+'/'+this.dataModel.nombreEs+'Portada.jpg'">
         </picture>
         <div class="precioModelo">
           <h5 v-if="idioma==='es'" class="font-weight-bold">{{ this.dataModel.nombreEs }}</h5>
@@ -55,7 +55,7 @@
           <div class="my-5">
             <div class="containerImgMotor">
               <img style="width: 100%;"
-                   :src="'https://bike-lab-back.up.railway.app/uploads/modelos/'+this.dataModel.nombreEs+'/'+this.dataModel.nombreEs+'-1.jpg'">
+                   :src="'https://moha.ulandu.com/uploads/modelos/'+this.dataModel.nombreEs+'/'+this.dataModel.nombreEs+'-1.jpg'">
               <div class="motorContainer">
                 <div class="d-flex">
                   <div class="motorLeft">
@@ -104,7 +104,7 @@
                     </svg>
                     <div>
                       <img class="img-fluid"
-                           :src="'https://bike-lab-back.up.railway.app/uploads/modelos/'+this.dataModel.nombreEs+'/'+this.dataModel.nombreEs+'Motor.jpg'">
+                           :src="'https://moha.ulandu.com/uploads/modelos/'+this.dataModel.nombreEs+'/'+this.dataModel.nombreEs+'Motor.jpg'">
                     </div>
                     <svg version="1.1" class="animatedfacts__circleRight" xmlns="http://www.w3.org/2000/svg" x="0px"
                          y="0px"
@@ -182,7 +182,7 @@
           <h2 class="text-center">{{$t('92')}}</h2>
           <div class="position-relative d-flex justify-content-end w-100">
             <img style="width: 100%;"
-                 :src="'https://bike-lab-back.up.railway.app/uploads/modelos/'+this.dataModel.nombreEs+'/'+this.dataModel.nombreEs+'-2.jpg'">
+                 :src="'https://moha.ulandu.com/uploads/modelos/'+this.dataModel.nombreEs+'/'+this.dataModel.nombreEs+'-2.jpg'">
             <div class="botonArrancar" @click="arrancarMotor">
               <span>{{$t('93')}}</span>
             </div>
@@ -200,7 +200,7 @@
     </div>
     <Footer class="footer"></Footer>
     <audio v-if="cargado" style="display: none" id="sonidoMotor"
-           :src="'https://bike-lab-back.up.railway.app/uploads/modelos/sonidoMotor/'+this.dataModel.sonidoMotor" controls>
+           :src="'https://moha.ulandu.com/uploads/modelos/sonidoMotor/'+this.dataModel.sonidoMotor" controls>
     </audio>
     <div class="swalIrCarrito">
       <p class="text-left text-dark">{{$t('96')}}</p>
@@ -250,7 +250,7 @@ export default {
       document.querySelector('title').textContent = 'Modelo';
     },
     async getModel() {
-      let response = await fetch('https://bike-lab-back.up.railway.app/api/modelo?id=' + this.$route.query.id, {
+      let response = await fetch('https://moha.ulandu.com/api/modelo?id=' + this.$route.query.id, {
         headers: {"Accept": "application/json", 'Content-Type': 'application/json'}
       })
 

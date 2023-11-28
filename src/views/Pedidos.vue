@@ -17,9 +17,9 @@
               <div v-for="(itemPedidos, index2) in JSON.parse(item.order).slice(0,3)" :key="index2" class="itemsImg">
                 <div v-for="(itemDatos, index3) in DatosItems" :key="index3" class="itemsImg">
                   <img v-if="itemPedidos.id===itemDatos.id && itemPedidos.tipoArticulo===itemDatos.tipoCesta && itemPedidos.tipoArticulo ==='equipamiento'"
-                       :src="'https://bike-lab-back.up.railway.app/uploads/equipamiento/imagenes/'+itemDatos.imagen">
+                       :src="'https://moha.ulandu.com/uploads/equipamiento/imagenes/'+itemDatos.imagen">
                   <img v-else-if="itemPedidos.id===itemDatos.id && itemPedidos.tipoArticulo===itemDatos.tipoCesta && itemPedidos.tipoArticulo ==='modelos'"
-                       :src="'https://bike-lab-back.up.railway.app/uploads/modelos/imagenes/'+itemDatos.imagen">
+                       :src="'https://moha.ulandu.com/uploads/modelos/imagenes/'+itemDatos.imagen">
                 </div>
               </div>
               <div v-if="JSON.parse(item.order).length>=3" class="masArticulos">
@@ -80,7 +80,7 @@ export default {
       let data=new FormData();
       data.append('idUser', this.idUser)
 
-      let response=await fetch('https://bike-lab-back.up.railway.app/api/Orders', {
+      let response=await fetch('https://moha.ulandu.com/api/Orders', {
         method: 'POST',
         body: data,
       })
@@ -109,7 +109,7 @@ export default {
       this.getImgsProducts()
     },
     async getImgsProducts() {
-      let response=await fetch('https://bike-lab-back.up.railway.app/api/Items', {
+      let response=await fetch('https://moha.ulandu.com/api/Items', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

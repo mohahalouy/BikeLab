@@ -60,9 +60,9 @@
           <div class="d-flex">
             <div>
               <img class="imgItems" v-if="item.tipoCesta ==='equipamiento'"
-                   :src="'https://bike-lab-back.up.railway.app/uploads/equipamiento/imagenes/'+item.imagen">
+                   :src="'https://moha.ulandu.com/uploads/equipamiento/imagenes/'+item.imagen">
               <img class="imgItems" v-else-if="item.tipoCesta ==='modelos'"
-                   :src="'https://bike-lab-back.up.railway.app/uploads/modelos/imagenes/'+item.imagen">
+                   :src="'https://moha.ulandu.com/uploads/modelos/imagenes/'+item.imagen">
             </div>
             <div class="text-left">
               <p v-if="idioma==='es'" >{{item.nombreEs}}</p>
@@ -177,7 +177,7 @@ export default {
       let data = new FormData();
       data.append('id', this.$route.params.id)
 
-      let response = await fetch('https://bike-lab-back.up.railway.app/api/Order', {
+      let response = await fetch('https://moha.ulandu.com/api/Order', {
         method: 'POST',
         body: data,
       })
@@ -186,7 +186,7 @@ export default {
       await this.getArticulo()
     },
     async getArticulo() {
-      let response = await fetch('https://bike-lab-back.up.railway.app/api/articulos', {
+      let response = await fetch('https://moha.ulandu.com/api/articulos', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

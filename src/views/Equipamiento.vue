@@ -14,27 +14,27 @@
 
           <!-- Full-width images with number text -->
           <div class="mySlides">
-            <img :src="'https://bike-lab-back.up.railway.app/uploads/equipamiento/id'+this.dataEquipamiento.id+'/1.jpg'" style="width:100%">
+            <img :src="'https://moha.ulandu.com/uploads/equipamiento/id'+this.dataEquipamiento.id+'/1.jpg'" style="width:100%">
           </div>
 
           <div class="mySlides">
-            <img :src="'https://bike-lab-back.up.railway.app/uploads/equipamiento/id'+this.dataEquipamiento.id+'/2.jpg'" style="width:100%">
+            <img :src="'https://moha.ulandu.com/uploads/equipamiento/id'+this.dataEquipamiento.id+'/2.jpg'" style="width:100%">
           </div>
 
           <div v-if="this.dataEquipamiento.tipoArticulo!='ropaNinio'" class="mySlides">
-            <img :src="'https://bike-lab-back.up.railway.app/uploads/equipamiento/id'+this.dataEquipamiento.id+'/3.jpg'" style="width:100%">
+            <img :src="'https://moha.ulandu.com/uploads/equipamiento/id'+this.dataEquipamiento.id+'/3.jpg'" style="width:100%">
           </div>
 
           <div v-if="this.dataEquipamiento.tipoArticulo!='ropaNinio'" class="mySlides">
-            <img :src="'https://bike-lab-back.up.railway.app/uploads/equipamiento/id'+this.dataEquipamiento.id+'/4.jpg'" style="width:100%">
+            <img :src="'https://moha.ulandu.com/uploads/equipamiento/id'+this.dataEquipamiento.id+'/4.jpg'" style="width:100%">
           </div>
 
           <div v-if="this.dataEquipamiento.tipoArticulo!='ropaNinio'" class="mySlides">
-            <img :src="'https://bike-lab-back.up.railway.app/uploads/equipamiento/id'+this.dataEquipamiento.id+'/5.jpg'" style="width:100%">
+            <img :src="'https://moha.ulandu.com/uploads/equipamiento/id'+this.dataEquipamiento.id+'/5.jpg'" style="width:100%">
           </div>
 
           <div v-if="this.dataEquipamiento.tipoArticulo!='ropaNinio'" class="mySlides">
-            <img :src="'https://bike-lab-back.up.railway.app/uploads/equipamiento/id'+this.dataEquipamiento.id+'/6.jpg'" style="width:100%">
+            <img :src="'https://moha.ulandu.com/uploads/equipamiento/id'+this.dataEquipamiento.id+'/6.jpg'" style="width:100%">
           </div>
 
           <!-- Next and previous buttons -->
@@ -44,22 +44,22 @@
           <!-- Thumbnail images -->
           <div class="row" style="gap: 20px;flex-wrap: nowrap;">
             <div class="column">
-              <img class="demo cursor" :src="'https://bike-lab-back.up.railway.app/uploads/equipamiento/id'+this.dataEquipamiento.id+'/1.jpg'" style="width:100%" @click="currentSlide(1)" >
+              <img class="demo cursor" :src="'https://moha.ulandu.com/uploads/equipamiento/id'+this.dataEquipamiento.id+'/1.jpg'" style="width:100%" @click="currentSlide(1)" >
             </div>
             <div class="column">
-              <img class="demo cursor" :src="'https://bike-lab-back.up.railway.app/uploads/equipamiento/id'+this.dataEquipamiento.id+'/2.jpg'" style="width:100%" @click="currentSlide(2)">
+              <img class="demo cursor" :src="'https://moha.ulandu.com/uploads/equipamiento/id'+this.dataEquipamiento.id+'/2.jpg'" style="width:100%" @click="currentSlide(2)">
             </div>
             <div v-if="this.dataEquipamiento.tipoArticulo!='ropaNinio'" class="column">
-              <img class="demo cursor" :src="'https://bike-lab-back.up.railway.app/uploads/equipamiento/id'+this.dataEquipamiento.id+'/3.jpg'" style="width:100%" @click="currentSlide(3)" >
+              <img class="demo cursor" :src="'https://moha.ulandu.com/uploads/equipamiento/id'+this.dataEquipamiento.id+'/3.jpg'" style="width:100%" @click="currentSlide(3)" >
             </div>
             <div v-if="this.dataEquipamiento.tipoArticulo!='ropaNinio'" class="column">
-              <img class="demo cursor" :src="'https://bike-lab-back.up.railway.app/uploads/equipamiento/id'+this.dataEquipamiento.id+'/4.jpg'" style="width:100%" @click="currentSlide(4)" >
+              <img class="demo cursor" :src="'https://moha.ulandu.com/uploads/equipamiento/id'+this.dataEquipamiento.id+'/4.jpg'" style="width:100%" @click="currentSlide(4)" >
             </div>
             <div v-if="this.dataEquipamiento.tipoArticulo!='ropaNinio'" class="column">
-              <img class="demo cursor" :src="'https://bike-lab-back.up.railway.app/uploads/equipamiento/id'+this.dataEquipamiento.id+'/5.jpg'" style="width:100%" @click="currentSlide(5)">
+              <img class="demo cursor" :src="'https://moha.ulandu.com/uploads/equipamiento/id'+this.dataEquipamiento.id+'/5.jpg'" style="width:100%" @click="currentSlide(5)">
             </div>
             <div v-if="this.dataEquipamiento.tipoArticulo!='ropaNinio'" class="column">
-              <img class="demo cursor" :src="'https://bike-lab-back.up.railway.app/uploads/equipamiento/id'+this.dataEquipamiento.id+'/6.jpg'" style="width:100%" @click="currentSlide(6)">
+              <img class="demo cursor" :src="'https://moha.ulandu.com/uploads/equipamiento/id'+this.dataEquipamiento.id+'/6.jpg'" style="width:100%" @click="currentSlide(6)">
             </div>
           </div>
         </div>
@@ -222,7 +222,7 @@ export default {
       document.querySelector('title').textContent = 'Equipamiento';
     },
     async getEquipamiento() {
-      let response=await fetch('https://bike-lab-back.up.railway.app/api/equipamiento/' + this.$route.params.id, {
+      let response=await fetch('https://moha.ulandu.com/api/equipamiento/' + this.$route.params.id, {
         headers: {"Accept": "application/json", 'Content-Type': 'application/json'}
       })
       let content = await response.json();

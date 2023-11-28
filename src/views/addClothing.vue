@@ -14,7 +14,7 @@
             <li>
               <div class="option español">
                 <div class="icon">
-                  <img src="https://bike-lab-back.up.railway.app/uploads/imgStatic/banderaEspaña.png" alt="Español">
+                  <img src="https://moha.ulandu.com/uploads/imgStatic/banderaEspaña.png" alt="Español">
                 </div>
                 <p>{{$t('41')}}</p>
               </div>
@@ -24,7 +24,7 @@
             <li>
               <div class="option español">
                 <div class="icon">
-                  <img src="https://bike-lab-back.up.railway.app/uploads/imgStatic/banderaEspaña.png" alt="Español">
+                  <img src="https://moha.ulandu.com/uploads/imgStatic/banderaEspaña.png" alt="Español">
                 </div>
                 <p>{{$t('41')}}</p>
               </div>
@@ -32,7 +32,7 @@
             <li>
               <div class="option ingles">
                 <div class="icon">
-                  <img src="https://bike-lab-back.up.railway.app/uploads/imgStatic/banderaInglaterra.png" alt="Inglés">
+                  <img src="https://moha.ulandu.com/uploads/imgStatic/banderaInglaterra.png" alt="Inglés">
                 </div>
                 <p>{{$t('42')}}</p>
               </div>
@@ -247,7 +247,7 @@ export default {
       $('.loading').show()
 
 
-        let response = await fetch('https://bike-lab-back.up.railway.app/api/addClothing', {
+        let response = await fetch('https://moha.ulandu.com/api/addClothing', {
           method: 'POST',
           body: data
         });
@@ -313,7 +313,7 @@ export default {
   grid-template-rows: auto;
   position: relative;
   justify-items: center;
-  background: url('https://bike-lab-back.up.railway.app/uploads/imgStatic/multistrada.jpg');
+  background: url('https://moha.ulandu.com/uploads/imgStatic/multistrada.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   color: white;

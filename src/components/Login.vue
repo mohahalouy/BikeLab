@@ -3,7 +3,7 @@
     <div class="container">
       <div class="user signinBx">
         <div class="imgBx">
-          <img src="https://bike-lab-back.up.railway.app/uploads/imgStatic/multistrada.jpg">
+          <img src="https://moha.ulandu.com/uploads/imgStatic/multistrada.jpg">
         </div>
         <div class="formBx">
           <form>
@@ -27,7 +27,7 @@
       </div>
       <div class="user signupBx">
         <div class="imgBx">
-          <img src="https://bike-lab-back.up.railway.app/uploads/imgStatic/multistrada2.jpg">
+          <img src="https://moha.ulandu.com/uploads/imgStatic/multistrada2.jpg">
         </div>
         <div class="formBx">
           <form>
